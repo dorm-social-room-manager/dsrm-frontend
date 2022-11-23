@@ -28,5 +28,30 @@ To run this repository, several programs are required.
 To run the application locally, start the server using the following command
 
 ```bash
-  npm run dev
+  npm run start
+```
+To build an application without starting the server, use the following command
+
+```bash
+  npm run build
+```
+To check all .ts and .tsx files for errors, use the following command
+
+```bash
+  npm run lint
+```
+To check all .ts and .tsx files for errors, and fix them afterwards, use the following command
+
+```bash
+  npm run lint:fix
+```
+To check the formatting of all files, use the following command
+
+```bash
+  npm run prettyprint
+```
+To check the formatting of all files, and run prettyprint on them afterwards, use the following command
+
+```bash
+  npm run prettyprint:fix
 ```
