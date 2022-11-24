@@ -1,9 +1,10 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
 import './App.css';
+import reactLogo from './assets/react.svg';
+import { useState } from 'react';
 
-function App() {
-  const [count, setCount] = useState(0);
+export function App() {
+  const initialState = 0;
+  const [count, setCount] = useState(initialState);
 
   return (
     <div className='App'>
@@ -33,8 +34,9 @@ function App() {
       <div className='card'>
         <button
           onClick={() => {
-            return setCount((count) => {
-              return count + 1;
+            return setCount((cnt) => {
+              const minIncrease = 1;
+              return cnt + minIncrease;
             });
           }}
         >
@@ -48,5 +50,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
