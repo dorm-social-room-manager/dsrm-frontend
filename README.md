@@ -48,6 +48,12 @@ To check all .ts and .tsx files for errors, and fix them afterwards, use the fol
   npm run lint:fix
 ```
 
+To check all .ts and .tsx files for errors, and make it run continuously in watch mode, use the following command
+
+```bash
+  npm run lint:watch
+```
+
 To check the formatting of all files, use the following command
 
 ```bash
