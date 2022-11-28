@@ -1,0 +1,4 @@
+{
+  "extends": "tsconfig.js",
+  "include": ["vite.config.ts"]
+}
