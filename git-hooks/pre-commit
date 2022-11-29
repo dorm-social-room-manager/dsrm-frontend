@@ -91,7 +91,7 @@ if [ $eslint_exit_code = 0 ] && [ $stylelint_exit_code = 0 ]
 then
     add_files_to_staged_tree "${ts_tsx_files_to_add_after_linting[*]} ${scss_files_to_add_after_linting[*]}"
     echo -e "${GREEN} ✔ Committed successfully *^____^* ${NC}"
-    exit 0
+    exit
 else
     echo -e "${RED} ❌ Couldn't commit changes dues to above errors ＞﹏＜ ${NC}"
     exit 1
