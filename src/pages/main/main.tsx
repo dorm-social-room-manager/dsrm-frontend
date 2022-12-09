@@ -1,10 +1,10 @@
-import './index.scss';
+import './main.scss';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { App } from './App';
+import { Footer } from '../../templates/Footer/Footer';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <App />
+    <Footer></Footer>
   </React.StrictMode>
 );
