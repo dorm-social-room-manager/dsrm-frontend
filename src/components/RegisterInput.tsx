@@ -1,8 +1,10 @@
 import { Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { PasswordInput } from './PasswordInput';
 
 export function RegisterInput() {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
+
   return (
     <Grid
       container
@@ -79,13 +81,7 @@ export function RegisterInput() {
         tablet={6}
         mobile={12}
       >
-        <TextField
-          className='input'
-          label='Password'
-          type='password'
-          name='password'
-          required
-        />
+        <PasswordInput />
       </Grid>
     </Grid>
   );

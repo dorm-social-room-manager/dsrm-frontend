@@ -33,10 +33,9 @@ export function Login() {
   const [isRegister, setIsRegister] = useState(false);
   function RegisterClick() {
     setIsRegister(!isRegister);
-    console.log(isRegister);
   }
   function LoginClick() {
-    console.log(isRegister);
+    console.log('Login');
   }
   return (
     <ThemeProvider theme={theme}>

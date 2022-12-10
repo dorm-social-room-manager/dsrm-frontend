@@ -1,4 +1,5 @@
 import { Grid, TextField } from '@mui/material';
+import { PasswordInput } from './PasswordInput';
 
 export function LoginInputs() {
   return (
@@ -24,14 +25,7 @@ export function LoginInputs() {
         item
         base={12}
       >
-        <TextField
-          className='input'
-          label='password'
-          type='password'
-          name='password'
-          margin='normal'
-          required
-        />
+        <PasswordInput />
       </Grid>
     </Grid>
   );
