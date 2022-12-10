@@ -1,7 +1,10 @@
 import '@fontsource/roboto';
+import './Footer.scss';
 import { Grid, Typography } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
 
 export function Footer() {
+  const defaultTheme = createTheme();
   return (
     <footer>
       <Grid
@@ -16,12 +19,37 @@ export function Footer() {
       >
         <Grid
           style={{ textAlign: 'center' }}
-          color='#ffffff'
+          color={defaultTheme.palette.common.white}
         >
-          <div style={{ alignItems: 'center', display: 'flex', gap: 4 }}>
-            <Typography sx={{ fontWeight: '500' }}>Copyright © 2022 </Typography>
-            <Typography sx={{ fontWeight: '700' }}>DSRM Team. </Typography>
-            <Typography sx={{ fontWeight: '700', textDecoration: 'underline' }}>Policy terms</Typography>
+          <div className='spacer'>
+            <Typography
+              sx={{
+                fontWeight: (theme) => {
+                  return theme.typography.fontWeightMedium;
+                },
+              }}
+            >
+              Copyright © 2022
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: (theme) => {
+                  return theme.typography.fontWeightBold;
+                },
+              }}
+            >
+              DSRM Team.
+            </Typography>
+            <Typography
+              sx={{
+                fontWeight: (theme) => {
+                  return theme.typography.fontWeightBold;
+                },
+                textDecoration: 'underline',
+              }}
+            >
+              Policy terms
+            </Typography>
           </div>
         </Grid>
       </Grid>
