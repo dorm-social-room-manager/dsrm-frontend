@@ -1,6 +1,6 @@
 import { Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { ChangeEvent } from 'react';
-import { PasswordInput } from './PasswordInput';
+import { PasswordInput } from '../PasswordInput/PasswordInput';
 
 interface registerInputHandlers {
   handleEmail: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;

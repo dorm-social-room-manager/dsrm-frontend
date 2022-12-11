@@ -1,8 +1,6 @@
 import { Checkbox, FormControlLabel, Grid, Link } from '@mui/material';
 
 export function LoginOptions() {
-  //const theme = useTheme();
-  //const isMobile: boolean = useMediaQuery(theme.breakpoints.down('mobile'));
   return (
     <Grid
       container

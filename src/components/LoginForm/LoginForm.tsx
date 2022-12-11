@@ -1,9 +1,9 @@
 import { Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { ChangeEvent, MouseEventHandler, useState } from 'react';
-import { LoginButton } from './LoginButton';
-import { LoginInputs } from './LoginInputs';
-import { LoginOptions } from './LoginOptions';
-import { RegisterButton } from './RegisterButton';
+import { LoginButton } from '../LoginButton/LoginButton';
+import { LoginInputs } from '../LoginInputs/LoginInputs';
+import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { RegisterButton } from '../RegisterButton/RegisterButton';
 
 interface buttonFunctions {
   RegisterButtonFunction: MouseEventHandler<HTMLButtonElement>;

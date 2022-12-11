@@ -16,7 +16,7 @@ export function PasswordInput({ handlePass }: passHandlers) {
     <TextField
       className='input'
       label='Password'
-      type={showPassword ? 'password' : 'text'}
+      type={showPassword ? 'text' : 'password'}
       name='password'
       onChange={(e) => {
         handlePass(e);

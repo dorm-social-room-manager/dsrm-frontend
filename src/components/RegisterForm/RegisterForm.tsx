@@ -1,7 +1,7 @@
 import { Box, Divider, Grid } from '@mui/material';
 import { ChangeEvent, MouseEventHandler, useState } from 'react';
-import { RegisterButton } from './RegisterButton';
-import { RegisterInput } from './RegisterInput';
+import { RegisterButton } from '../RegisterButton/RegisterButton';
+import { RegisterInput } from '../RegisterInput/RegisterInput';
 
 interface buttonFunctions {
   RegisterButtonFunction: MouseEventHandler<HTMLButtonElement>;
