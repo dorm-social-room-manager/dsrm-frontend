@@ -1,7 +1,13 @@
 import { Grid, TextField } from '@mui/material';
+import { ChangeEvent } from 'react';
 import { PasswordInput } from './PasswordInput';
 
-export function LoginInputs() {
+interface loginInputHandlers {
+  handleEmail: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handlePass: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+export function LoginInputs({ handleEmail, handlePass }: loginInputHandlers) {
   return (
     <Grid
       container
@@ -18,6 +24,9 @@ export function LoginInputs() {
           label='e-mail'
           type='email'
           name='email'
+          onChange={(e) => {
+            handleEmail(e);
+          }}
           required
         />
       </Grid>
@@ -25,7 +34,7 @@ export function LoginInputs() {
         item
         base={12}
       >
-        <PasswordInput />
+        <PasswordInput handlePass={handlePass} />
       </Grid>
     </Grid>
   );

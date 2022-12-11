@@ -1,7 +1,16 @@
 import { Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { ChangeEvent } from 'react';
 import { PasswordInput } from './PasswordInput';
 
-export function RegisterInput() {
+interface registerInputHandlers {
+  handleEmail: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handlePass: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleFName: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleLName: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  handleRoomNr: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+}
+
+export function RegisterInput({ handleEmail, handleFName, handleLName, handlePass, handleRoomNr }: registerInputHandlers) {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
 
@@ -26,6 +35,9 @@ export function RegisterInput() {
           label='First Name'
           type='text'
           name='fname'
+          onChange={(e) => {
+            handleFName(e);
+          }}
           required
         />
       </Grid>
@@ -39,6 +51,9 @@ export function RegisterInput() {
           label='Last Name'
           type='text'
           name='lname'
+          onChange={(e) => {
+            handleLName(e);
+          }}
           required
         />
       </Grid>
@@ -52,6 +67,9 @@ export function RegisterInput() {
           label='Room Number'
           type='number'
           name='room'
+          onChange={(e) => {
+            handleRoomNr(e);
+          }}
           required
         />
       </Grid>
@@ -73,6 +91,9 @@ export function RegisterInput() {
           label='e-mail'
           type='email'
           name='email'
+          onChange={(e) => {
+            handleEmail(e);
+          }}
           required
         />
       </Grid>
@@ -81,7 +102,7 @@ export function RegisterInput() {
         tablet={6}
         mobile={12}
       >
-        <PasswordInput />
+        <PasswordInput handlePass={handlePass} />
       </Grid>
     </Grid>
   );

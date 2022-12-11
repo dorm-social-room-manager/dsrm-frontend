@@ -1,8 +1,8 @@
 import { Box, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { ChangeEvent, MouseEventHandler, useState } from 'react';
 import { LoginButton } from './LoginButton';
 import { LoginInputs } from './LoginInputs';
 import { LoginOptions } from './LoginOptions';
-import { MouseEventHandler } from 'react';
 import { RegisterButton } from './RegisterButton';
 
 interface buttonFunctions {
@@ -13,6 +13,15 @@ interface buttonFunctions {
 export function LoginForm({ LoginButtonFunction, RegisterButtonFunction }: buttonFunctions) {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
+  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState('');
+  const handleEmail = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEmail(e.target.value);
+  };
+  const handlePass = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setPass(e.target.value);
+  };
+  const minLenght = 1;
   return (
     <>
       <Box
@@ -34,6 +43,7 @@ export function LoginForm({ LoginButtonFunction, RegisterButtonFunction }: butto
             mobile: 6,
             tablet: 8,
           }}
+          height={20}
           alignItems='center'
           justifyContent='center'
           spacing={3}
@@ -42,7 +52,10 @@ export function LoginForm({ LoginButtonFunction, RegisterButtonFunction }: butto
             item
             base={11}
           >
-            <LoginInputs />
+            <LoginInputs
+              handleEmail={handleEmail}
+              handlePass={handlePass}
+            />
           </Grid>
           {!isMobile && (
             <>
@@ -66,14 +79,17 @@ export function LoginForm({ LoginButtonFunction, RegisterButtonFunction }: butto
           >
             <LoginButton
               LoginButtonFunction={LoginButtonFunction}
-              isLoginEnabled={true}
+              isLoginEnabled={!(email.length < minLenght || pass.length < minLenght)}
             />
           </Grid>
           <Grid
             item
             base={8}
           >
-            <RegisterButton RegisterButtonFunction={RegisterButtonFunction} />
+            <RegisterButton
+              RegisterButtonFunction={RegisterButtonFunction}
+              isRegisterEnabled={true}
+            />
           </Grid>
 
           {isMobile && (

@@ -3,9 +3,10 @@ import { MouseEventHandler } from 'react';
 
 interface buttonFunctions {
   RegisterButtonFunction: MouseEventHandler<HTMLButtonElement>;
+  isRegisterEnabled: boolean;
 }
 
-export function RegisterButton({ RegisterButtonFunction }: buttonFunctions) {
+export function RegisterButton({ RegisterButtonFunction, isRegisterEnabled }: buttonFunctions) {
   return (
     <div>
       <Button
@@ -20,6 +21,7 @@ export function RegisterButton({ RegisterButtonFunction }: buttonFunctions) {
           width: 1,
         }}
         onClick={RegisterButtonFunction}
+        disabled={!isRegisterEnabled}
       >
         Register
       </Button>

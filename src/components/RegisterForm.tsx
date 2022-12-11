@@ -1,5 +1,5 @@
 import { Box, Divider, Grid } from '@mui/material';
-import { MouseEventHandler } from 'react';
+import { ChangeEvent, MouseEventHandler, useState } from 'react';
 import { RegisterButton } from './RegisterButton';
 import { RegisterInput } from './RegisterInput';
 
@@ -8,6 +8,29 @@ interface buttonFunctions {
 }
 
 export function RegisterForm({ RegisterButtonFunction }: buttonFunctions) {
+  const [fName, setFName] = useState('');
+  const [lName, setLName] = useState('');
+  const [roomNr, setRoomNr] = useState('');
+  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState('');
+  const handleEmail = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEmail(e.target.value);
+  };
+  const handlePass = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setPass(e.target.value);
+  };
+  const handleRoomNr = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setRoomNr(e.target.value);
+  };
+  const handleLName = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setLName(e.target.value);
+  };
+  const handleFName = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFName(e.target.value);
+  };
+
+  const minLenght = 1;
+
   return (
     <Box
       padding={0}
@@ -37,7 +60,13 @@ export function RegisterForm({ RegisterButtonFunction }: buttonFunctions) {
           mobile={10}
           tablet={11}
         >
-          <RegisterInput />
+          <RegisterInput
+            handleEmail={handleEmail}
+            handleFName={handleFName}
+            handleLName={handleLName}
+            handlePass={handlePass}
+            handleRoomNr={handleRoomNr}
+          />
         </Grid>
         <Grid
           item
@@ -50,7 +79,18 @@ export function RegisterForm({ RegisterButtonFunction }: buttonFunctions) {
           item
           mobile={6}
         >
-          <RegisterButton RegisterButtonFunction={RegisterButtonFunction} />
+          <RegisterButton
+            RegisterButtonFunction={RegisterButtonFunction}
+            isRegisterEnabled={
+              !(
+                fName.length < minLenght ||
+                lName.length < minLenght ||
+                roomNr.length < minLenght ||
+                email.length < minLenght ||
+                pass.length < minLenght
+              )
+            }
+          />
         </Grid>
       </Grid>
     </Box>
