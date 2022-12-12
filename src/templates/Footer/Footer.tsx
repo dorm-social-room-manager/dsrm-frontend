@@ -1,4 +1,3 @@
-import '@fontsource/roboto';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Grid, Link, Typography, useMediaQuery } from '@mui/material';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';

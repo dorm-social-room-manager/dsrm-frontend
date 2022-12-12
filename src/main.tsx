@@ -1,4 +1,5 @@
 import './main.scss';
+import '@fontsource/roboto';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { Footer } from './templates/Footer/Footer';
