@@ -1,6 +1,6 @@
 import '@fontsource/roboto';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Grid, Typography, useMediaQuery } from '@mui/material';
+import { Grid, Link, Typography, useMediaQuery } from '@mui/material';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 
 declare module '@mui/material/styles' {
@@ -74,7 +74,13 @@ export function Footer() {
                 textDecoration: 'underline',
               }}
             >
-              Policy terms
+              <Link
+                href='https://github.com/dorm-social-room-manager/dsrm-frontend/blob/master/LICENSE.MD'
+                target='_blank'
+                color='inherit'
+              >
+                Policy terms
+              </Link>
             </Typography>
           </div>
           <IconsGroup></IconsGroup>
