@@ -1,29 +1,53 @@
 import '@fontsource/roboto';
-import './Footer.scss';
-import { Grid, Typography } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { Grid, Typography, useMediaQuery } from '@mui/material';
+import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 
+declare module '@mui/material/styles' {
+  interface BreakpointOverrides {
+    xs: false;
+    sm: false;
+    md: false;
+    lg: false;
+    xl: false;
+    base: true;
+    mobile: true;
+    tablet: true;
+    desktop: true;
+  }
+}
+const defaultTheme = createTheme({
+  breakpoints: {
+    values: {
+      base: 0,
+      desktop: 1024,
+      mobile: 360,
+      tablet: 768,
+    },
+  },
+});
 export function Footer() {
-  const defaultTheme = createTheme();
+  const tablet: boolean = useMediaQuery(defaultTheme.breakpoints.up('mobile'));
+  const mobileGap = 4;
+  const tabletGap = 0;
   return (
-    <footer>
-      <Grid
-        container
-        direction='column'
-        alignItems='center'
-        justifyContent='center'
-        bgcolor='#1976D2'
-        spacing={0}
-        padding={0}
-        height={158}
-      >
+    <ThemeProvider theme={defaultTheme}>
+      <footer>
         <Grid
-          style={{ textAlign: 'center' }}
+          container
+          justifyContent='center'
+          alignItems='center'
+          height={158}
+          bgcolor={defaultTheme.palette.primary.main}
           color={defaultTheme.palette.common.white}
+          direction={tablet ? 'row' : 'column'}
+          gap={tablet ? tabletGap : mobileGap}
+          marginTop={0}
         >
-          <div className='spacer'>
+          <div>
             <Typography
               sx={{
+                display: 'inline',
                 fontWeight: (theme) => {
                   return theme.typography.fontWeightMedium;
                 },
@@ -33,15 +57,17 @@ export function Footer() {
             </Typography>
             <Typography
               sx={{
+                display: 'inline',
                 fontWeight: (theme) => {
                   return theme.typography.fontWeightBold;
                 },
               }}
             >
-              DSRM Team.
+              {' DSRM Team. '}
             </Typography>
             <Typography
               sx={{
+                display: 'inline',
                 fontWeight: (theme) => {
                   return theme.typography.fontWeightBold;
                 },
@@ -51,8 +77,9 @@ export function Footer() {
               Policy terms
             </Typography>
           </div>
+          <IconsGroup></IconsGroup>
         </Grid>
-      </Grid>
-    </footer>
+      </footer>
+    </ThemeProvider>
   );
 }
