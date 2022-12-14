@@ -34,21 +34,11 @@ export function Login() {
   function RegisterClick() {
     setIsRegister(!isRegister);
   }
-  function LoginClick() {
-    console.log('Login');
-  }
   return (
     <ThemeProvider theme={theme}>
       <div>
-        <form>
-          {!isRegister && (
-            <LoginForm
-              RegisterButtonFunction={RegisterClick}
-              LoginButtonFunction={LoginClick}
-            />
-          )}
-          {isRegister && <RegisterForm RegisterButtonFunction={RegisterClick} />}
-        </form>
+        {!isRegister && <LoginForm RegisterButtonFunction={RegisterClick} />}
+        {isRegister && <RegisterForm />}
       </div>
     </ThemeProvider>
   );
