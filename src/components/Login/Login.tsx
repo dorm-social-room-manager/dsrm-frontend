@@ -1,6 +1,5 @@
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LoginForm } from '../LoginForm/LoginForm';
-import { RegisterForm } from '../RegisterForm/RegisterForm';
 import { useState } from 'react';
 
 const theme = createTheme({
@@ -35,10 +34,7 @@ export function Login() {
   }
   return (
     <ThemeProvider theme={theme}>
-      <div>
-        {!isRegister && <LoginForm RegisterButtonFunction={RegisterClick} />}
-        {isRegister && <RegisterForm />}
-      </div>
+      <div>{!isRegister && <LoginForm RegisterButtonFunction={RegisterClick} />}</div>
     </ThemeProvider>
   );
 }
