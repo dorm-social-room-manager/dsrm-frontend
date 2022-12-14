@@ -2,10 +2,10 @@ import './main.scss';
 import '@fontsource/roboto';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
-import { Footer } from './templates/Footer/Footer';
+import { App } from './App';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <Footer></Footer>
+    <App></App>
   </React.StrictMode>
 );
