@@ -1,5 +1,3 @@
-import '@fontsource/roboto';
-import '@fontsource/roboto-mono';
 import { Grid, Link, Typography } from '@mui/material';
 
 export function Header() {
