@@ -1,12 +1,6 @@
 import { Grid, TextField } from '@mui/material';
 import { Field } from 'formik';
-import { ChangeEvent } from 'react';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-
-interface loginInputHandlers {
-  handleEmail: string;
-  handlePass: (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
-}
 
 export function LoginInputs() {
   return (
