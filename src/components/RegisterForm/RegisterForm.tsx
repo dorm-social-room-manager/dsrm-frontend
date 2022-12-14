@@ -90,10 +90,14 @@ export function RegisterForm() {
                   <Button
                     sx={{
                       ':hover': {
-                        bgcolor: 'purple',
+                        bgcolor: (theme) => {
+                          return theme.palette.secondary.main;
+                        },
                         color: 'red',
                       },
-                      bgcolor: 'purple',
+                      bgcolor: (theme) => {
+                        return theme.palette.secondary.main;
+                      },
                       color: 'white',
                       padding: 1,
                       width: 1,

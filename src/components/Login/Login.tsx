@@ -1,4 +1,3 @@
-import './Login.scss';
 import { createTheme, ThemeProvider } from '@mui/material';
 import { LoginForm } from '../LoginForm/LoginForm';
 import { RegisterForm } from '../RegisterForm/RegisterForm';

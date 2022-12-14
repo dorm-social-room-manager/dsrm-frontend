@@ -96,10 +96,10 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                     <Button
                       sx={{
                         ':hover': {
-                          bgcolor: '#4287f5',
+                          bgcolor: theme.palette.primary.main,
                           color: 'red',
                         },
-                        bgcolor: '#4287f5',
+                        bgcolor: theme.palette.primary.main,
                         color: 'white',
                         padding: 1,
                         width: 1,
@@ -117,10 +117,10 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                     <Button
                       sx={{
                         ':hover': {
-                          bgcolor: 'purple',
+                          bgcolor: theme.palette.secondary.main,
                           color: 'red',
                         },
-                        bgcolor: 'purple',
+                        bgcolor: theme.palette.secondary.main,
                         color: 'white',
                         padding: 1,
                         width: 1,
