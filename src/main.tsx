@@ -4,13 +4,16 @@ import '@fontsource/roboto';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
 import { customTheme } from './common/breakpoints';
 import { ThemeProvider } from '@mui/material/styles';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ThemeProvider theme={customTheme}>
     <React.StrictMode>
-      <App></App>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
     </React.StrictMode>
   </ThemeProvider>
 );
