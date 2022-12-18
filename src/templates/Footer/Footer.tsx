@@ -1,11 +1,15 @@
+import '../../i18n';
 import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
+import { useTranslation } from 'react-i18next';
 
 export function Footer() {
   const customTheme = useTheme();
   const tablet: boolean = useMediaQuery(customTheme.breakpoints.up('mobile'));
   const mobileGap = 4;
   const tabletGap = 0;
+  const { t } = useTranslation();
+
   return (
     <footer>
       <Grid
@@ -28,7 +32,7 @@ export function Footer() {
               },
             }}
           >
-            Copyright © 2022
+            {t('copyright')}
           </Typography>
           <Typography
             sx={{
@@ -38,7 +42,7 @@ export function Footer() {
               },
             }}
           >
-            {' DSRM Team. '}
+            {` ${t('authors')} `}
           </Typography>
           <Typography
             sx={{
@@ -54,7 +58,7 @@ export function Footer() {
               target='_blank'
               color='inherit'
             >
-              Policy terms
+              {t('policy')}
             </Link>
           </Typography>
         </div>
