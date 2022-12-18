@@ -1,0 +1,9 @@
+{
+  "common": {
+    "password": "Password",
+    "phone": "Phone Number",
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "register": "Register"
+  }
+}

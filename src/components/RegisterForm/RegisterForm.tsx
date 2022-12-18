@@ -1,11 +1,13 @@
+import '../../i18n';
 import { Box, Button, Divider, Grid } from '@mui/material';
 import { Err } from './RegisterForm.types';
 import { Formik } from 'formik';
 import { RegisterInput } from '../RegisterInput/RegisterInput';
+import { useTranslation } from 'react-i18next';
 
 export function RegisterForm() {
   const minLength = 1;
-
+  const { t } = useTranslation();
   const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
@@ -92,7 +94,7 @@ export function RegisterForm() {
                     type='submit'
                     disabled={!isValid}
                   >
-                    Register
+                    {t('register')}
                   </Button>
                 </Grid>
               </Grid>
