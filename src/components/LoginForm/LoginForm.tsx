@@ -7,14 +7,14 @@ import { LoginOptions } from '../LoginOptions/LoginOptions';
 export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
-  const minLenght = 1;
+  const minLength = 1;
 
   const validate = (values: { email: string; password: string }) => {
     const errors: Err = {};
-    if (values.email.length < minLenght) {
+    if (values.email.length < minLength) {
       errors.email = 'Email is required';
     }
-    if (values.password.length < minLenght) {
+    if (values.password.length < minLength) {
       errors.password = 'Password is required';
     }
     return errors;
