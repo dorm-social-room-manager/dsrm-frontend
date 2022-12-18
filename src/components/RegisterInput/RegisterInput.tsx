@@ -1,11 +1,13 @@
+import '../../i18n';
 import { Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field } from 'formik';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
+import { useTranslation } from 'react-i18next';
 
 export function RegisterInput() {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
-
+  const { t } = useTranslation();
   return (
     <Grid
       container
@@ -25,7 +27,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label='First Name'
+          label={t('first_name')}
           type='text'
           name='fname'
           required
@@ -39,7 +41,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label='Last Name'
+          label={t('last_name')}
           type='text'
           name='lname'
           required
@@ -53,7 +55,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label='Phone Number'
+          label={t('phone')}
           inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           type='text'
           name='phone'

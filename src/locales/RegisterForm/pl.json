@@ -1,0 +1,9 @@
+{
+  "common": {
+    "password": "Hasło",
+    "phone": "Numer Telefonu",
+    "first_name": "Imie",
+    "last_name": "Nazwisko",
+    "register": "Zarejestruj Się"
+  }
+}
