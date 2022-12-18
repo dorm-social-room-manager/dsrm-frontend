@@ -1,6 +1,9 @@
+import '../../i18n.ts';
 import { Checkbox, FormControlLabel, Grid, Link } from '@mui/material';
+import { useTranslation } from 'react-i18next';
 
 export function LoginOptions() {
+  const { t } = useTranslation();
   return (
     <Grid
       container
@@ -20,7 +23,7 @@ export function LoginOptions() {
       >
         <FormControlLabel
           control={<Checkbox defaultChecked />}
-          label='Remeber me'
+          label={t('remember_me')}
         />
       </Grid>
       <Grid
@@ -28,7 +31,7 @@ export function LoginOptions() {
         mobile={5}
         base={8}
       >
-        <Link href='#'>Forgot Password</Link>
+        <Link href='#'>{t('forgot_password')}</Link>
       </Grid>
     </Grid>
   );

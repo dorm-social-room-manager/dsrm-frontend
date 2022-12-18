@@ -1,0 +1,13 @@
+{
+  "common": {
+    "password": "Hasło",
+    "email": "Email",
+    "register": "Zarejestruj Się",
+    "login": "Zaloguj Się",
+    "email_empty": "Email jest wymagany",
+    "password_empty": "Hasło jest wymagane",
+    "show_password": "Pokaż hasło",
+    "remember_me": "Zapamiętaj mnie",
+    "forgot_password": "Zapomniałeś hasła?"
+  }
+}

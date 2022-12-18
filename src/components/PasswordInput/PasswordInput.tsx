@@ -1,19 +1,22 @@
+import '../../i18n.ts';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Field } from 'formik';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export function PasswordInput() {
   const [showPassword, setshowPassword] = useState(false);
   function handleShowPassword() {
     setshowPassword(!showPassword);
   }
-
+  const { t } = useTranslation();
+  const aria = t('show_password');
   return (
     <Field
       as={TextField}
       className='input'
-      label='Password'
+      label={t('password')}
       type={showPassword ? 'text' : 'password'}
       name='password'
       required
@@ -21,7 +24,7 @@ export function PasswordInput() {
         endAdornment: (
           <InputAdornment position='end'>
             <IconButton
-              aria-label='toggle password visibility'
+              aria-label={aria}
               onClick={handleShowPassword}
               edge='end'
             >

@@ -1,21 +1,22 @@
+import '../../i18n.ts';
 import { Box, Button, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { buttonFunctions, Err } from './LoginForm.types';
 import { Formik } from 'formik';
 import { LoginInputs } from '../LoginInputs/LoginInputs';
 import { LoginOptions } from '../LoginOptions/LoginOptions';
-
+import { useTranslation } from 'react-i18next';
 export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
   const minLength = 1;
-
+  const { t } = useTranslation();
   const validate = (values: { email: string; password: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
-      errors.email = 'Email is required';
+      errors.email = t('email_empty');
     }
     if (values.password.length < minLength) {
-      errors.password = 'Password is required';
+      errors.password = t('password_empty');
     }
     return errors;
   };
@@ -96,7 +97,7 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                       type='submit'
                       disabled={!isValid}
                     >
-                      Login
+                      {t('login')}
                     </Button>
                   </Grid>
                   <Grid
@@ -112,7 +113,7 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                       }}
                       onClick={RegisterButtonFunction}
                     >
-                      Register
+                      {t('register')}
                     </Button>
                   </Grid>
 
