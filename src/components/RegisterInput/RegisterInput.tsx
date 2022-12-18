@@ -78,7 +78,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label='e-mail'
+          label={t('email')}
           type='email'
           name='email'
           required

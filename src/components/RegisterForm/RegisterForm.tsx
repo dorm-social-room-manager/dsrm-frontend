@@ -11,19 +11,19 @@ export function RegisterForm() {
   const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
-      errors.email = 'Email is required';
+      errors.email = t('email_empty');
     }
     if (values.password.length < minLength) {
-      errors.password = 'Password is required';
+      errors.password = t('password_empty');
     }
     if (values.lname.length < minLength) {
-      errors.lname = 'Last Name is required';
+      errors.lname = t('last_name_empty');
     }
     if (values.fname.length < minLength) {
-      errors.fname = 'First Name is required';
+      errors.fname = t('first_name_empty');
     }
     if (values.phone.length < minLength) {
-      errors.phone = 'Phone is required';
+      errors.phone = t('phone_empty');
     }
     return errors;
   };
