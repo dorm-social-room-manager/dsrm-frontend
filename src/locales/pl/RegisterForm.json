@@ -1,5 +1,4 @@
 {
-  "common": {
     "password": "Hasło",
     "phone": "Numer Telefonu",
     "first_name": "Imie",
@@ -12,5 +11,4 @@
     "first_name_empty": "Imie jest wymagane",
     "last_name_empty": "Nazwisko jest wymagane",
     "show_password": "Pokaż hasło"
-  }
 }

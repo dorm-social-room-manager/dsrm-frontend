@@ -1,4 +1,4 @@
-import '../../i18n';
+import '../../i18n/i18n';
 import { Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field } from 'formik';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
@@ -27,7 +27,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label={t('first_name')}
+          label={t('RegisterForm.first_name')}
           type='text'
           name='fname'
           required
@@ -41,7 +41,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label={t('last_name')}
+          label={t('RegisterForm.last_name')}
           type='text'
           name='lname'
           required
@@ -55,7 +55,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label={t('phone')}
+          label={t('RegisterForm.phone')}
           inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
           type='text'
           name='phone'
@@ -78,7 +78,7 @@ export function RegisterInput() {
         <Field
           as={TextField}
           className='input'
-          label={t('email')}
+          label={t('RegisterForm.email')}
           type='email'
           name='email'
           required
