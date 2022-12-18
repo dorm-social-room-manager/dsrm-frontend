@@ -1,4 +1,4 @@
-import '../../i18n';
+import '../../i18n/i18n';
 import { Box, Button, Divider, Grid } from '@mui/material';
 import { Err } from './RegisterForm.types';
 import { Formik } from 'formik';
@@ -11,19 +11,19 @@ export function RegisterForm() {
   const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
-      errors.email = t('email_empty');
+      errors.email = t('RegisterForm.email_empty');
     }
     if (values.password.length < minLength) {
-      errors.password = t('password_empty');
+      errors.password = t('RegisterForm.password_empty');
     }
     if (values.lname.length < minLength) {
-      errors.lname = t('last_name_empty');
+      errors.lname = t('RegisterForm.last_name_empty');
     }
     if (values.fname.length < minLength) {
-      errors.fname = t('first_name_empty');
+      errors.fname = t('RegisterForm.first_name_empty');
     }
     if (values.phone.length < minLength) {
-      errors.phone = t('phone_empty');
+      errors.phone = t('RegisterForm.phone_empty');
     }
     return errors;
   };
@@ -94,7 +94,7 @@ export function RegisterForm() {
                     type='submit'
                     disabled={!isValid}
                   >
-                    {t('register')}
+                    {t('RegisterForm.register')}
                   </Button>
                 </Grid>
               </Grid>

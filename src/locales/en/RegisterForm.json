@@ -1,0 +1,14 @@
+{
+  "password": "Password",
+  "phone": "Phone Number",
+  "first_name": "First Name",
+  "last_name": "Last Name",
+  "email": "Email",
+  "register": "Register",
+  "email_empty": "Email is required",
+  "password_empty": "Password is required",
+  "phone_empty": "Phone is required",
+  "first_name_empty": "First Name is required",
+  "last_name_empty": "Last Name is required",
+  "show_password": "Show Password"
+}
