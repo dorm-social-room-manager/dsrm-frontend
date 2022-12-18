@@ -1,16 +1,9 @@
 import { Box, Button, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
+import { buttonFunctions, Err } from './LoginForm.types';
 import { Formik } from 'formik';
 import { LoginInputs } from '../LoginInputs/LoginInputs';
 import { LoginOptions } from '../LoginOptions/LoginOptions';
-import { MouseEventHandler } from 'react';
 
-interface buttonFunctions {
-  RegisterButtonFunction: MouseEventHandler<HTMLButtonElement>;
-}
-type Err = {
-  email?: string;
-  password?: string;
-};
 export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
@@ -94,13 +87,9 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                     base={8}
                   >
                     <Button
+                      variant='contained'
+                      color='primary'
                       sx={{
-                        ':hover': {
-                          bgcolor: theme.palette.primary.main,
-                          color: 'red',
-                        },
-                        bgcolor: theme.palette.primary.main,
-                        color: 'white',
                         padding: 1,
                         width: 1,
                       }}
@@ -115,18 +104,13 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                     base={8}
                   >
                     <Button
+                      variant='contained'
+                      color='secondary'
                       sx={{
-                        ':hover': {
-                          bgcolor: theme.palette.secondary.main,
-                          color: 'red',
-                        },
-                        bgcolor: theme.palette.secondary.main,
-                        color: 'white',
                         padding: 1,
                         width: 1,
                       }}
                       onClick={RegisterButtonFunction}
-                      disabled={!true}
                     >
                       Register
                     </Button>
