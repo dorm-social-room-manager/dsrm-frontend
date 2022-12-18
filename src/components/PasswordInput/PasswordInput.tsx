@@ -1,4 +1,4 @@
-import '../../i18n.ts';
+import '../../i18n/i18n.ts';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Field } from 'formik';
@@ -11,12 +11,12 @@ export function PasswordInput() {
     setshowPassword(!showPassword);
   }
   const { t } = useTranslation();
-  const aria = t('show_password');
+  const aria = t('LoginForm.show_password');
   return (
     <Field
       as={TextField}
       className='input'
-      label={t('password')}
+      label={t('LoginForm.password')}
       type={showPassword ? 'text' : 'password'}
       name='password'
       required

@@ -1,4 +1,4 @@
-import '../../i18n.ts';
+import '../../i18n/i18n.ts';
 import './LoginInput.scss';
 import { Grid, TextField } from '@mui/material';
 import { Field } from 'formik';
@@ -21,7 +21,7 @@ export function LoginInputs() {
         <Field
           as={TextField}
           className='input'
-          label={t('email')}
+          label={t('LoginForm.email')}
           type='email'
           name='email'
           required

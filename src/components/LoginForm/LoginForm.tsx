@@ -1,4 +1,4 @@
-import '../../i18n.ts';
+import '../../i18n/i18n.ts';
 import { Box, Button, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
 import { buttonFunctions, Err } from './LoginForm.types';
 import { Formik } from 'formik';
@@ -13,10 +13,10 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
   const validate = (values: { email: string; password: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
-      errors.email = t('email_empty');
+      errors.email = t('LoginForm.email_empty');
     }
     if (values.password.length < minLength) {
-      errors.password = t('password_empty');
+      errors.password = t('LoginForm.password_empty');
     }
     return errors;
   };
@@ -97,7 +97,7 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                       type='submit'
                       disabled={!isValid}
                     >
-                      {t('login')}
+                      {t('LoginForm.login')}
                     </Button>
                   </Grid>
                   <Grid
@@ -113,7 +113,7 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                       }}
                       onClick={RegisterButtonFunction}
                     >
-                      {t('register')}
+                      {t('LoginForm.register')}
                     </Button>
                   </Grid>
 
