@@ -1,4 +1,3 @@
-import '../../i18n';
 import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
@@ -32,7 +31,7 @@ export function Footer() {
               },
             }}
           >
-            {t('copyright')}
+            {t('footer.copyright')}
           </Typography>
           <Typography
             sx={{
@@ -42,7 +41,7 @@ export function Footer() {
               },
             }}
           >
-            {` ${t('authors')} `}
+            {` ${t('footer.authors')} `}
           </Typography>
           <Typography
             sx={{
@@ -58,7 +57,7 @@ export function Footer() {
               target='_blank'
               color='inherit'
             >
-              {t('policy')}
+              {t('footer.policy')}
             </Link>
           </Typography>
         </div>

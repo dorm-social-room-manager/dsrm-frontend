@@ -30,7 +30,6 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "resolveJsonModule": true,
-    "esModuleInterop": true,
   },
   "include": ["./src"]
 }
