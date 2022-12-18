@@ -1,31 +1,26 @@
 import { Box, Button, Divider, Grid } from '@mui/material';
+import { Err } from './RegisterForm.types';
 import { Formik } from 'formik';
 import { RegisterInput } from '../RegisterInput/RegisterInput';
 
 export function RegisterForm() {
-  const minLenght = 1;
-  type Err = {
-    email?: string;
-    password?: string;
-    lname?: string;
-    fname?: string;
-    phone?: string;
-  };
+  const minLength = 1;
+
   const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
     const errors: Err = {};
-    if (values.email.length < minLenght) {
+    if (values.email.length < minLength) {
       errors.email = 'Email is required';
     }
-    if (values.password.length < minLenght) {
+    if (values.password.length < minLength) {
       errors.password = 'Password is required';
     }
-    if (values.lname.length < minLenght) {
+    if (values.lname.length < minLength) {
       errors.lname = 'Last Name is required';
     }
-    if (values.fname.length < minLenght) {
+    if (values.fname.length < minLength) {
       errors.fname = 'First Name is required';
     }
-    if (values.phone.length < minLenght) {
+    if (values.phone.length < minLength) {
       errors.phone = 'Phone is required';
     }
     return errors;
@@ -88,17 +83,9 @@ export function RegisterForm() {
                   mobile={6}
                 >
                   <Button
+                    variant='contained'
+                    color='secondary'
                     sx={{
-                      ':hover': {
-                        bgcolor: (theme) => {
-                          return theme.palette.secondary.main;
-                        },
-                        color: 'red',
-                      },
-                      bgcolor: (theme) => {
-                        return theme.palette.secondary.main;
-                      },
-                      color: 'white',
                       padding: 1,
                       width: 1,
                     }}
