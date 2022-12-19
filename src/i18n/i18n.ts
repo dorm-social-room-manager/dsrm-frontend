@@ -1,5 +1,7 @@
 import * as footerEN from '../locales/en/footer.json';
 import * as footerPL from '../locales/pl/footer.json';
+import * as headerEN from '../locales/en/header.json';
+import * as headerPL from '../locales/pl/header.json';
 import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
 import i18n from 'i18next';
@@ -9,12 +11,14 @@ const resources = {
   en: {
     components: {
       footer: footerEN,
+      header: headerEN,
       loginForm: loginFormEN,
     },
   },
   pl: {
     components: {
       footer: footerPL,
+      header: headerPL,
       loginForm: loginFormPL,
     },
   },

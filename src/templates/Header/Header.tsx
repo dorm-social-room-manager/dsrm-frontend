@@ -1,9 +1,11 @@
 import { Grid, Link, Typography } from '@mui/material';
 import styles from './Header.module.scss';
 import { useTheme } from '@mui/material/styles';
+import { useTranslation } from 'react-i18next';
 
 export function Header() {
   const theme = useTheme();
+  const { t } = useTranslation();
   return (
     <header>
       <Grid
@@ -20,13 +22,13 @@ export function Header() {
             borderColor: theme.palette.action.disabledBackground,
             fontFamily: 'Roboto Mono',
             fontSize: theme.typography.h2.fontSize,
-            fontWeight: (t) => {
-              return t.typography.fontWeightMedium;
+            fontWeight: (them) => {
+              return them.typography.fontWeightMedium;
             },
             letterSpacing: -1.5,
           }}
         >
-          Dorm room social manager
+          {t('header.title')}
         </Typography>
         <div className={styles.graylinks}>
           <Link
@@ -35,7 +37,7 @@ export function Header() {
             color={theme.palette.primary.dark}
             underline='none'
           >
-            IV DS
+            {t('header.building_name')}
           </Link>
           <Typography>|</Typography>
           <Link
@@ -43,7 +45,7 @@ export function Header() {
             color={theme.palette.primary.dark}
             underline='none'
           >
-            Politechnika Łódzka
+            {t('header.faculty')}
           </Link>
         </div>
       </Grid>
