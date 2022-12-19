@@ -1,3 +1,4 @@
+import { GitHub, ImportContacts } from '@mui/icons-material';
 import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
@@ -8,7 +9,10 @@ export function Footer() {
   const mobileGap = 4;
   const tabletGap = 0;
   const { t } = useTranslation();
-
+  const githubIcon = <GitHub />;
+  const wikiIcon = <ImportContacts />;
+  const iconsArr = [githubIcon, wikiIcon];
+  const linksArr = ['https://github.com/dorm-social-room-manager/dsrm-frontend/wiki', 'https://github.com/dorm-social-room-manager'];
   return (
     <footer>
       <Grid
@@ -61,7 +65,10 @@ export function Footer() {
             </Link>
           </Typography>
         </div>
-        <IconsGroup></IconsGroup>
+        <IconsGroup
+          links={linksArr}
+          icons={iconsArr}
+        ></IconsGroup>
       </Grid>
     </footer>
   );
