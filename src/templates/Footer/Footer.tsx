@@ -1,6 +1,5 @@
 import { GitHub, ImportContacts } from '@mui/icons-material';
 import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
-import { IconLink } from '../../components/IconLink/IconLink';
 import { IconLinkProps } from '../../components/IconLink/IconLink.types';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
@@ -8,20 +7,16 @@ import { useTranslation } from 'react-i18next';
 const FOOTER_ICON_PROPS: IconLinkProps[] = [
   {
     description: 'GitHub',
-    icon: <GitHub key={0} />,
+    icon: <GitHub />,
     link: 'https://github.com/dorm-social-room-manager/dsrm-frontend/wiki',
   },
   {
     description: 'Wiki',
-    icon: <ImportContacts key={1} />,
+    icon: <ImportContacts />,
     link: 'https://github.com/dorm-social-room-manager',
   },
 ];
-const FOOTER_ICONS: IconLink[] = [];
 
-for (let i = 0; i < FOOTER_ICON_PROPS.length; i++) {
-  FOOTER_ICONS.push(<IconLink {...FOOTER_ICON_PROPS[i]} />);
-}
 export function Footer() {
   const customTheme = useTheme();
   const tablet: boolean = useMediaQuery(customTheme.breakpoints.up('mobile'));
@@ -81,7 +76,7 @@ export function Footer() {
             </Link>
           </Typography>
         </div>
-        <IconsGroup icons={FOOTER_ICONS}></IconsGroup>
+        <IconsGroup icons={FOOTER_ICON_PROPS}></IconsGroup>
       </Grid>
     </footer>
   );

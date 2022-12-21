@@ -1,5 +1,5 @@
-import { IconLink } from '../IconLink/IconLink';
+import { IconLinkProps } from '../IconLink/IconLink.types';
 
 export interface IconsGroupProps {
-  icons: IconLink[];
+  icons: IconLinkProps[];
 }
