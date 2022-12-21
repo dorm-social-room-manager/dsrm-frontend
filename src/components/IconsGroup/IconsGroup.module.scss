@@ -1,0 +1,12 @@
+.list {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  list-style-type: none;
+  gap: 2rem;
+  li {
+    display: inline;
+  }
+}

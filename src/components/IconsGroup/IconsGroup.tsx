@@ -1,27 +1,11 @@
-import Grid from '@mui/material/Grid';
-import { IconLink } from '../IconLink/IconLink';
-
-interface IconsGroupProps {
-  icons: IconLink[];
-}
+import { IconsGroupProps } from './IconsGroup.types';
+import styles from './IconsGroup.module.scss';
 
 export function IconsGroup(props: IconsGroupProps) {
-  const listItems = props.icons.map((ic, idx) => {
-    return <li key={idx}>{ic}</li>;
-  });
+  const listItems = [];
+  for (let i = 0; i < props.icons.length; i++) {
+    listItems.push(<li key={i}>{props.icons[i]}</li>);
+  }
 
-  return (
-    <Grid
-      container
-      item
-      alignItems='center'
-      justifyContent='center'
-      mobile={3}
-      tablet={3}
-      columnGap={4}
-      sx={{ listStyle: 'none', textDecoration: 'none' }}
-    >
-      {listItems}
-    </Grid>
-  );
+  return <ul className={styles.list}>{listItems}</ul>;
 }
