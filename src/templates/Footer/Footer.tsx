@@ -5,18 +5,20 @@ import { IconLinkProps } from '../../components/IconLink/IconLink.types';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
 
-const pics = [<GitHub key={0} />, <ImportContacts key={1} />];
-const links = ['https://github.com/dorm-social-room-manager/dsrm-frontend/wiki', 'https://github.com/dorm-social-room-manager'];
-const descs = ['GitHub', 'Wiki'];
-const FOOTER_ICON_PROPS: IconLinkProps[] = [];
+const FOOTER_ICON_PROPS: IconLinkProps[] = [
+  {
+    description: 'GitHub',
+    icon: <GitHub key={0} />,
+    link: 'https://github.com/dorm-social-room-manager/dsrm-frontend/wiki',
+  },
+  {
+    description: 'Wiki',
+    icon: <ImportContacts key={1} />,
+    link: 'https://github.com/dorm-social-room-manager',
+  },
+];
 const FOOTER_ICONS: IconLink[] = [];
-for (let i = 0; i < links.length && i < descs.length && i < pics.length; i++) {
-  FOOTER_ICON_PROPS.push({
-    description: descs[i],
-    icon: pics[i],
-    link: links[i],
-  });
-}
+
 for (let i = 0; i < FOOTER_ICON_PROPS.length; i++) {
   FOOTER_ICONS.push(<IconLink {...FOOTER_ICON_PROPS[i]} />);
 }
