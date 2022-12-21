@@ -1,5 +1,6 @@
 import { GitHub, ImportContacts } from '@mui/icons-material';
 import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { IconLink } from '../../components/IconLink/IconLink';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
 
@@ -11,8 +12,17 @@ export function Footer() {
   const { t } = useTranslation();
   const githubIcon = <GitHub />;
   const wikiIcon = <ImportContacts />;
-  const iconsArr = [githubIcon, wikiIcon];
-  const linksArr = ['https://github.com/dorm-social-room-manager/dsrm-frontend/wiki', 'https://github.com/dorm-social-room-manager'];
+  const pics = [githubIcon, wikiIcon];
+  const links = ['https://github.com/dorm-social-room-manager/dsrm-frontend/wiki', 'https://github.com/dorm-social-room-manager'];
+  const icons = [];
+  for (let i = 0; i < pics.length && i < links.length; i++) {
+    icons.push(
+      <IconLink
+        link={links[i]}
+        icon={pics[i]}
+      ></IconLink>
+    );
+  }
   return (
     <footer>
       <Grid
@@ -65,10 +75,7 @@ export function Footer() {
             </Link>
           </Typography>
         </div>
-        <IconsGroup
-          links={linksArr}
-          icons={iconsArr}
-        ></IconsGroup>
+        <IconsGroup icons={icons}></IconsGroup>
       </Grid>
     </footer>
   );
