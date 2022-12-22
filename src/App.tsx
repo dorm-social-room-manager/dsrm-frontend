@@ -1,3 +1,13 @@
+import { Route, Routes } from 'react-router-dom';
+import { Footer } from './templates/Footer/Footer';
+
 export function App() {
-  return <div className='App'></div>;
+  return (
+    <Routes>
+      <Route
+        path='/'
+        element={<Footer />}
+      ></Route>
+    </Routes>
+  );
 }

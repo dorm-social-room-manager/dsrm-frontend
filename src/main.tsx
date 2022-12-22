@@ -1,10 +1,19 @@
-import './index.scss';
+import './main.scss';
+import './i18n/i18n';
+import '@fontsource/roboto';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { App } from './App';
+import { BrowserRouter } from 'react-router-dom';
+import { customTheme } from './common/breakpoints';
+import { ThemeProvider } from '@mui/material/styles';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <ThemeProvider theme={customTheme}>
+    <React.StrictMode>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </React.StrictMode>
+  </ThemeProvider>
 );
