@@ -1,14 +1,14 @@
 {
-    "password": "Hasło",
-    "phone": "Numer Telefonu",
-    "first_name": "Imie",
-    "last_name": "Nazwisko",
-    "email": "Email",
-    "register": "Zarejestruj Się",
-    "email_empty": "Email jest wymagany",
-    "password_empty": "Hasło jest wymagane",
-    "phone_empty": "Numer telefonu jest wymagany",
-    "first_name_empty": "Imie jest wymagane",
-    "last_name_empty": "Nazwisko jest wymagane",
-    "show_password": "Pokaż hasło"
+  "password": "Hasło",
+  "phone": "Numer Telefonu",
+  "firstName": "Imie",
+  "lastName": "Nazwisko",
+  "email": "Email",
+  "register": "Zarejestruj Się",
+  "emailEmpty": "Email jest wymagany",
+  "passwordEmpty": "Hasło jest wymagane",
+  "phoneEmpty": "Numer telefonu jest wymagany",
+  "firstNameEmpty": "Imie jest wymagane",
+  "lastNameEmpty": "Nazwisko jest wymagane",
+  "showPassword": "Pokaż hasło"
 }
