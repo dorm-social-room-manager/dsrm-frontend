@@ -1,4 +1,4 @@
-export type Err = {
+export type LoginFormErrors = {
   Email?: string;
   Password?: string;
 };

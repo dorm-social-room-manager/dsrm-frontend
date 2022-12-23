@@ -1,8 +1,8 @@
 import '../../i18n/i18n.ts';
 import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { Err } from './LoginForm.types';
 import { Link } from 'react-router-dom';
+import { LoginFormErrors } from './LoginForm.types';
 import { LoginOptions } from './LoginOptions';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './LoginForm.module.scss';
@@ -14,7 +14,7 @@ export function LoginForm() {
   const minLength = 1;
   const { t } = useTranslation();
   const validate = (values: { email: string; password: string }) => {
-    const errors: Err = {};
+    const errors: LoginFormErrors = {};
     if (values.email.length < minLength) {
       errors.Email = t('loginForm.emailEmpty');
     }
