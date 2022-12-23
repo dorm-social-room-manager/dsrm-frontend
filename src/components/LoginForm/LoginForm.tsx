@@ -3,7 +3,7 @@ import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '
 import { Field, Formik } from 'formik';
 import { Err } from './LoginForm.types';
 import { Link } from 'react-router-dom';
-import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { LoginOptions } from './LoginOptions';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './LoginForm.module.scss';
 import { useTranslation } from 'react-i18next';
