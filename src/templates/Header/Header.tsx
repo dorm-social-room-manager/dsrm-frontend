@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from '@mui/material';
+import { Grid, Link, Typography, useMediaQuery } from '@mui/material';
 import styles from './Header.module.scss';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
@@ -6,6 +6,18 @@ import { useTranslation } from 'react-i18next';
 export function Header() {
   const theme = useTheme();
   const { t } = useTranslation();
+  const tablet: boolean = useMediaQuery(theme.breakpoints.up('tablet'));
+  const isRegister = false;
+
+  const REGISTER_IDX_START = 2;
+  const LOGIN_IDX_START = 0;
+  const TABLET_IDX_ADJUST = 0;
+  const MOBILE_IDX_ADJUST = 1;
+
+  const headerRegisterJsonIdx = isRegister ? REGISTER_IDX_START : LOGIN_IDX_START;
+  const headerTabletJsonIdx = tablet ? TABLET_IDX_ADJUST : MOBILE_IDX_ADJUST;
+  const jsonIdx = headerRegisterJsonIdx + headerTabletJsonIdx;
+  const jsonSubscript = `.${String(jsonIdx)}`;
   return (
     <header>
       <Grid
@@ -28,7 +40,7 @@ export function Header() {
             letterSpacing: -1.5,
           }}
         >
-          {t('header.title')}
+          {t(`header.titles${jsonSubscript}`)}
         </Typography>
         <div className={styles.graylinks}>
           <Link
