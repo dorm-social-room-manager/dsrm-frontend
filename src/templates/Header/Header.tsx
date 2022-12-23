@@ -49,7 +49,7 @@ export function Header() {
             color={theme.palette.primary.dark}
             underline='none'
           >
-            {t('header.building_name')}
+            {t('header.buildingName')}
           </Link>
           <Typography>|</Typography>
           <Link
