@@ -1,13 +1,13 @@
 import { Route, Routes } from 'react-router-dom';
-import { Footer } from './templates/Footer/Footer';
+import { Login } from './pages/LoginPage';
 
 export function App() {
   return (
     <Routes>
       <Route
-        path='/'
-        element={<Footer />}
-      ></Route>
+        path='/login'
+        element={<Login />}
+      />
     </Routes>
   );
 }

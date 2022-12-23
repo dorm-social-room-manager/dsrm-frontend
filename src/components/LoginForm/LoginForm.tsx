@@ -1,11 +1,14 @@
 import '../../i18n/i18n.ts';
-import { Box, Button, Divider, Grid, useMediaQuery, useTheme } from '@mui/material';
-import { buttonFunctions, Err } from './LoginForm.types';
-import { Formik } from 'formik';
-import { LoginInputs } from '../LoginInputs/LoginInputs';
+import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { Field, Formik } from 'formik';
+import { Err } from './LoginForm.types';
+import { Link } from 'react-router-dom';
 import { LoginOptions } from '../LoginOptions/LoginOptions';
+import { PasswordInput } from '../PasswordInput/PasswordInput';
+import styles from './LoginForm.module.scss';
 import { useTranslation } from 'react-i18next';
-export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
+
+export function LoginForm() {
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
   const minLength = 1;
@@ -13,10 +16,10 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
   const validate = (values: { email: string; password: string }) => {
     const errors: Err = {};
     if (values.email.length < minLength) {
-      errors.email = t('LoginForm.email_empty');
+      errors.Email = t('loginForm.emailEmpty');
     }
     if (values.password.length < minLength) {
-      errors.password = t('LoginForm.password_empty');
+      errors.Password = t('loginForm.passwordEmpty');
     }
     return errors;
   };
@@ -65,7 +68,20 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                     item
                     base={11}
                   >
-                    <LoginInputs />
+                    <Field
+                      as={TextField}
+                      className={styles.input}
+                      label={t('loginForm.email')}
+                      type='email'
+                      name='email'
+                      required
+                    />
+                  </Grid>
+                  <Grid
+                    item
+                    base={11}
+                  >
+                    <PasswordInput />
                   </Grid>
                   {!isMobile && (
                     <>
@@ -97,7 +113,7 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                       type='submit'
                       disabled={!isValid}
                     >
-                      {t('LoginForm.login')}
+                      {t('loginForm.login')}
                     </Button>
                   </Grid>
                   <Grid
@@ -111,9 +127,10 @@ export function LoginForm({ RegisterButtonFunction }: buttonFunctions) {
                         padding: 1,
                         width: 1,
                       }}
-                      onClick={RegisterButtonFunction}
+                      component={Link}
+                      to='/register'
                     >
-                      {t('LoginForm.register')}
+                      {t('loginForm.register')}
                     </Button>
                   </Grid>
 

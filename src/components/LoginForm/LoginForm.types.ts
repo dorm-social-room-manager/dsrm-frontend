@@ -1,10 +1,4 @@
-import { MouseEventHandler } from 'react';
-
 export type Err = {
-  email?: string;
-  password?: string;
+  Email?: string;
+  Password?: string;
 };
-
-export interface buttonFunctions {
-  RegisterButtonFunction: MouseEventHandler<HTMLButtonElement>;
-}

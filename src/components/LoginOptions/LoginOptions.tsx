@@ -23,7 +23,7 @@ export function LoginOptions() {
       >
         <FormControlLabel
           control={<Checkbox defaultChecked />}
-          label={t('LoginForm.remember_me')}
+          label={t('loginForm.rememberMe')}
         />
       </Grid>
       <Grid
@@ -31,7 +31,7 @@ export function LoginOptions() {
         mobile={5}
         base={8}
       >
-        <Link href='#'>{t('LoginForm.forgot_password')}</Link>
+        <Link href='#'>{t('loginForm.forgotPassword')}</Link>
       </Grid>
     </Grid>
   );
