@@ -2,8 +2,8 @@ import * as footerEN from '../locales/en/footer.json';
 import * as footerPL from '../locales/pl/footer.json';
 import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
-import * as RegisterFormEN from '../locales/en/RegisterForm.json';
-import * as RegisterFormPL from '../locales/pl/RegisterForm.json';
+import * as registerFormEN from '../locales/en/registerForm.json';
+import * as registerFormPL from '../locales/pl/registerForm.json';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -12,14 +12,14 @@ const resources = {
     components: {
       footer: footerEN,
       loginForm: loginFormEN,
-      RegisterForm: RegisterFormEN,
+      registerForm: registerFormEN,
     },
   },
   pl: {
     components: {
       footer: footerPL,
       loginForm: loginFormPL,
-      RegisterForm: RegisterFormPL,
+      registerForm: registerFormPL,
     },
   },
 };
