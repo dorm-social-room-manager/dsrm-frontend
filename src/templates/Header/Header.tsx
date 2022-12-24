@@ -1,23 +1,11 @@
-import { Grid, Link, Typography, useMediaQuery } from '@mui/material';
+import { Grid, Link, Typography } from '@mui/material';
+import { HeaderProps } from './Header.types';
 import styles from './Header.module.scss';
 import { useTheme } from '@mui/material/styles';
-import { useTranslation } from 'react-i18next';
 
-export function Header() {
+export function Header(props: HeaderProps) {
   const theme = useTheme();
-  const { t } = useTranslation();
-  const tablet: boolean = useMediaQuery(theme.breakpoints.up('tablet'));
-  const isRegister = false;
 
-  const REGISTER_IDX_START = 2;
-  const LOGIN_IDX_START = 0;
-  const TABLET_IDX_ADJUST = 0;
-  const MOBILE_IDX_ADJUST = 1;
-
-  const headerRegisterJsonIdx = isRegister ? REGISTER_IDX_START : LOGIN_IDX_START;
-  const headerTabletJsonIdx = tablet ? TABLET_IDX_ADJUST : MOBILE_IDX_ADJUST;
-  const jsonIdx = headerRegisterJsonIdx + headerTabletJsonIdx;
-  const jsonSubscript = `.${String(jsonIdx)}`;
   return (
     <header>
       <Grid
@@ -40,24 +28,23 @@ export function Header() {
             letterSpacing: -1.5,
           }}
         >
-          {t(`header.titles${jsonSubscript}`)}
+          {props.universityName}
         </Typography>
-        <div className={styles.graylinks}>
+        <div className={styles.links}>
           <Link
-            href='https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta
-'
+            href={props.dormitory.url}
             color={theme.palette.primary.dark}
             underline='none'
           >
-            {t('header.buildingName')}
+            {props.dormitory.urlName}
           </Link>
           <Typography>|</Typography>
           <Link
-            href='https://p.lodz.pl/'
+            href={props.faculty.url}
             color={theme.palette.primary.dark}
             underline='none'
           >
-            {t('header.faculty')}
+            {props.faculty.urlName}
           </Link>
         </div>
       </Grid>
