@@ -1,5 +1,14 @@
-.links {
+.container {
+  display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  display: flex;
-  gap: 1rem;
+  justify-content: center;
+  padding: 0px;
+  margin: 0px;
+  .links {
+    margin-right: auto;
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+  }
 }
