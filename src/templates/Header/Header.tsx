@@ -1,4 +1,4 @@
-import { Grid, Link, Typography } from '@mui/material';
+import { Divider, Grid, Link, Typography } from '@mui/material';
 import { HeaderProps } from './Header.types';
 import styles from './Header.module.scss';
 import { useTheme } from '@mui/material/styles';
@@ -9,8 +9,6 @@ export function Header(props: HeaderProps) {
     <div className={styles.container}>
       <Typography
         sx={{
-          borderBottom: 1,
-          borderColor: theme.palette.action.disabledBackground,
           fontFamily: 'Roboto Mono',
           fontSize: theme.typography.h2.fontSize,
           fontWeight: (them) => {
@@ -22,6 +20,10 @@ export function Header(props: HeaderProps) {
       >
         {props.headerTitle}
       </Typography>
+      <Divider
+        sx={{ backgroundColor: theme.palette.action.disabledBackground }}
+        className={styles.divider}
+      />
       <Grid
         item
         className={styles.links}
