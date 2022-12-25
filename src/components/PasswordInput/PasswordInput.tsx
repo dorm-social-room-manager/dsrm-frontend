@@ -1,4 +1,3 @@
-import '../../i18n/i18n.ts';
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Field } from 'formik';

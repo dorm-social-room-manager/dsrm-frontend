@@ -5,7 +5,7 @@ export function App() {
   return (
     <Routes>
       <Route
-        path='/login'
+        path='/'
         element={<LoginPage />}
       />
     </Routes>

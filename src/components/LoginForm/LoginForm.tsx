@@ -1,4 +1,3 @@
-import '../../i18n/i18n.ts';
 import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { Link } from 'react-router-dom';
@@ -10,20 +9,21 @@ import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
   const theme = useTheme();
-  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
+  const isTablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const minLength = 1;
   const { t } = useTranslation();
   const validate = (values: { email: string; password: string }) => {
     const errors: LoginFormErrors = {};
     if (values.email.length < minLength) {
-      errors.Email = t('loginForm.emailEmpty');
+      errors.email = t('loginForm.emailEmpty');
     }
     if (values.password.length < minLength) {
-      errors.Password = t('loginForm.passwordEmpty');
+      errors.password = t('loginForm.passwordEmpty');
     }
     return errors;
   };
-
+  const mobileGap = 8;
+  const tabletGap = 6;
   return (
     <>
       <Formik
@@ -49,16 +49,10 @@ export function LoginForm() {
                   tablet: 400,
                 }}
                 height={540}
-                alignItems='center'
-                justifyContent='center'
               >
                 <Grid
                   container
-                  paddingTop={{
-                    desktop: 8,
-                    mobile: 6,
-                    tablet: 8,
-                  }}
+                  paddingTop={isTablet ? mobileGap : tabletGap}
                   height={20}
                   alignItems='center'
                   justifyContent='center'
@@ -66,7 +60,7 @@ export function LoginForm() {
                 >
                   <Grid
                     item
-                    base={11}
+                    mobile={11}
                   >
                     <Field
                       as={TextField}
@@ -79,21 +73,21 @@ export function LoginForm() {
                   </Grid>
                   <Grid
                     item
-                    base={11}
+                    mobile={11}
                   >
                     <PasswordInput />
                   </Grid>
-                  {!isMobile && (
+                  {isTablet && (
                     <>
                       <Grid
                         item
-                        base={11}
+                        mobile={11}
                       >
                         <LoginOptions />
                       </Grid>
                       <Grid
                         item
-                        base={11}
+                        mobile={11}
                       >
                         <Divider sx={{ width: 1 }} />
                       </Grid>
@@ -101,7 +95,7 @@ export function LoginForm() {
                   )}
                   <Grid
                     item
-                    base={8}
+                    mobile={8}
                   >
                     <Button
                       variant='contained'
@@ -118,7 +112,7 @@ export function LoginForm() {
                   </Grid>
                   <Grid
                     item
-                    base={8}
+                    mobile={8}
                   >
                     <Button
                       variant='contained'
@@ -134,18 +128,18 @@ export function LoginForm() {
                     </Button>
                   </Grid>
 
-                  {isMobile && (
+                  {!isTablet && (
                     <>
                       <Grid
                         item
-                        base={11}
+                        mobile={11}
                       >
                         <Divider sx={{ width: 1 }} />
                       </Grid>
 
                       <Grid
                         item
-                        base={12}
+                        mobile={12}
                       >
                         <LoginOptions />
                       </Grid>
