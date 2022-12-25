@@ -4,6 +4,8 @@ import * as headerEN from '../locales/en/header.json';
 import * as headerPL from '../locales/pl/header.json';
 import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
+import * as registerFormEN from '../locales/en/registerForm.json';
+import * as registerFormPL from '../locales/pl/registerForm.json';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
@@ -13,6 +15,7 @@ const resources = {
       footer: footerEN,
       header: headerEN,
       loginForm: loginFormEN,
+      registerForm: registerFormEN,
     },
   },
   pl: {
@@ -20,6 +23,7 @@ const resources = {
       footer: footerPL,
       header: headerPL,
       loginForm: loginFormPL,
+      registerForm: registerFormPL,
     },
   },
 };

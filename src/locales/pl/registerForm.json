@@ -1,6 +1,5 @@
 {
-  "registerTitle": "Utwórz konto",
-  "registerTitleMobile": "REJESTRACJA",
+  "registerTitle": ["Utwórz konto", "REJESTRACJA"],
   "password": "Hasło",
   "phone": "Numer Telefonu",
   "firstName": "Imie",

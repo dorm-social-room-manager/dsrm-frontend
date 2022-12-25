@@ -1,6 +1,5 @@
 {
-  "loginTitle": "Dorm room social manager",
-  "loginTitleMobile": "LOGIN",
+  "loginTitle": ["Dorm room social manager", "LOGIN"],
   "password": "Hasło",
   "email": "Email",
   "register": "Zarejestruj Się",

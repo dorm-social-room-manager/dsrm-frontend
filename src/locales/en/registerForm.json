@@ -1,6 +1,5 @@
 {
-  "registerTitle": "Create your account",
-  "registerTitleMobile": "REGISTER",
+  "registerTitles": ["Create your account", "REGISTER"],
   "password": "Password",
   "phone": "Phone Number",
   "firstName": "First Name",
