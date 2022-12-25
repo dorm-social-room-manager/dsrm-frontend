@@ -1,0 +1,16 @@
+{
+  "registerTitle": "Create your account",
+  "registerTitleMobile": "REGISTER",
+  "password": "Password",
+  "phone": "Phone Number",
+  "firstName": "First Name",
+  "lastName": "Last Name",
+  "email": "Email",
+  "register": "Register",
+  "emailEmpty": "Email is required",
+  "passwordEmpty": "Password is required",
+  "phoneEmpty": "Phone is required",
+  "firstNameEmpty": "First Name is required",
+  "lastNameEmpty": "Last Name is required",
+  "showPassword": "Show Password"
+}

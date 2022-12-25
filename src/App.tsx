@@ -9,11 +9,10 @@ export function App() {
   const { t } = useTranslation();
 
   /* this will be based on breakpoints and the page later on*/
-  const jsonSubscript = '.1';
   const headerProps: HeaderProps = {
-    dormitory: { url: 'https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta', urlName: t('header.buildingName') },
-    faculty: { url: 'https://www.p.lodz.pl/', urlName: t('header.faculty') },
-    universityName: t(`header.titles${jsonSubscript}`),
+    dormitory: { url: t(`header.buildingUrl`), urlName: t('header.buildingName') },
+    faculty: { url: t('header.facultyUrl'), urlName: t('header.faculty') },
+    headerTitle: t('loginForm.headerTitle'),
   };
 
   return (

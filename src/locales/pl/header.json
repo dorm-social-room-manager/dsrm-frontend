@@ -1,5 +1,6 @@
 {
-  "titles": ["Dorm room social manager", "LOGIN", "Create your account", "REGISTER"],
   "buildingName": "IV DS",
-  "faculty": "Politechnika Łódzka"
+  "buildingUrl": "https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta",
+  "faculty": "Politechnika Łódzka",
+  "facultyUrl": "https://www.p.lodz.pl/"
 }

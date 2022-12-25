@@ -5,7 +5,6 @@ import { useTheme } from '@mui/material/styles';
 
 export function Header(props: HeaderProps) {
   const theme = useTheme();
-
   return (
     <header>
       <Grid
@@ -28,7 +27,7 @@ export function Header(props: HeaderProps) {
             letterSpacing: -1.5,
           }}
         >
-          {props.universityName}
+          {props.headerTitle}
         </Typography>
         <div className={styles.links}>
           <Link

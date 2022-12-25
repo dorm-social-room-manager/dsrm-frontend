@@ -1,5 +1,6 @@
 {
-  "titles": ["Dorm room social manager", "LOGIN", "Create your account", "REGISTER"],
   "buildingName": "IV DS",
-  "faculty": "Technical University Of Lodz"
+  "buildingUrl": "https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta",
+  "faculty": "Technical University Of Lodz",
+  "facultyUrl": "https://www.p.lodz.pl/"
 }

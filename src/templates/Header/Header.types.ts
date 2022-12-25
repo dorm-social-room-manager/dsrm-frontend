@@ -1,7 +1,7 @@
 import { NamedUrl } from '../../common/types/NamedUrl.types';
 
 export interface HeaderProps {
-  universityName: string;
+  headerTitle: string;
   dormitory: NamedUrl;
   faculty: NamedUrl;
 }
