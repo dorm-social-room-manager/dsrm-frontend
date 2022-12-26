@@ -6,13 +6,6 @@ import { HeaderProps } from './templates/Header/Header.types';
 import { useTranslation } from 'react-i18next';
 
 export function App() {
-  const { t } = useTranslation();
-  const headerProps: HeaderProps = {
-    dormitory: { url: t(`header.buildingUrl`), urlName: t('header.buildingName') },
-    faculty: { url: t('header.facultyUrl'), urlName: t('header.faculty') },
-    headerTitle: t(`loginForm.title`),
-  };
-
   return (
     <Routes>
       <Route
