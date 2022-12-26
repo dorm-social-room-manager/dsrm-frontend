@@ -1,0 +1,11 @@
+{
+  "password": "Hasło",
+  "email": "Email",
+  "register": "Zarejestruj Się",
+  "login": "Zaloguj Się",
+  "emailEmpty": "Email jest wymagany",
+  "passwordEmpty": "Hasło jest wymagane",
+  "showPassword": "Pokaż hasło",
+  "rememberMe": "Zapamiętaj mnie",
+  "forgotPassword": "Zapomniałeś hasła?"
+}
