@@ -1,5 +1,6 @@
 {
-  "registerTitle": ["Utwórz konto", "REJESTRACJA"],
+  "registerTitle": "Utwórz konto",
+  "shortTitle": "REJESTRACJA",
   "password": "Hasło",
   "phone": "Numer Telefonu",
   "firstName": "Imie",
