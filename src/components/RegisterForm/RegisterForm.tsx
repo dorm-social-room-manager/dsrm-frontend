@@ -1,4 +1,3 @@
-import '../../i18n/i18n';
 import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
@@ -12,25 +11,27 @@ export function RegisterForm() {
   const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
     const errors: RegisterFormErrors = {};
     if (values.email.length < minLength) {
-      errors.Email = t('registerForm.emailEmpty');
+      errors.email = t('registerForm.emailEmpty');
     }
     if (values.password.length < minLength) {
-      errors.Password = t('registerForm.passwordEmpty');
+      errors.password = t('registerForm.passwordEmpty');
     }
     if (values.lname.length < minLength) {
-      errors.LastName = t('registerForm.lastNameEmpty');
+      errors.lastName = t('registerForm.lastNameEmpty');
     }
     if (values.fname.length < minLength) {
-      errors.FirstNme = t('registerForm.firstNameEmpty');
+      errors.firstNme = t('registerForm.firstNameEmpty');
     }
     if (values.phone.length < minLength) {
-      errors.Phone = t('registerForm.phoneEmpty');
+      errors.phone = t('registerForm.phoneEmpty');
     }
     return errors;
   };
 
   const theme = useTheme();
   const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
+  const mobileGap = 2;
+  const tabletGap = 8;
   return (
     <Formik
       enableReinitialize
@@ -55,16 +56,10 @@ export function RegisterForm() {
                 tablet: 400,
               }}
               height={540}
-              alignItems='center'
-              justifyContent='center'
             >
               <Grid
                 container
-                paddingTop={{
-                  desktop: 8,
-                  mobile: 2,
-                  tablet: 8,
-                }}
+                paddingTop={isMobile ? mobileGap : tabletGap}
                 alignItems='center'
                 justifyContent='center'
                 spacing={4}
