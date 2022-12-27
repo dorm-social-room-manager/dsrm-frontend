@@ -1,0 +1,16 @@
+{
+  "registerTitle": "Utwórz konto",
+  "shortTitle": "REJESTRACJA",
+  "password": "Hasło",
+  "phone": "Numer Telefonu",
+  "firstName": "Imie",
+  "lastName": "Nazwisko",
+  "email": "Email",
+  "register": "Zarejestruj Się",
+  "emailEmpty": "Email jest wymagany",
+  "passwordEmpty": "Hasło jest wymagane",
+  "phoneEmpty": "Numer telefonu jest wymagany",
+  "firstNameEmpty": "Imie jest wymagane",
+  "lastNameEmpty": "Nazwisko jest wymagane",
+  "showPassword": "Pokaż hasło"
+}
