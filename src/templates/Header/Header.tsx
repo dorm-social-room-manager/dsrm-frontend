@@ -9,6 +9,7 @@ export function Header(props: HeaderProps) {
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const MOBILE_PADDING = 3;
   const NON_MOBILE_PADDING = 0;
+  const linksClassName = tablet ? styles.links : styles.linksMobile;
   return (
     <div className={styles.container}>
       <Typography
@@ -26,7 +27,7 @@ export function Header(props: HeaderProps) {
       />
       <Grid
         item
-        className={styles.links}
+        className={linksClassName}
         paddingRight={tablet ? NON_MOBILE_PADDING : MOBILE_PADDING}
         paddingLeft={tablet ? NON_MOBILE_PADDING : MOBILE_PADDING}
       >
