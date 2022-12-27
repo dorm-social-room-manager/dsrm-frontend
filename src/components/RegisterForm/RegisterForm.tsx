@@ -29,7 +29,7 @@ export function RegisterForm() {
   };
 
   const theme = useTheme();
-  const isMobile: boolean = useMediaQuery(theme.breakpoints.down('tablet'));
+  const isTablet: boolean = useMediaQuery(theme.breakpoints.up('tablet'));
   const mobileGap = 2;
   const tabletGap = 8;
   return (
@@ -59,7 +59,7 @@ export function RegisterForm() {
             >
               <Grid
                 container
-                paddingTop={isMobile ? mobileGap : tabletGap}
+                paddingTop={isTablet ? tabletGap : mobileGap}
                 alignItems='center'
                 justifyContent='center'
                 spacing={4}
@@ -122,7 +122,7 @@ export function RegisterForm() {
                         required
                       />
                     </Grid>
-                    {!isMobile && (
+                    {isTablet && (
                       <Grid
                         item
                         tablet={6}
