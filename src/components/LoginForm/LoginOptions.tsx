@@ -13,7 +13,7 @@ export function LoginOptions() {
       justifyContent='center'
       spacing={1}
     >
-      <Grid>
+      <Grid item>
         <FormControlLabel
           control={<Checkbox defaultChecked />}
           label={t('loginForm.rememberMe')}
