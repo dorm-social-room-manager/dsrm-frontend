@@ -1,3 +1,5 @@
+import * as dashboardEN from '../locales/en/dashboard.json';
+import * as dashboardPL from '../locales/pl/dashboard.json';
 import * as footerEN from '../locales/en/footer.json';
 import * as footerPL from '../locales/pl/footer.json';
 import * as headerEN from '../locales/en/header.json';
@@ -12,6 +14,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     components: {
+      dashboard: dashboardEN,
       footer: footerEN,
       header: headerEN,
       loginForm: loginFormEN,
@@ -20,6 +23,7 @@ const resources = {
   },
   pl: {
     components: {
+      dashboard: dashboardPL,
       footer: footerPL,
       header: headerPL,
       loginForm: loginFormPL,
