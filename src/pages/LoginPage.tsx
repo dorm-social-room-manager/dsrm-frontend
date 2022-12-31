@@ -1,5 +1,5 @@
+import { Box, Grid } from '@mui/material';
 import { Footer } from '../templates/Footer/Footer';
-import { Grid } from '@mui/material';
 import { Header } from '../templates/Header/Header';
 import { HeaderProps } from '../templates/Header/Header.types';
 import { LoginForm } from '../components/LoginForm/LoginForm';
@@ -13,20 +13,40 @@ export function LoginPage() {
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const header = tablet ? t(`loginForm.title`) : t(`loginForm.shortTitle`);
 
+  const marginTopValueForAllItemsWhenTablet = 18;
+  const marginTopValueForAllItemsWhenMobile = 0;
+  const marginTopValueForAllItems = tablet ? marginTopValueForAllItemsWhenTablet : marginTopValueForAllItemsWhenMobile;
+
+  const paddingTopValueForLoginFormWhenMobile = 10;
+  const paddingTopValueForLoginFormWhenTablet = 0;
+  const paddingTopValueForLoginForm = tablet ? paddingTopValueForLoginFormWhenTablet : paddingTopValueForLoginFormWhenMobile;
+
+  const marginTopValueForHeaderWhenMobile = 6;
+  const marginTopValueForHeaderWhenTablet = 0;
+  const marginTopValueForHeader = tablet ? marginTopValueForHeaderWhenTablet : marginTopValueForHeaderWhenMobile;
+
   const headerProps: HeaderProps = {
     dormitory: { url: 'https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta', urlName: t('header.buildingName') },
     faculty: { url: 'https://www.p.lodz.pl/', urlName: t('header.faculty') },
     headerTitle: header,
   };
   return (
-    <Grid container>
+    <Grid
+      container
+      justifyContent={'center'}
+      alignItems={'center'}
+      marginTop={marginTopValueForAllItems}
+    >
       <Grid
         item
         mobile={12}
         tablet={6}
         desktop={6}
+        marginTop={marginTopValueForHeader}
       >
-        <Header {...headerProps}></Header>
+        <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+          <Header {...headerProps}></Header>
+        </Box>
       </Grid>
       <Grid
         item
@@ -34,16 +54,16 @@ export function LoginPage() {
         tablet={6}
         desktop={6}
       >
-        <LoginForm />
+        <Box
+          paddingTop={paddingTopValueForLoginForm}
+          sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+        >
+          <LoginForm />
+        </Box>
       </Grid>
-      <Grid
-        item
-        mobile={12}
-        tablet={12}
-        desktop={12}
-      >
+      <Box sx={{ bottom: 0, position: 'fixed', width: '100%' }}>
         <Footer></Footer>
-      </Grid>
+      </Box>
     </Grid>
   );
 }
