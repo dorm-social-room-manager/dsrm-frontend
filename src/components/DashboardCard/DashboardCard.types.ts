@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { SvgIconComponent } from '@mui/icons-material';
 
 export interface DashboardItem {
@@ -5,3 +6,4 @@ export interface DashboardItem {
   title: string;
   url: string;
 }
+export type DashboardCard = React.ReactElement<DashboardItem>;
