@@ -5,6 +5,7 @@ import { Grid } from '@mui/material';
 export function DashboardBody({ items }: DashboardBodyProps) {
   return (
     <Grid
+      height={1}
       container
       alignItems='center'
       justifyContent='center'

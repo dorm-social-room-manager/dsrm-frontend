@@ -11,7 +11,14 @@ export function DashboardCard(props: DashboardItem) {
         underline='none'
         color='inherit'
       >
-        <Paper elevation={1}>
+        <Paper
+          elevation={1}
+          sx={{
+            '&:hover': {
+              bgcolor: 'secondary.main',
+            },
+          }}
+        >
           <Box
             display={'flex'}
             width={200}
