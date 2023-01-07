@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Box, Grid, Link, Paper, SvgIcon, Typography } from '@mui/material';
 import { DashboardItem } from './DashboardCard.types';
 import { Link as RouterLink } from 'react-router-dom';
@@ -23,8 +22,9 @@ export function DashboardCard(props: DashboardItem) {
           >
             <SvgIcon
               sx={{
-                fontSize: 48,
+                fontSize: 64,
               }}
+              color='action'
               component={props.icon}
             />
             <Typography
@@ -39,4 +39,3 @@ export function DashboardCard(props: DashboardItem) {
     </Grid>
   );
 }
-export type DashboardCard = React.ReactElement<DashboardItem>;
