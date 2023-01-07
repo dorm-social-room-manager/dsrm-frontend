@@ -13,17 +13,9 @@ export function RegisterPage() {
   const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const header = tablet ? t(`registerForm.title`) : t(`registerForm.shortTitle`);
 
-  const marginTopValueForAllItemsWhenTablet = 18;
-  const marginTopValueForAllItemsWhenMobile = 0;
-  const marginTopValueForAllItems = tablet ? marginTopValueForAllItemsWhenTablet : marginTopValueForAllItemsWhenMobile;
-
-  const paddingTopValueForLoginFormWhenMobile = 10;
-  const paddingTopValueForLoginFormWhenTablet = 0;
-  const paddingTopValueForLoginForm = tablet ? paddingTopValueForLoginFormWhenTablet : paddingTopValueForLoginFormWhenMobile;
-
-  const marginTopValueForHeaderWhenMobile = 6;
-  const marginTopValueForHeaderWhenTablet = 0;
-  const marginTopValueForHeader = tablet ? marginTopValueForHeaderWhenTablet : marginTopValueForHeaderWhenMobile;
+  const paddingTopValueForRegisterFormWhenMobile = 10;
+  const paddingTopValueForRegisterFormWhenTablet = 0;
+  const paddingTopValueForRegisterForm = tablet ? paddingTopValueForRegisterFormWhenTablet : paddingTopValueForRegisterFormWhenMobile;
 
   const headerProps: HeaderProps = {
     dormitory: { url: 'https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta', urlName: t('header.buildingName') },
@@ -34,36 +26,53 @@ export function RegisterPage() {
     <Grid
       container
       justifyContent={'center'}
-      alignItems={'center'}
-      marginTop={marginTopValueForAllItems}
+      alignItems={'flex-end'}
+      height={'100vh'}
     >
       <Grid
         item
-        mobile={12}
-        tablet={6}
-        desktop={6}
-        marginTop={marginTopValueForHeader}
+        container
+        justifyContent={'center'}
+        alignItems={'center'}
       >
-        <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
-          <Header {...headerProps}></Header>
-        </Box>
+        <Grid
+          item
+          mobile={12}
+          tablet={6}
+          desktop={6}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+            <Header {...headerProps}></Header>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          mobile={12}
+          tablet={6}
+          desktop={6}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Box
+            paddingTop={paddingTopValueForRegisterForm}
+            sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+          >
+            <RegisterForm />
+          </Box>
+        </Grid>
       </Grid>
+
       <Grid
         item
         mobile={12}
-        tablet={6}
-        desktop={6}
+        tablet={12}
+        desktop={12}
+        alignSelf={'flex-end'}
       >
-        <Box
-          paddingTop={paddingTopValueForLoginForm}
-          sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
-        >
-          <RegisterForm />
-        </Box>
-      </Grid>
-      <Box sx={{ bottom: 0, position: 'fixed', width: '100%' }}>
         <Footer></Footer>
-      </Box>
+      </Grid>
     </Grid>
   );
 }
