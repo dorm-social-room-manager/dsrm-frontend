@@ -16,7 +16,10 @@ export function DashboardCard(props: DashboardItem) {
           sx={{
             '&:hover': {
               bgcolor: 'secondary.main',
+              color: 'secondary.contrastText',
             },
+            transitionDuration: '0.3s',
+            transitionProperty: 'all',
           }}
         >
           <Box
@@ -31,7 +34,7 @@ export function DashboardCard(props: DashboardItem) {
               sx={{
                 fontSize: 64,
               }}
-              color='action'
+              color={'inherit'}
               component={props.icon}
             />
             <Typography
