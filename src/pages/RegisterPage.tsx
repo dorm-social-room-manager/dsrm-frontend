@@ -17,6 +17,9 @@ export function RegisterPage() {
   const paddingTopValueForRegisterFormWhenTablet = 0;
   const paddingTopValueForRegisterForm = tablet ? paddingTopValueForRegisterFormWhenTablet : paddingTopValueForRegisterFormWhenMobile;
 
+  const paddingLeftRightValueForContainer = 2;
+  const paddingTopValueForFooterHeader = 2;
+
   const headerProps: HeaderProps = {
     dormitory: { url: 'https://samorzad.p.lodz.pl/osiedle-akademickie/iv-dom-studenta', urlName: t('header.buildingName') },
     faculty: { url: 'https://www.p.lodz.pl/', urlName: t('header.faculty') },
@@ -34,6 +37,9 @@ export function RegisterPage() {
         container
         justifyContent={'center'}
         alignItems={'center'}
+        paddingLeft={paddingLeftRightValueForContainer}
+        paddingRight={paddingLeftRightValueForContainer}
+        paddingTop={paddingTopValueForFooterHeader}
       >
         <Grid
           item
@@ -70,6 +76,7 @@ export function RegisterPage() {
         tablet={12}
         desktop={12}
         alignSelf={'flex-end'}
+        paddingTop={paddingTopValueForFooterHeader}
       >
         <Footer></Footer>
       </Grid>

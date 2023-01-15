@@ -35,6 +35,7 @@ export function Footer() {
         color={customTheme.palette.common.white}
         direction={tablet ? 'row' : 'column'}
         gap={tablet ? tabletGap : mobileGap}
+        columnGap={4}
         marginTop={0}
       >
         <div>
