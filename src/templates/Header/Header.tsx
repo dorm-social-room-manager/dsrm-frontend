@@ -16,7 +16,7 @@ export function Header(props: HeaderProps) {
         variant='h2'
         component='h2'
         sx={{
-          maxWidth: 780,
+          maxWidth: 480,
         }}
       >
         {props.headerTitle}
