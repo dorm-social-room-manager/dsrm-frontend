@@ -1,10 +1,8 @@
 import { AppBar, Avatar, Box, IconButton, Toolbar, Typography } from '@mui/material';
 import { DashboardHeaderProps } from './DashboardHeader.types';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useTranslation } from 'react-i18next';
 
 export function DashboardHeader(props: DashboardHeaderProps) {
-  const { t } = useTranslation();
   return (
     <Box>
       <AppBar>
@@ -22,7 +20,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
             component='div'
             width='100%'
           >
-            {t('dashboard.logo')}
+            {props.logo}
           </Typography>
           <IconButton>
             <Avatar

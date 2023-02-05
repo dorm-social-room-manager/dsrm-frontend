@@ -1,0 +1,13 @@
+{
+  "logo": "USERS",
+  "name": "Name",
+  "surname": "Surname",
+  "email": "Email",
+  "roomNumber": "Room Number",
+  "userType": "User Type",
+  "rows": "Rows per page",
+  "accept": "Accept",
+  "selectAll": "Select all",
+  "sortDsc": "Sorted descending",
+  "sortAsc": "Sorted ascending"
+}
