@@ -20,7 +20,7 @@ export function App() {
         element={<DashboardPage />}
       />
       <Route
-        path='/userlist'
+        path='/dashboard/users'
         element={<UserListPage />}
       />
     </Routes>
