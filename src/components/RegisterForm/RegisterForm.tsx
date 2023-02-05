@@ -2,6 +2,7 @@ import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '
 import { Field, Formik } from 'formik';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import { RegisterFormErrors } from './RegisterForm.types';
+import { RegisterPostRequest } from '../../common/types/RegisterPostRequest.types';
 import styles from './RegisterForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
@@ -40,8 +41,14 @@ export function RegisterForm() {
       validateOnBlur={true}
       validate={validate}
       initialValues={{ email: '', fname: '', lname: '', password: '', phone: '' }}
-      onSubmit={function () {
-        throw new Error('Function not implemented.');
+      onSubmit={function (values) {
+        const postRequest: RegisterPostRequest = {
+          email: values.email,
+          firstname: values.fname,
+          password: values.password,
+          surname: values.lname,
+        };
+        console.log(postRequest);
       }}
     >
       {({ isValid, handleSubmit }) => {
