@@ -2,14 +2,21 @@ import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '
 import { Field, Formik } from 'formik';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import { RegisterFormErrors } from './RegisterForm.types';
-import { RegisterPostRequest } from '../../common/types/RegisterPostRequest.types';
 import styles from './RegisterForm.module.scss';
 import { useTranslation } from 'react-i18next';
+
+interface FormValues {
+  email: string;
+  fname: string;
+  lname: string;
+  password: string;
+  roomNumber: string;
+}
 
 export function RegisterForm() {
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
+  const validate = (values: { email: string; password: string; lname: string; fname: string; roomNumber: string }) => {
     const errors: RegisterFormErrors = {};
     if (values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
@@ -21,10 +28,10 @@ export function RegisterForm() {
       errors.lastName = t('registerForm.lastNameEmpty');
     }
     if (values.fname.length < minLength) {
-      errors.firstNme = t('registerForm.firstNameEmpty');
+      errors.firstName = t('registerForm.firstNameEmpty');
     }
-    if (values.phone.length < minLength) {
-      errors.phone = t('registerForm.phoneEmpty');
+    if (values.roomNumber.length < minLength) {
+      errors.roomNumber = t('registerForm.roomNumberEmpty');
     }
     return errors;
   };
@@ -33,27 +40,27 @@ export function RegisterForm() {
   const isTablet: boolean = useMediaQuery(theme.breakpoints.up('tablet'));
   const mobileGap = 2;
   const tabletGap = 8;
+
   return (
-    <Formik
+    <Formik<FormValues>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', fname: '', lname: '', password: '', phone: '' }}
-      onSubmit={function (values) {
-        const postRequest: RegisterPostRequest = {
-          email: values.email,
-          firstname: values.fname,
-          password: values.password,
-          surname: values.lname,
-        };
-        console.log(postRequest);
+      initialValues={{ email: '', fname: '', lname: '', password: '', roomNumber: '' }}
+      onSubmit={function () {
+        throw new Error('Function not implemented.');
       }}
     >
       {({ isValid, handleSubmit }) => {
         return (
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={(event) => {
+              event.preventDefault();
+              handleSubmit(event);
+            }}
+          >
             <Box
               padding={0}
               boxShadow={'0px 0px 30px #ccc'}
@@ -122,10 +129,10 @@ export function RegisterForm() {
                       <Field
                         as={TextField}
                         className={styles.input}
-                        label={t('registerForm.phone')}
+                        label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type='text'
-                        name='phone'
+                        name='roomNumber'
                         required
                       />
                     </Grid>
