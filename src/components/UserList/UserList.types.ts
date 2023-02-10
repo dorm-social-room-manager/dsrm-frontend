@@ -1,6 +1,9 @@
-import * as React from 'react';
+import { ChangeEvent, MouseEvent } from 'react';
 
-export type Order = 'asc' | 'desc';
+export enum Order {
+  ASC = 'asc',
+  DESC = 'desc',
+}
 export interface Data {
   id: number;
   name: string;
@@ -14,8 +17,8 @@ export interface UserListToolbarProps {
 }
 export interface UserListHeadProps {
   numSelected: number;
-  onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
-  onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
+  onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: Order;
   orderBy: string;
   rowCount: number;

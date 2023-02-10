@@ -1,15 +1,15 @@
-import * as React from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
+import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { Data, Order } from './UserList.types';
 import Checkbox from '@mui/material/Checkbox';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 
-function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
-  if (b[orderBy] < a[orderBy]) {
+function descendingComparator<T>(firstValue: T, secondValue: T, orderBy: keyof T) {
+  if (secondValue[orderBy] < firstValue[orderBy]) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (secondValue[orderBy] > firstValue[orderBy]) {
     return 1;
   }
   return 0;
@@ -17,36 +17,36 @@ function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
 function getComparator<Key extends keyof Data>(
   order: Order,
   orderBy: Key
-): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
-  return order === 'desc'
-    ? (a, b) => {
-        return descendingComparator(a, b, orderBy);
+): (firstValue: { [key in Key]: number | string }, secondValue: { [key in Key]: number | string }) => number {
+  return order === Order.DESC
+    ? (firstValue, secondValue) => {
+        return descendingComparator(firstValue, secondValue, orderBy);
       }
-    : (a, b) => {
-        return -descendingComparator(a, b, orderBy);
+    : (firstValue, secondValue) => {
+        return -descendingComparator(firstValue, secondValue, orderBy);
       };
 }
 
 export function UserList() {
-  const [order, setOrder] = React.useState<Order>('asc');
-  const [orderBy, setOrderBy] = React.useState<keyof Data>('id');
-  const [selected, setSelected] = React.useState<readonly number[]>([]);
-  const [page, setPage] = React.useState(0);
-  const [rows, setRows] = React.useState<Data[]>([]);
+  const [order, setOrder] = useState<Order>(Order.ASC);
+  const [orderBy, setOrderBy] = useState<keyof Data>('id');
+  const [selected, setSelected] = useState<readonly number[]>([]);
+  const [page, setPage] = useState(0);
+  const [rows, setRows] = useState<Data[]>([]);
   const defaultRowsPerPage = 10;
-  const [rowsPerPage, setRowsPerPage] = React.useState(defaultRowsPerPage);
+  const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const pixelHeightPerRow = 53;
   const fivePerPage = 5;
   const tenPerPage = 10;
   const twentyFivePerPage = 25;
 
-  const handleRequestSort = (event: React.MouseEvent<unknown>, property: keyof Data) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
+    const isAsc = orderBy === property && order === Order.ASC;
+    setOrder(isAsc ? Order.DESC : Order.ASC);
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
       const newSelected: readonly number[] = rows.map((n: { id: number }) => {
         return n.id;
@@ -57,7 +57,7 @@ export function UserList() {
     setSelected([]);
   };
 
-  const handleClick = (event: React.MouseEvent<unknown>, id: number) => {
+  const handleClick = (event: MouseEvent<unknown>, id: number) => {
     const selectedIndex = selected.indexOf(id);
     let newSelected: readonly number[] = [];
 
@@ -78,7 +78,7 @@ export function UserList() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChangeRowsPerPage = (event: ChangeEvent<HTMLInputElement>) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
@@ -89,7 +89,14 @@ export function UserList() {
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-  React.useEffect(() => {
+  class FetchError extends Error {
+    constructor(message: string) {
+      super(message);
+      this.name = 'FetchError';
+    }
+  }
+
+  useEffect(() => {
     fetch('../src/components/UserList/testUsers.json')
       .then((res) => {
         return res.json();
@@ -97,8 +104,10 @@ export function UserList() {
       .then((data: Data[]) => {
         return setRows(data);
       })
-      .catch(() => {
-        return 'obligatory catch';
+      .catch((error) => {
+        if (error instanceof FetchError) {
+          throw new FetchError(`Failed to fetch users with error: ${error.message}`);
+        }
       });
   });
 
