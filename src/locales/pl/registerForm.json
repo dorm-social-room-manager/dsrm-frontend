@@ -12,5 +12,7 @@
   "roomNumberEmpty": "Numer pokoju jest wymagany",
   "firstNameEmpty": "Imie jest wymagane",
   "lastNameEmpty": "Nazwisko jest wymagane",
-  "showPassword": "Pokaż hasło"
+  "showPassword": "Pokaż hasło",
+  "successSnackbarRegister": "Zarejestrowano pomyślnie",
+  "errorSnackbarRegister": "Błąd rejestracji"
 }

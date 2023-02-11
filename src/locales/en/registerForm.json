@@ -12,5 +12,7 @@
   "roomNumberEmpty": "Room number is required",
   "firstNameEmpty": "First Name is required",
   "lastNameEmpty": "Last Name is required",
-  "showPassword": "Show Password"
+  "showPassword": "Show Password",
+  "successSnackbarRegister": "You have successfully registered!",
+  "errorSnackbarRegister": "Something went wrong, please try again later!"
 }

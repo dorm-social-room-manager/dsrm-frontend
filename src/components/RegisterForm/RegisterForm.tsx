@@ -1,16 +1,28 @@
-import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { RegisterFormErrors, RegisterFormType } from './RegisterForm.types';
+import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
+import { SyntheticEvent } from 'react';
 import { useCreateUserMutation } from '../../common/services/registerUserRequest';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function RegisterForm() {
-  const { mutate } = useCreateUserMutation();
+  const [open, setOpen] = useState(true);
+  const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
   const onFormSubmit = (values: RegisterFormType) => {
     mutate(values);
+  };
+
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
   };
 
   const minLength = 1;
@@ -175,7 +187,7 @@ export function RegisterForm() {
                   item
                   mobile={6}
                 >
-                  <Button
+                  <LoadingButton
                     variant='contained'
                     color='secondary'
                     sx={{
@@ -183,13 +195,42 @@ export function RegisterForm() {
                       width: 1,
                     }}
                     type='submit'
+                    loading={isLoading}
                     disabled={!isValid}
                   >
                     {t('registerForm.register')}
-                  </Button>
+                  </LoadingButton>
                 </Grid>
               </Grid>
             </Box>
+
+            <Snackbar
+              open={isSuccess && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='success'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.successSnackbarRegister')}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              open={isError && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='error'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.errorSnackbarRegister')}
+              </Alert>
+            </Snackbar>
           </form>
         );
       }}
