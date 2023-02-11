@@ -1,13 +1,32 @@
-import { RegisterFormData } from '../types/RegisterFormData.types';
+import { RegisterFormType } from '../../components/RegisterForm/RegisterForm.types';
+import { useMutation } from '@tanstack/react-query';
 
-export const registerUserRequest = async (values: RegisterFormData) => {
-  //this will be later replaced with any type later on
-  const response = await fetch('https://your-api-endpoint.com/users', {
-    body: JSON.stringify(values),
+const transformFormData = (formData: RegisterFormType) => {
+  return {
+    email: formData.email,
+    name: formData.firstName,
+    password: formData.password,
+    roles: null,
+    surname: formData.lastName,
+  };
+};
+
+const getRequestObject = (values: RegisterFormType) => {
+  return {
+    body: JSON.stringify(transformFormData(values)),
     headers: {
+      'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+      'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     },
     method: 'POST',
-  });
-  return response.json();
+  };
+};
+
+const createUser = (values: RegisterFormType) => {
+  return fetch('http://localhost:8080/users', getRequestObject(values));
+};
+
+export const useCreateUserMutation = () => {
+  return useMutation(createUser);
 };

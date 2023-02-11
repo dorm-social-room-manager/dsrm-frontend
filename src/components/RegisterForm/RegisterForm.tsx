@@ -1,22 +1,21 @@
 import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
+import { RegisterFormErrors, RegisterFormType } from './RegisterForm.types';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import { RegisterFormErrors } from './RegisterForm.types';
 import styles from './RegisterForm.module.scss';
+import { useCreateUserMutation } from '../../common/services/registerUserRequest';
 import { useTranslation } from 'react-i18next';
 
-interface FormValues {
-  email: string;
-  fname: string;
-  lname: string;
-  password: string;
-  roomNumber: string;
-}
-
 export function RegisterForm() {
+  const { mutate } = useCreateUserMutation();
+
+  const onFormSubmit = (values: RegisterFormType) => {
+    mutate(values);
+  };
+
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: { email: string; password: string; lname: string; fname: string; roomNumber: string }) => {
+  const validate = (values: { email: string; password: string; lastName: string; firstName: string; roomNumber: string }) => {
     const errors: RegisterFormErrors = {};
     if (values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
@@ -24,15 +23,16 @@ export function RegisterForm() {
     if (values.password.length < minLength) {
       errors.password = t('registerForm.passwordEmpty');
     }
-    if (values.lname.length < minLength) {
+    if (values.lastName.length < minLength) {
       errors.lastName = t('registerForm.lastNameEmpty');
     }
-    if (values.fname.length < minLength) {
+    if (values.firstName.length < minLength) {
       errors.firstName = t('registerForm.firstNameEmpty');
     }
     if (values.roomNumber.length < minLength) {
       errors.roomNumber = t('registerForm.roomNumberEmpty');
     }
+    console.log(errors);
     return errors;
   };
 
@@ -42,22 +42,19 @@ export function RegisterForm() {
   const tabletGap = 8;
 
   return (
-    <Formik<FormValues>
+    <Formik<RegisterFormType>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', fname: '', lname: '', password: '', roomNumber: '' }}
-      onSubmit={function () {
-        throw new Error('Function not implemented.');
-      }}
+      initialValues={{ email: '', firstName: '', lastName: '', password: '', roomNumber: '' }}
+      onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
         return (
           <form
             onSubmit={(event) => {
-              event.preventDefault();
               handleSubmit(event);
             }}
           >
@@ -103,7 +100,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.firstName')}
                         type='text'
-                        name='fname'
+                        name='firstName'
                         required
                       />
                     </Grid>
@@ -117,7 +114,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.lastName')}
                         type='text'
-                        name='lname'
+                        name='lastName'
                         required
                       />
                     </Grid>
