@@ -116,7 +116,10 @@ export function UserList() {
       width='100%'
       height='100%'
     >
-      <UserListToolbar numSelected={selected.length} />
+      <UserListToolbar
+        selected={selected}
+        rows={rows}
+      />
       <TableContainer>
         <Table>
           <UserListHead
@@ -167,7 +170,12 @@ export function UserList() {
                     <TableCell align='left'>{row.surname}</TableCell>
                     <TableCell align='left'>{row.email}</TableCell>
                     <TableCell align='left'>{row.room}</TableCell>
-                    <TableCell align='left'>{row.userType}</TableCell>
+                    <TableCell
+                      align='left'
+                      width='200px'
+                    >
+                      {row.userType}
+                    </TableCell>
                   </TableRow>
                 );
               })}

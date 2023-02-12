@@ -22,7 +22,7 @@ export function DashboardPage() {
     {
       icon: PersonIcon,
       title: t(`dashboardPage.users`),
-      url: '/dashboard/users',
+      url: '/dashboard/user-list',
     },
     {
       icon: InsertPhotoSharpIcon,

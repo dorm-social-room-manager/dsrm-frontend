@@ -6,7 +6,8 @@
   "roomNumber": "Room Number",
   "userType": "User Type",
   "rows": "Rows per page",
-  "accept": "Accept",
+  "accept": "Accep",
+  "del": "Delete",
   "selectAll": "Select all",
   "sortDsc": "Sorted descending",
   "sortAsc": "Sorted ascending"

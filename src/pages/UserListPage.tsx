@@ -15,13 +15,13 @@ export function UserListPage() {
   return (
     <Grid
       container
-      alignItems='center'
-      justifyContent='center'
-      direction='row'
+      direction='column'
       height={'100vh'}
+      flexWrap='nowrap'
     >
       <Grid
-        mobile={12}
+        width={1}
+        minHeight={56}
         item
       >
         <DashboardHeader {...dashboardHeaderProps} />
@@ -30,14 +30,14 @@ export function UserListPage() {
         item
         mobile={12}
         margin={10}
+        marginTop={1}
         marginBottom={0}
       >
         <UserList />
       </Grid>
       <Grid
         item
-        mobile={12}
-        alignSelf={'flex-end'}
+        width={1}
       >
         <Footer />
       </Grid>

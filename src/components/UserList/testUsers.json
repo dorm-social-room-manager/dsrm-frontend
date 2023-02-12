@@ -13,7 +13,7 @@
         "surname": "Doe",
         "email": "test@test",
         "room": 3,
-        "userType": "Pending"
+        "userType": "Admin"
     },
     {
         "id": 3,
@@ -21,7 +21,7 @@
         "surname": "Doe",
         "email": "test@test",
         "room": 5,
-        "userType": "Pending"
+        "userType": "NotPending"
     },
     {
         "id": 4,

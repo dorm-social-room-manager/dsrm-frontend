@@ -13,7 +13,8 @@ export interface Data {
   userType: string;
 }
 export interface UserListToolbarProps {
-  numSelected: number;
+  selected: readonly number[];
+  rows: readonly Data[];
 }
 export interface UserListHeadProps {
   numSelected: number;

@@ -1,7 +1,7 @@
 import 'i18next';
-import * as React from 'react';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { Data, HeadCell, UserListHeadProps } from './UserList.types';
+import { MouseEvent } from 'react';
 import { t } from 'i18next';
 
 declare module 'i18next' {
@@ -41,7 +41,7 @@ const headCells: readonly HeadCell[] = [
 export function UserListHead(props: UserListHeadProps) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
   const createSortHandler = (property: keyof Data) => {
-    return (event: React.MouseEvent<unknown>) => {
+    return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
   };
