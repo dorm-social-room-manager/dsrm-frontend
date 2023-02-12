@@ -6,14 +6,17 @@ import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
 import { useCreateUserMutation } from '../../common/services/registerUserRequest';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function RegisterForm() {
   const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
   const onFormSubmit = (values: RegisterFormType) => {
+    setOpen(true);
     mutate(values);
   };
 
@@ -23,6 +26,9 @@ export function RegisterForm() {
     }
 
     setOpen(false);
+    if (isSuccess) {
+      navigate('/dashboard');
+    }
   };
 
   const minLength = 1;
