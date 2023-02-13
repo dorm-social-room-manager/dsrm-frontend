@@ -1,8 +1,8 @@
 import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { RegisterFormErrors, RegisterFormType } from './RegisterForm.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
+import { RegisterFormType } from './RegisterForm.types';
 import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
 import { useCreateUserMutation } from '../../common/services/registerUserRequest';
@@ -33,22 +33,19 @@ export function RegisterForm() {
 
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: { email: string; password: string; lastName: string; firstName: string; roomNumber: string }) => {
-    const errors: RegisterFormErrors = {};
-    if (values.email.length < minLength) {
+  const validate = (values: RegisterFormType) => {
+    const errors: RegisterFormType = {};
+    if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
-    if (values.password.length < minLength) {
+    if (values.password === undefined || values.password.length < minLength) {
       errors.password = t('registerForm.passwordEmpty');
     }
-    if (values.lastName.length < minLength) {
-      errors.lastName = t('registerForm.lastNameEmpty');
+    if (values.surname === undefined || values.surname.length < minLength) {
+      errors.surname = t('registerForm.lastNameEmpty');
     }
-    if (values.firstName.length < minLength) {
-      errors.firstName = t('registerForm.firstNameEmpty');
-    }
-    if (values.roomNumber.length < minLength) {
-      errors.roomNumber = t('registerForm.roomNumberEmpty');
+    if (values.name === undefined || values.name.length < minLength) {
+      errors.name = t('registerForm.firstNameEmpty');
     }
     console.log(errors);
     return errors;
@@ -66,7 +63,7 @@ export function RegisterForm() {
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', firstName: '', lastName: '', password: '', roomNumber: '' }}
+      initialValues={{ email: '', name: '', password: '', surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
@@ -118,7 +115,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.firstName')}
                         type='text'
-                        name='firstName'
+                        name='name'
                         required
                       />
                     </Grid>
@@ -132,7 +129,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.lastName')}
                         type='text'
-                        name='lastName'
+                        name='surname'
                         required
                       />
                     </Grid>

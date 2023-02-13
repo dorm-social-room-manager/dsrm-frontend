@@ -1,3 +1,5 @@
+import { operations } from '../../generated/types';
+
 export type RegisterFormErrors = {
   email?: string;
   password?: string;
@@ -6,10 +8,4 @@ export type RegisterFormErrors = {
   roomNumber?: string;
 };
 
-export type RegisterFormType = {
-  email: string;
-  password: string;
-  lastName: string;
-  firstName: string;
-  roomNumber: string;
-};
+export type RegisterFormType = operations['addUser']['requestBody']['content']['application/json'];

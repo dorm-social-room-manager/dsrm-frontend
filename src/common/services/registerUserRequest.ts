@@ -1,19 +1,9 @@
 import { RegisterFormType } from '../../components/RegisterForm/RegisterForm.types';
 import { useMutation } from '@tanstack/react-query';
 
-const transformFormData = (formData: RegisterFormType) => {
-  return {
-    email: formData.email,
-    name: formData.firstName,
-    password: formData.password,
-    roles: null,
-    surname: formData.lastName,
-  };
-};
-
 const getRequestObject = (values: RegisterFormType) => {
   return {
-    body: JSON.stringify(transformFormData(values)),
+    body: JSON.stringify(values),
     headers: {
       'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
       'Access-Control-Allow-Origin': '*',

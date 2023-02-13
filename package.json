@@ -15,7 +15,7 @@
     "lint-scss:fix": "stylelint **/*.scss --fix",
     "prettyprint": "prettier --check .",
     "prettyprint:fix": "prettier --write .",
-    "generate:openapi": "openapi-typescript http://localhost:8080/v3/api-docs --path-params-as-types --output ./src/generated/types.ts"
+    "generate:openapi": "openapi-typescript http://localhost:8080/v3/api-docs --path-params-as-types --support-array-length --output ./src/generated/types.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
