@@ -14,7 +14,7 @@ const getRequestObject = (values: RegisterFormType) => {
 };
 
 const createUser = (values: RegisterFormType) => {
-  return fetch('http://localhost:8080/users', getRequestObject(values));
+  return fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values));
 };
 
 export const useCreateUserMutation = () => {
