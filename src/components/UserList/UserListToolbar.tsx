@@ -35,7 +35,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
       )}
       {numSelected > 0 ? (
         <>
-          {selectedRows.some((row) => {
+          {selectedRows.every((row) => {
             return row.userType === 'Pending';
           }) ? (
             <Tooltip title={t('userList.accept')}>
@@ -46,7 +46,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
           ) : (
             <></>
           )}
-          {selectedRows.some((row) => {
+          {selectedRows.every((row) => {
             return row.userType !== 'Admin';
           }) ? (
             <Tooltip title={t('userList.del')}>

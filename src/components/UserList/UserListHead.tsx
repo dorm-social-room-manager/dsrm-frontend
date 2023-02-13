@@ -1,14 +1,8 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { Data, HeadCell, UserListHeadProps } from './UserList.types';
+import { Data, HeadCell, SortingDirection, UserListHeadProps } from './UserList.types';
 import { MouseEvent } from 'react';
 import { t } from 'i18next';
-
-declare module 'i18next' {
-  interface CustomTypeOptions {
-    returnNull: false;
-  }
-}
 
 const headCells: readonly HeadCell[] = [
   {
@@ -45,6 +39,7 @@ export function UserListHead(props: UserListHeadProps) {
       onRequestSort(event, property);
     };
   };
+  const label = t('userList.selectAll');
   return (
     <TableHead>
       <TableRow>
@@ -55,7 +50,7 @@ export function UserListHead(props: UserListHeadProps) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': t('userList.selectAll'),
+              'aria-label': label,
             }}
           />
         </TableCell>
@@ -69,7 +64,7 @@ export function UserListHead(props: UserListHeadProps) {
             >
               <TableSortLabel
                 active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : 'asc'}
+                direction={orderBy === headCell.id ? order : SortingDirection.ASC}
                 onClick={createSortHandler(headCell.id)}
               >
                 {headCell.label}
@@ -78,7 +73,7 @@ export function UserListHead(props: UserListHeadProps) {
                     component='span'
                     sx={{ display: 'none' }}
                   >
-                    {order === 'desc' ? t('userList.sortDsc') : t('userList.sortAsc')}
+                    {order === SortingDirection.DESC ? t('userList.sortDsc') : t('userList.sortAsc')}
                   </Box>
                 ) : null}
               </TableSortLabel>

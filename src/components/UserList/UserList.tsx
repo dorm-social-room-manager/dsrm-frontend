@@ -1,7 +1,8 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
-import { Data, Order } from './UserList.types';
+import { Data, SortingDirection } from './UserList.types';
 import Checkbox from '@mui/material/Checkbox';
+import { FetchError } from '../../errors/FetchError';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 
@@ -15,10 +16,10 @@ function descendingComparator<T>(firstValue: T, secondValue: T, orderBy: keyof T
   return 0;
 }
 function getComparator<Key extends keyof Data>(
-  order: Order,
+  order: SortingDirection,
   orderBy: Key
 ): (firstValue: { [key in Key]: number | string }, secondValue: { [key in Key]: number | string }) => number {
-  return order === Order.DESC
+  return order === SortingDirection.DESC
     ? (firstValue, secondValue) => {
         return descendingComparator(firstValue, secondValue, orderBy);
       }
@@ -28,7 +29,7 @@ function getComparator<Key extends keyof Data>(
 }
 
 export function UserList() {
-  const [order, setOrder] = useState<Order>(Order.ASC);
+  const [order, setOrder] = useState<SortingDirection>(SortingDirection.ASC);
   const [orderBy, setOrderBy] = useState<keyof Data>('id');
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);
@@ -41,8 +42,8 @@ export function UserList() {
   const twentyFivePerPage = 25;
 
   const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
-    const isAsc = orderBy === property && order === Order.ASC;
-    setOrder(isAsc ? Order.DESC : Order.ASC);
+    const isAsc = orderBy === property && order === SortingDirection.ASC;
+    setOrder(isAsc ? SortingDirection.DESC : SortingDirection.ASC);
     setOrderBy(property);
   };
 
@@ -88,13 +89,6 @@ export function UserList() {
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
-  class FetchError extends Error {
-    constructor(message: string) {
-      super(message);
-      this.name = 'FetchError';
-    }
-  }
 
   useEffect(() => {
     fetch('../src/components/UserList/testUsers.json')

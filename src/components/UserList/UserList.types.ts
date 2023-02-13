@@ -1,6 +1,6 @@
 import { ChangeEvent, MouseEvent } from 'react';
 
-export enum Order {
+export enum SortingDirection {
   ASC = 'asc',
   DESC = 'desc',
 }
@@ -20,7 +20,7 @@ export interface UserListHeadProps {
   numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
-  order: Order;
+  order: SortingDirection;
   orderBy: string;
   rowCount: number;
 }
