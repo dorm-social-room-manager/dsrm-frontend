@@ -37,9 +37,7 @@ export function UserList() {
   const defaultRowsPerPage = 10;
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const pixelHeightPerRow = 53;
-  const fivePerPage = 5;
-  const tenPerPage = 10;
-  const twentyFivePerPage = 25;
+  const rowsPerPageArray = [5, 10, 25];
 
   const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
     const isAsc = orderBy === property && order === SortingDirection.ASC;
@@ -186,7 +184,7 @@ export function UserList() {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[fivePerPage, tenPerPage, twentyFivePerPage]}
+        rowsPerPageOptions={rowsPerPageArray}
         component='div'
         count={rows.length}
         rowsPerPage={rowsPerPage}
