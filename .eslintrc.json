@@ -209,15 +209,8 @@
         "destructuredArrayIgnorePattern": "^_"
       }
     ],
-    "@typescript-eslint/no-magic-numbers": [
-      "error",
-      {
-        "ignoreEnums": true,
-        "ignoreNumericLiteralTypes": true,
-        "ignoreTypeIndexes": true
-      }
-    ],
     //Disabled
+    "@typescript-eslint/no-magic-numbers": "off",
     "no-await-in-loop": "off",
     "no-shadow": "off",
     "no-constant-binary-expression": "off",
@@ -236,16 +229,6 @@
       "rules": {
         "eqeqeq": "off",
         "no-eq-null": "off"
-      }
-    },
-    {
-      "files": [
-        "**/UserList.tsx",
-        "**/UserListHead.tsx",
-        "**/UserListToolbar.tsx"
-      ],
-      "rules": {
-        "@typescript-eslint/no-magic-numbers": "off"
       }
     }
   ]
