@@ -10,6 +10,8 @@ import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
 import * as registerFormEN from '../locales/en/registerForm.json';
 import * as registerFormPL from '../locales/pl/registerForm.json';
+import * as userListEN from '../locales/en/userList.json';
+import * as userListPL from '../locales/pl/userList.json';
 
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
@@ -23,6 +25,7 @@ const resources = {
       header: headerEN,
       loginForm: loginFormEN,
       registerForm: registerFormEN,
+      userList: userListEN,
     },
   },
   pl: {
@@ -33,6 +36,7 @@ const resources = {
       header: headerPL,
       loginForm: loginFormPL,
       registerForm: registerFormPL,
+      userList: userListPL,
     },
   },
 };

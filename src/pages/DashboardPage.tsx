@@ -10,17 +10,19 @@ import InsertPhotoSharpIcon from '@mui/icons-material/InsertPhotoSharp';
 import PersonIcon from '@mui/icons-material/Person';
 import { useTranslation } from 'react-i18next';
 
-const dashboardHeaderProps: DashboardHeaderProps = {
-  userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
-  userName: 'John Doe',
-};
 export function DashboardPage() {
   const { t } = useTranslation();
+  const dashboardHeaderProps: DashboardHeaderProps = {
+    logo: t('dashboard.logo'),
+    userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
+    userName: 'John Doe',
+  };
+
   const ADMIN_ITEMS: DashboardItem[] = [
     {
       icon: PersonIcon,
       title: t(`dashboardPage.users`),
-      url: '/dashboard/users',
+      url: '/dashboard/user-list',
     },
     {
       icon: InsertPhotoSharpIcon,

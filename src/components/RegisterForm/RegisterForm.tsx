@@ -44,9 +44,9 @@ export function RegisterForm() {
         throw new Error('Function not implemented.');
       }}
     >
-      {({ isValid }) => {
+      {({ isValid, handleSubmit }) => {
         return (
-          <form>
+          <form onSubmit={handleSubmit}>
             <Box
               padding={0}
               boxShadow={'0px 0px 30px #ccc'}
