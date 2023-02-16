@@ -10,7 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { customTheme } from './common/breakpoints';
 import { ThemeProvider } from '@mui/material';
 
-const queryClient = new QueryClient(); // Create a new query client
+const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <ThemeProvider theme={customTheme}>

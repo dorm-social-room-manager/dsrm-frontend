@@ -1,8 +1,8 @@
 import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
+import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import { RegisterFormType } from './RegisterForm.types';
 import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
 import { useCreateUserMutation } from '../../common/services/registerUserRequest';
@@ -15,7 +15,7 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
-  const onFormSubmit = (values: RegisterFormType) => {
+  const onFormSubmit = (values: CreateUserType) => {
     setOpen(true);
     mutate(values);
   };
@@ -33,8 +33,8 @@ export function RegisterForm() {
 
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: RegisterFormType) => {
-    const errors: RegisterFormType = {};
+  const validate = (values: CreateUserType) => {
+    const errors: CreateUserType = {};
     if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
@@ -47,7 +47,6 @@ export function RegisterForm() {
     if (values.name === undefined || values.name.length < minLength) {
       errors.name = t('registerForm.firstNameEmpty');
     }
-    console.log(errors);
     return errors;
   };
 
@@ -57,7 +56,7 @@ export function RegisterForm() {
   const tabletGap = 8;
 
   return (
-    <Formik<RegisterFormType>
+    <Formik<CreateUserType>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}

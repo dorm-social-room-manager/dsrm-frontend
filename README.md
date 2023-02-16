@@ -6,7 +6,7 @@ This is a repository for the frontend part of the dorm social room manager. Made
 
 Before you will use this repository make sure that you have installed:
 
-- **_Git_**
+- **Git**
 
   - If you are a **Windows** or **macOS** user visit this link **[Downloading Git](https://git-scm.com/download)** then download appropriate installer
     and install it.

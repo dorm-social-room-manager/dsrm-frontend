@@ -1,7 +1,7 @@
-import { RegisterFormType } from '../../components/RegisterForm/RegisterForm.types';
+import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { useMutation } from '@tanstack/react-query';
 
-const getRequestObject = (values: RegisterFormType) => {
+const getRequestObject = (values: CreateUserType) => {
   return {
     body: JSON.stringify(values),
     headers: {
@@ -13,8 +13,8 @@ const getRequestObject = (values: RegisterFormType) => {
   };
 };
 
-const createUser = (values: RegisterFormType) => {
-  return fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values));
+const createUser = async (values: CreateUserType): Promise<any> => {
+  return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values));
 };
 
 export const useCreateUserMutation = () => {
