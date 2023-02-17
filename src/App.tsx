@@ -3,6 +3,7 @@ import { DashboardPage } from './pages/DashboardPage';
 import { LoginPage } from './pages/LoginPage';
 
 import { RegisterPage } from './pages/RegisterPage';
+import { RoomListPage } from './pages/RoomListPage';
 import { UserListPage } from './pages/UserListPage';
 
 export function App() {
@@ -23,6 +24,10 @@ export function App() {
       <Route
         path='/dashboard/user-list'
         element={<UserListPage />}
+      />
+      <Route
+        path='/dashboard/rooms'
+        element={<RoomListPage />}
       />
     </Routes>
   );

@@ -10,6 +10,8 @@ import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
 import * as registerFormEN from '../locales/en/registerForm.json';
 import * as registerFormPL from '../locales/pl/registerForm.json';
+import * as roomListEN from '../locales/en/roomList.json';
+import * as roomListPL from '../locales/pl/roomList.json';
 import * as userListEN from '../locales/en/userList.json';
 import * as userListPL from '../locales/pl/userList.json';
 
@@ -25,6 +27,7 @@ const resources = {
       header: headerEN,
       loginForm: loginFormEN,
       registerForm: registerFormEN,
+      roomList: roomListEN,
       userList: userListEN,
     },
   },
@@ -36,6 +39,7 @@ const resources = {
       header: headerPL,
       loginForm: loginFormPL,
       registerForm: registerFormPL,
+      roomList: roomListPL,
       userList: userListPL,
     },
   },

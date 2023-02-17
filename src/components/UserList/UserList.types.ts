@@ -1,9 +1,6 @@
 import { ChangeEvent, MouseEvent } from 'react';
+import { SortingDirection } from '../../common/utils/SortingDirection';
 
-export enum SortingDirection {
-  ASC = 'asc',
-  DESC = 'desc',
-}
 export interface Data {
   id: number;
   name: string;

@@ -1,0 +1,8 @@
+{
+  "logo": "POKOJE",
+  "number": "Numer pokoju",
+  "type": "Typ",
+  "keyOwner": "Właściciel klucza",
+  "openingHours": "Godziny otwarcia",
+  "capacity": "Liczba osób"
+}

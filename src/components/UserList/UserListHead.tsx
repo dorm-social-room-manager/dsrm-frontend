@@ -1,7 +1,8 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { Data, HeadCell, SortingDirection, UserListHeadProps } from './UserList.types';
+import { Data, HeadCell, UserListHeadProps } from './UserList.types';
 import { MouseEvent } from 'react';
+import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 
 const headCells: readonly HeadCell[] = [

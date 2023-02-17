@@ -1,20 +1,13 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
-import { Data, SortingDirection } from './UserList.types';
 import Checkbox from '@mui/material/Checkbox';
+import { Data } from './UserList.types';
+import { descendingComparator } from '../../common/utils/descendingComparator';
 import { FetchError } from '../../errors/FetchError';
+import { SortingDirection } from '../../common/utils/SortingDirection';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 
-function descendingComparator<T>(firstValue: T, secondValue: T, orderBy: keyof T) {
-  if (secondValue[orderBy] < firstValue[orderBy]) {
-    return -1;
-  }
-  if (secondValue[orderBy] > firstValue[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
 function getComparator<Key extends keyof Data>(
   order: SortingDirection,
   orderBy: Key
