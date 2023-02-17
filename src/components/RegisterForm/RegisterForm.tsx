@@ -72,6 +72,33 @@ export function RegisterForm() {
               handleSubmit(event);
             }}
           >
+            <Snackbar
+              open={isSuccess && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='success'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.successSnackbarRegister')}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              open={isError && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='error'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.errorSnackbarRegister')}
+              </Alert>
+            </Snackbar>
             <Box
               padding={0}
               boxShadow={'0px 0px 30px #ccc'}
@@ -205,34 +232,6 @@ export function RegisterForm() {
                 </Grid>
               </Grid>
             </Box>
-
-            <Snackbar
-              open={isSuccess && open}
-              autoHideDuration={6000}
-              onClose={handleClose}
-            >
-              <Alert
-                onClose={handleClose}
-                severity='success'
-                sx={{ width: '100%' }}
-              >
-                {t('registerForm.successSnackbarRegister')}
-              </Alert>
-            </Snackbar>
-
-            <Snackbar
-              open={isError && open}
-              autoHideDuration={6000}
-              onClose={handleClose}
-            >
-              <Alert
-                onClose={handleClose}
-                severity='error'
-                sx={{ width: '100%' }}
-              >
-                {t('registerForm.errorSnackbarRegister')}
-              </Alert>
-            </Snackbar>
           </form>
         );
       }}
