@@ -14,17 +14,14 @@ const getRequestObject = (values: CreateUserType) => {
   };
 };
 
-const createUser = async (values: CreateUserType): Promise<CreateUserType> => {
-  return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values))
-    .then((response) => {
-      if (!response.ok) {
-        throw new FetchError('Failed to create user.');
-      }
-      return response.json() as Promise<{ data: CreateUserType }>;
-    })
-    .then((data) => {
-      return data.data;
-    });
+const createUser = async (values: CreateUserType): Promise<Response> => {
+  return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values)).then((response) => {
+    if (response.ok) {
+      return response;
+    } else {
+      throw new FetchError("Couldn't create user");
+    }
+  });
 };
 
 export const useCreateUserMutation = () => {

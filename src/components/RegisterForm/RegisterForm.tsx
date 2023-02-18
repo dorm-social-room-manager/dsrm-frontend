@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
-import { useCreateUserMutation } from '../../common/services/ServiceRegisterUserRequest/ServiceRegisterUserRequest';
+import { useCreateUserMutation } from '../../common/services/UserService/UserService';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -73,6 +73,7 @@ export function RegisterForm() {
             }}
           >
             <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
               open={isSuccess && open}
               autoHideDuration={6000}
               onClose={handleClose}
@@ -87,6 +88,7 @@ export function RegisterForm() {
             </Snackbar>
 
             <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
               open={isError && open}
               autoHideDuration={6000}
               onClose={handleClose}
