@@ -13,7 +13,7 @@ const getRequestObject = (values: CreateUserType) => {
   };
 };
 
-const createUser = async (values: CreateUserType): Promise<any> => {
+const createUser = async (values: CreateUserType): Promise<Response> => {
   return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values));
 };
 
