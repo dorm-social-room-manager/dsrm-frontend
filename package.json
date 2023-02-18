@@ -14,7 +14,8 @@
     "lint-scss": "stylelint **/*.scss",
     "lint-scss:fix": "stylelint **/*.scss --fix",
     "prettyprint": "prettier --check .",
-    "prettyprint:fix": "prettier --write ."
+    "prettyprint:fix": "prettier --write .",
+    "generate:api-schema": "openapi-typescript http://localhost:8080/v3/api-docs --path-params-as-types --support-array-length --output ./src/generated/types.ts"
   },
   "dependencies": {
     "@emotion/react": "^11.10.5",
@@ -22,7 +23,9 @@
     "@fontsource/roboto": "^4.5.8",
     "@fontsource/roboto-mono": "^4.5.8",
     "@mui/icons-material": "^5.10.16",
+    "@mui/lab": "^5.0.0-alpha.120",
     "@mui/material": "^5.10.15",
+    "@tanstack/react-query": "^4.24.4",
     "formik": "^2.2.9",
     "i18next": "^22.0.6",
     "react": "^18.2.0",
@@ -38,6 +41,7 @@
     "@typescript-eslint/eslint-plugin": "^5.43.0",
     "@typescript-eslint/parser": "^5.43.0",
     "@vitejs/plugin-react": "^2.2.0",
+    "dotenv": "^16.0.3",
     "eslint": "^8.28.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-standard-with-typescript": "^23.0.0",
@@ -48,6 +52,7 @@
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-watch": "^8.0.0",
+    "openapi-typescript": "^6.1.0",
     "prettier": "^2.7.1",
     "stylelint": "^14.15.0",
     "stylelint-config-recommended-scss": "^8.0.0",

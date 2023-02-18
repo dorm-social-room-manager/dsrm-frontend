@@ -2,15 +2,17 @@
   "title": "Create your account",
   "shortTitle": "REGISTER",
   "password": "Password",
-  "phone": "Phone Number",
+  "roomNumber": "Room number",
   "firstName": "First Name",
   "lastName": "Last Name",
   "email": "Email",
   "register": "Register",
   "emailEmpty": "Email is required",
   "passwordEmpty": "Password is required",
-  "phoneEmpty": "Phone is required",
+  "roomNumberEmpty": "Room number is required",
   "firstNameEmpty": "First Name is required",
   "lastNameEmpty": "Last Name is required",
-  "showPassword": "Show Password"
+  "showPassword": "Show Password",
+  "successSnackbarRegister": "You have successfully registered!",
+  "errorSnackbarRegister": "Something went wrong, please try again later!"
 }

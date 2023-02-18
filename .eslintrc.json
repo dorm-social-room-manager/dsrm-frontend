@@ -10,13 +10,7 @@
     "browser": true,
     "es6": true
   },
-  "plugins": [
-    "@typescript-eslint",
-    "prettier",
-    "import",
-    "react",
-    "react-hooks"
-  ],
+  "plugins": ["@typescript-eslint", "prettier", "import", "react", "react-hooks"],
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
@@ -67,14 +61,10 @@
     "no-unsafe-finally": "error",
     "no-unsafe-negation": "error",
     "no-unsafe-optional-chaining": "error",
-    "no-use-before-define": "error",
     "no-useless-backreference": "error",
     "use-isnan": "error",
     "valid-typeof": "error",
-    "arrow-body-style": [
-      "error",
-      "always"
-    ],
+    "arrow-body-style": ["error", "always"],
     "camelcase": [
       "error",
       {
@@ -84,23 +74,14 @@
         "ignoreGlobals": false
       }
     ],
-    "curly": [
-      "error",
-      "all"
-    ],
+    "curly": ["error", "all"],
     "default-case": "error",
     "default-case-last": "error",
     "default-param-last": "error",
     "dot-notation": "error",
-    "eqeqeq": [
-      "error",
-      "always"
-    ],
+    "eqeqeq": ["error", "always"],
     "grouped-accessor-pairs": "error",
-    "max-classes-per-file": [
-      "error",
-      1
-    ],
+    "max-classes-per-file": ["error", 1],
     "no-case-declarations": "error",
     "no-div-regex": "error",
     "no-empty": "error",
@@ -146,24 +127,15 @@
     "no-useless-return": "error",
     "no-var": "error",
     "no-with": "error",
-    "object-shorthand": [
-      "error",
-      "consistent-as-needed"
-    ],
-    "operator-assignment": [
-      "error",
-      "always"
-    ],
+    "object-shorthand": ["error", "consistent-as-needed"],
+    "operator-assignment": ["error", "always"],
     "prefer-arrow-callback": "error",
     "prefer-const": "error",
     "prefer-object-spread": "error",
     "prefer-rest-params": "error",
     "prefer-spread": "error",
     "prefer-template": "error",
-    "radix": [
-      "error",
-      "always"
-    ],
+    "radix": ["error", "always"],
     "require-await": "error",
     "require-yield": "error",
     "sort-imports": [
@@ -179,23 +151,19 @@
         "caseSensitive": false
       }
     ],
-    "yoda": [
-      "error",
-      "never"
-    ],
+    "yoda": ["error", "never"],
     "prettier/prettier": "error",
     "import/no-default-export": "error",
     "import/no-cycle": "error",
     "import/no-unresolved": [
       "error",
       {
-        "ignore": [
-          ".scss$"
-        ]
+        "ignore": [".scss$"]
       }
     ],
     "@typescript-eslint/no-shadow": "error",
     "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-explicit-any": "error",
     "@typescript-eslint/explicit-member-accessibility": [
       "error",
       {
@@ -216,6 +184,7 @@
     "no-constant-binary-expression": "off",
     "no-template-curly-in-string": "off",
     "no-unmodified-loop-condition": "off",
+    "no-use-before-define": "off",
     "accessor-pairs": "off",
     "no-magic-numbers": "off",
     "@typescript-eslint/no-namespace": "off",
@@ -223,9 +192,7 @@
   },
   "overrides": [
     {
-      "files": [
-        "**/isDefined.ts"
-      ],
+      "files": ["**/isDefined.ts"],
       "rules": {
         "eqeqeq": "off",
         "no-eq-null": "off"

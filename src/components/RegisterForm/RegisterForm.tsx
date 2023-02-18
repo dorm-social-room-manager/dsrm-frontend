@@ -1,29 +1,51 @@
-import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
+import { CreateUserType } from '../../common/types/OperationTypes.types';
+import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import { RegisterFormErrors } from './RegisterForm.types';
 import styles from './RegisterForm.module.scss';
+import { SyntheticEvent } from 'react';
+import { useCreateUserMutation } from '../../common/services/UserService/UserService';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 export function RegisterForm() {
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
+  const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
+
+  const onFormSubmit = (values: CreateUserType) => {
+    setOpen(true);
+    mutate(values);
+  };
+
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    if (isSuccess) {
+      navigate('/dashboard');
+    }
+  };
+
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
-    const errors: RegisterFormErrors = {};
-    if (values.email.length < minLength) {
+  const validate = (values: CreateUserType) => {
+    const errors: CreateUserType = {};
+    if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
-    if (values.password.length < minLength) {
+    if (values.password === undefined || values.password.length < minLength) {
       errors.password = t('registerForm.passwordEmpty');
     }
-    if (values.lname.length < minLength) {
-      errors.lastName = t('registerForm.lastNameEmpty');
+    if (values.surname === undefined || values.surname.length < minLength) {
+      errors.surname = t('registerForm.lastNameEmpty');
     }
-    if (values.fname.length < minLength) {
-      errors.firstNme = t('registerForm.firstNameEmpty');
-    }
-    if (values.phone.length < minLength) {
-      errors.phone = t('registerForm.phoneEmpty');
+    if (values.name === undefined || values.name.length < minLength) {
+      errors.name = t('registerForm.firstNameEmpty');
     }
     return errors;
   };
@@ -32,21 +54,53 @@ export function RegisterForm() {
   const isTablet: boolean = useMediaQuery(theme.breakpoints.up('tablet'));
   const mobileGap = 2;
   const tabletGap = 8;
+
   return (
-    <Formik
+    <Formik<CreateUserType>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', fname: '', lname: '', password: '', phone: '' }}
-      onSubmit={function () {
-        throw new Error('Function not implemented.');
-      }}
+      initialValues={{ email: '', name: '', password: '', surname: '' }}
+      onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
         return (
-          <form onSubmit={handleSubmit}>
+          <form
+            onSubmit={(event) => {
+              handleSubmit(event);
+            }}
+          >
+            <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+              open={isSuccess && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='success'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.successSnackbarRegister')}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+              open={isError && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='error'
+                sx={{ width: '100%' }}
+              >
+                {t('registerForm.errorSnackbarRegister')}
+              </Alert>
+            </Snackbar>
             <Box
               padding={0}
               boxShadow={'0px 0px 30px #ccc'}
@@ -89,7 +143,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.firstName')}
                         type='text'
-                        name='fname'
+                        name='name'
                         required
                       />
                     </Grid>
@@ -103,7 +157,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.lastName')}
                         type='text'
-                        name='lname'
+                        name='surname'
                         required
                       />
                     </Grid>
@@ -115,10 +169,10 @@ export function RegisterForm() {
                       <Field
                         as={TextField}
                         className={styles.input}
-                        label={t('registerForm.phone')}
+                        label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type='text'
-                        name='phone'
+                        name='roomNumber'
                         required
                       />
                     </Grid>
@@ -164,7 +218,7 @@ export function RegisterForm() {
                   item
                   mobile={6}
                 >
-                  <Button
+                  <LoadingButton
                     variant='contained'
                     color='secondary'
                     sx={{
@@ -172,10 +226,11 @@ export function RegisterForm() {
                       width: 1,
                     }}
                     type='submit'
+                    loading={isLoading}
                     disabled={!isValid}
                   >
                     {t('registerForm.register')}
-                  </Button>
+                  </LoadingButton>
                 </Grid>
               </Grid>
             </Box>
