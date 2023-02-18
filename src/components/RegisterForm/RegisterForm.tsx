@@ -5,7 +5,7 @@ import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
-import { useCreateUserMutation } from '../../common/services/registerUserRequest';
+import { useCreateUserMutation } from '../../common/services/ServiceRegisterUserRequest/ServiceRegisterUserRequest';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
