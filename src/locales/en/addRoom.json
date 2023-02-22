@@ -1,0 +1,10 @@
+{
+    "roomType": "Room Type",
+    "keyOwner": "Key Owner",
+    "roomNumber": "Room Number",
+    "floor": "Floor",
+    "maxCapacity": "Max Capacity",
+    "openingTime": "Opening Time",
+    "closingTime": "Closing Time",
+    "create": "Create"
+}
