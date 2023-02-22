@@ -1,0 +1,10 @@
+{
+    "roomType": "Typ pokoju",
+    "keyOwner": "Właściciel klucza",
+    "roomNumber": "Numer pokoju",
+    "floor": "Piętro",
+    "maxCapacity": "Maksymalna liczba osób",
+    "openingTime": "Godzina otwarcia",
+    "closingTime": "Godzina zamknięcia",
+    "create": "Utwórz"
+}
