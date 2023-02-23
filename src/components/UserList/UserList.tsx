@@ -1,14 +1,14 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { Data } from './UserList.types';
-import { descendingComparator } from '../../common/utils/descendingComparator';
+import { descendingComparator } from '../../common/utils/DescendingComparator';
 import { FetchError } from '../../errors/FetchError';
 import { SortingDirection } from '../../common/utils/SortingDirection';
+import { UserData } from '../../common/types/TableTypes.types';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 
-function getComparator<Key extends keyof Data>(
+function getComparator<Key extends keyof UserData>(
   order: SortingDirection,
   orderBy: Key
 ): (firstValue: { [key in Key]: number | string }, secondValue: { [key in Key]: number | string }) => number {
@@ -23,16 +23,16 @@ function getComparator<Key extends keyof Data>(
 
 export function UserList() {
   const [order, setOrder] = useState<SortingDirection>(SortingDirection.ASC);
-  const [orderBy, setOrderBy] = useState<keyof Data>('id');
+  const [orderBy, setOrderBy] = useState<keyof UserData>('id');
   const [selected, setSelected] = useState<readonly number[]>([]);
   const [page, setPage] = useState(0);
-  const [rows, setRows] = useState<Data[]>([]);
+  const [rows, setRows] = useState<UserData[]>([]);
   const defaultRowsPerPage = 10;
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
+  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof UserData) => {
     const isAsc = orderBy === property && order === SortingDirection.ASC;
     setOrder(isAsc ? SortingDirection.DESC : SortingDirection.ASC);
     setOrderBy(property);
@@ -86,7 +86,7 @@ export function UserList() {
       .then((res) => {
         return res.json();
       })
-      .then((data: Data[]) => {
+      .then((data: UserData[]) => {
         return setRows(data);
       })
       .catch((error) => {

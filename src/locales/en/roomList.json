@@ -1,9 +1,10 @@
 {
-    "logo": "ROOMS",
-    "number": "Tumber",
-    "type": "Type",
-    "keyOwner": "Key Owner",
-    "openingHours": "Opening Hours",
-    "capacity": "Capacity"
+  "logo": "ROOMS",
+  "number": "Number",
+  "type": "Type",
+  "keyOwner": "Key Owner",
+  "openingHours": "Opening Hours",
+  "capacity": "Capacity",
+  "accept": "Accept",
+  "del": "Delete"
 }
-  

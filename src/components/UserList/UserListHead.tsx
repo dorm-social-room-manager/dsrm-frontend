@@ -1,11 +1,12 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { Data, HeadCell, UserListHeadProps } from './UserList.types';
+import { UserData, UserHeadCell } from '../../common/types/TableTypes.types';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
+import { UserListHeadProps } from './UserList.types';
 
-const headCells: readonly HeadCell[] = [
+const headCells: readonly UserHeadCell[] = [
   {
     disablePadding: true,
     id: 'name',
@@ -35,7 +36,7 @@ const headCells: readonly HeadCell[] = [
 
 export function UserListHead(props: UserListHeadProps) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = (property: keyof Data) => {
+  const createSortHandler = (property: keyof UserData) => {
     return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };

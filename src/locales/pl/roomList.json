@@ -4,5 +4,7 @@
   "type": "Typ",
   "keyOwner": "Właściciel klucza",
   "openingHours": "Godziny otwarcia",
-  "capacity": "Liczba osób"
+  "capacity": "Liczba osób",
+  "accept": "Akceptuj",
+  "del": "Usuń"
 }
