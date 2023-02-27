@@ -1,12 +1,12 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { UserData, UserHeadCell } from '../../common/types/TableTypes.types';
+import { HeadCell, UserData } from '../../common/types/TableTypes.types';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 import { UserListHeadProps } from './UserList.types';
 
-const headCells: readonly UserHeadCell[] = [
+const headCells: readonly HeadCell<UserData>[] = [
   {
     disablePadding: true,
     id: 'name',

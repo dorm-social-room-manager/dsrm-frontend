@@ -5,10 +5,10 @@ import { UserListToolbarProps } from './UserList.types';
 import { useTranslation } from 'react-i18next';
 
 export function UserListToolbar(props: UserListToolbarProps) {
-  const { selected, rows } = props;
-  const numSelected = selected.length;
-  const selectedRows = rows.filter((row) => {
-    return selected.includes(row.id);
+  const { allSelected, allRows } = props;
+  const numSelected = allSelected.length;
+  const selectedRows = allRows.filter((row) => {
+    return allSelected.includes(row.id);
   });
   const { t } = useTranslation();
   return (
@@ -28,7 +28,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
           variant='subtitle1'
           component='div'
         >
-          {numSelected} selected
+          {numSelected} allSelected
         </Typography>
       ) : (
         <></>

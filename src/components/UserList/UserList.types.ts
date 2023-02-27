@@ -3,8 +3,8 @@ import { SortingDirection } from '../../common/utils/SortingDirection';
 import { UserData } from '../../common/types/TableTypes.types';
 
 export interface UserListToolbarProps {
-  selected: readonly number[];
-  rows: readonly UserData[];
+  allSelected: readonly number[];
+  allRows: readonly UserData[];
 }
 export interface UserListHeadProps {
   numSelected: number;

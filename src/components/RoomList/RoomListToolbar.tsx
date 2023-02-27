@@ -1,14 +1,15 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import { CustomTableToolbarProps } from '../../common/types/TableTypes.types';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { RoomListToolbarProps } from './RoomList.types';
+import { RoomData } from '../../common/types/TableTypes.types';
 import { useTranslation } from 'react-i18next';
 
-export function RoomListToolbar(props: RoomListToolbarProps) {
-  const { selected, rows } = props;
-  const numSelected = selected.length;
-  const selectedRows = rows.filter((row) => {
-    return selected.includes(row.id);
+export function RoomListToolbar(props: CustomTableToolbarProps<RoomData>) {
+  const { allSelected, allRows } = props;
+  const numSelected = allSelected.length;
+  const selectedRows = allRows.filter((row) => {
+    return allSelected.includes(row.id);
   });
   const { t } = useTranslation();
 

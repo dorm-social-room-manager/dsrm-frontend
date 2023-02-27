@@ -1,13 +1,12 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
+import { HeadCell, RoomData } from '../../common/types/TableTypes.types';
 import { MouseEvent } from 'react';
-import { RoomData } from '../../common/types/TableTypes.types';
-import { RoomHeadCell } from '../../common/types/TableTypes.types';
 import { RoomListHeadProps } from './RoomList.types';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 
-const headCells: readonly RoomHeadCell[] = [
+const headCells: readonly HeadCell<RoomData>[] = [
   {
     disablePadding: true,
     id: 'number',
