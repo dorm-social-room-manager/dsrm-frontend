@@ -62,7 +62,7 @@ export function RegisterForm() {
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', name: '', password: '', roomNumber: 0, surname: '' }}
+      initialValues={{ email: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
