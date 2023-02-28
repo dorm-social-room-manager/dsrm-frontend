@@ -1,6 +1,6 @@
 import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { CreateUserType } from '../../common/types/OperationTypes.types';
+import { LoginDetails, UserTypeDetails } from '../../common/types/OperationTypes.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';
@@ -15,7 +15,7 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
-  const onFormSubmit = (values: CreateUserType) => {
+  const onFormSubmit = (values: LoginDetails) => {
     setOpen(true);
     mutate(values);
   };
@@ -33,8 +33,8 @@ export function RegisterForm() {
 
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: CreateUserType) => {
-    const errors: CreateUserType = {};
+  const validate = (values: LoginDetails) => {
+    const errors: UserTypeDetails = {};
     if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
@@ -56,13 +56,13 @@ export function RegisterForm() {
   const tabletGap = 8;
 
   return (
-    <Formik<CreateUserType>
+    <Formik<LoginDetails>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', name: '', password: '', surname: '' }}
+      initialValues={{ email: '', name: '', password: '', roomNumber: 0, surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {

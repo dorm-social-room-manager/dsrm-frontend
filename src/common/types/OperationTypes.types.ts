@@ -1,3 +1,5 @@
-import { operations } from '../../generated/types';
+import { components, operations } from '../../generated/types';
 
-export type CreateUserType = operations['addUser']['requestBody']['content']['application/json'];
+export type LoginDetails = operations['addUser']['requestBody']['content']['application/json'];
+export type UserTypeDetails = components['schemas']['User']; //used for error handling
+export type LoginDetailsRequestDTO = operations['authenticateUser']['requestBody']['content']['application/json'];

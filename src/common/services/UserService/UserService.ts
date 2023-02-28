@@ -1,8 +1,8 @@
-import { CreateUserType } from '../../types/OperationTypes.types';
+import { LoginDetails, LoginDetailsRequestDTO } from '../../types/OperationTypes.types';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
-const getRequestObject = (values: CreateUserType) => {
+const getRequestObject = (values: LoginDetails | LoginDetailsRequestDTO, requestMethod: string) => {
   return {
     body: JSON.stringify(values),
     headers: {
@@ -10,12 +10,12 @@ const getRequestObject = (values: CreateUserType) => {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     },
-    method: 'POST',
+    method: requestMethod,
   };
 };
 
-const createUser = async (values: CreateUserType): Promise<Response> => {
-  return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values)).then((response) => {
+const createUser = async (values: LoginDetails): Promise<Response> => {
+  return await fetch(`${import.meta.env.VITE_API_URL}/users`, getRequestObject(values, 'POST')).then((response) => {
     if (response.ok) {
       return response;
     } else {
@@ -24,6 +24,20 @@ const createUser = async (values: CreateUserType): Promise<Response> => {
   });
 };
 
+const authenticateUser = async (values: LoginDetails): Promise<Response> => {
+  return await fetch(`${import.meta.env.VITE_API_URL}/authenticate`, getRequestObject(values, 'PUT')).then((response) => {
+    if (response.ok) {
+      return response;
+    } else {
+      throw new FetchError("Couldn't authenticate user");
+    }
+  });
+};
+
 export const useCreateUserMutation = () => {
   return useMutation(createUser);
+};
+
+export const useAuthenticateUserMutation = () => {
+  return useMutation(authenticateUser);
 };
