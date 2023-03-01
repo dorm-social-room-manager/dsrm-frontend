@@ -22,18 +22,18 @@ const headCells: readonly HeadCell[] = [
   },
   {
     disablePadding: false,
-    id: 'room',
+    id: 'roomNumber',
     label: t('userList.roomNumber'),
   },
   {
     disablePadding: true,
-    id: 'userType',
+    id: 'roles',
     label: t('userList.userType'),
   },
 ];
 
 export function UserListHead(props: UserListHeadProps) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+  const { onSelectAllClick, order, orderBy, numSelectedOnPage, rowCount, onRequestSort } = props;
   const createSortHandler = (property: keyof Data) => {
     return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
@@ -46,8 +46,8 @@ export function UserListHead(props: UserListHeadProps) {
         <TableCell padding='checkbox'>
           <Checkbox
             color='primary'
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
+            indeterminate={numSelectedOnPage > 0 && numSelectedOnPage < rowCount}
+            checked={rowCount > 0 && numSelectedOnPage === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
               'aria-label': label,

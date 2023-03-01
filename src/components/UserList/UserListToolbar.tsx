@@ -5,11 +5,8 @@ import { UserListToolbarProps } from './UserList.types';
 import { useTranslation } from 'react-i18next';
 
 export function UserListToolbar(props: UserListToolbarProps) {
-  const { selected, rows } = props;
+  const { selected } = props;
   const numSelected = selected.length;
-  const selectedRows = rows.filter((row) => {
-    return selected.includes(row.id);
-  });
   const { t } = useTranslation();
   return (
     <Toolbar
@@ -35,8 +32,9 @@ export function UserListToolbar(props: UserListToolbarProps) {
       )}
       {numSelected > 0 ? (
         <>
-          {selectedRows.every((row) => {
-            return row.userType === 'Pending';
+          {selected.every((row) => {
+            /*back doesn't have a pending type yet, this will need to be changed later*/
+            return row.rolesId === '2';
           }) ? (
             <Tooltip title={t('userList.accept')}>
               <IconButton>
@@ -46,8 +44,8 @@ export function UserListToolbar(props: UserListToolbarProps) {
           ) : (
             <></>
           )}
-          {selectedRows.every((row) => {
-            return row.userType !== 'Admin';
+          {selected.every((row) => {
+            return row.rolesId !== '1';
           }) ? (
             <Tooltip title={t('userList.del')}>
               <IconButton>

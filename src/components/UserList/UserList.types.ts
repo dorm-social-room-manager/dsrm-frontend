@@ -9,15 +9,15 @@ export interface Data {
   name: string;
   surname: string;
   email: string;
-  room: number;
-  userType: string;
+  roomNumber: number;
+  roles: string;
+  rolesId: string;
 }
 export interface UserListToolbarProps {
-  selected: readonly number[];
-  rows: readonly Data[];
+  selected: readonly Data[];
 }
 export interface UserListHeadProps {
-  numSelected: number;
+  numSelectedOnPage: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: SortingDirection;
