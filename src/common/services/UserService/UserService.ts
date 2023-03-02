@@ -36,7 +36,7 @@ const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseT
       if (response !== null && response.ok) {
         return response.json();
       } else {
-        throw new FetchError("Couldn't create user");
+        throw new FetchError("Couldn't fetch users");
       }
     })
     .then((data: ReadUsersResponseType) => {
