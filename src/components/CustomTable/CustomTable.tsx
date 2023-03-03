@@ -5,20 +5,20 @@ import Checkbox from '@mui/material/Checkbox';
 import { CustomTableProps } from './CustomTable.types';
 import { FetchError } from '../../errors/FetchError';
 
-export function CustomTable<Type extends { id?: string }>(props: CustomTableProps<Type>) {
+export function CustomTable<T extends { id?: string }>(props: CustomTableProps<T>) {
   const { head, toolbar, fetchUrl, customTableStatefulVariables } = props;
   const { selected, page, rows, rowsPerPage, setSelected, setPage, setRows, setRowsPerPage } = customTableStatefulVariables;
 
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleClick = (event: MouseEvent<unknown>, row: Type) => {
+  const handleClick = (event: MouseEvent<unknown>, row: T) => {
     const selectedIndex = selected.indexOf(
       selected.find((item) => {
         return item.id === row.id;
-      }) as Type
+      }) as T
     );
-    let newSelected: readonly Type[] = [];
+    let newSelected: readonly T[] = [];
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, row);
@@ -42,7 +42,7 @@ export function CustomTable<Type extends { id?: string }>(props: CustomTableProp
     setPage(0);
   };
 
-  const isSelected = (row: Type) => {
+  const isSelected = (row: T) => {
     return (
       selected.filter((item) => {
         return item.id === row.id;
@@ -57,7 +57,7 @@ export function CustomTable<Type extends { id?: string }>(props: CustomTableProp
       .then((res) => {
         return res.json();
       })
-      .then((data: Type[]) => {
+      .then((data: T[]) => {
         return setRows(data);
       })
       .catch((error) => {
@@ -82,7 +82,7 @@ export function CustomTable<Type extends { id?: string }>(props: CustomTableProp
               const isItemSelected = isSelected(row);
               const labelId = `enhanced-table-checkbox-${index}`;
 
-              type TableDataKeys = Exclude<keyof Type, symbol>;
+              type TableDataKeys = Exclude<keyof T, symbol>;
               const columnNames: TableDataKeys[] = Object.keys(row) as TableDataKeys[];
 
               const tableCells = columnNames.slice(1).map((key) => {
