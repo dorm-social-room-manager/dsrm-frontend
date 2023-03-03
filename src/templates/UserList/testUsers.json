@@ -1,0 +1,101 @@
+[
+  {
+    "id": 1,
+    "email": "asda@sa.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "userType": "Admin"
+  },
+  {
+    "id": 2,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 523,
+    "userType": "User"
+  },
+  {
+    "id": 3,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "userType": "User"
+  },
+  {
+    "id": 4,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 133,
+    "userType": "User"
+  },
+  {
+    "id": 5,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdsd",
+    "roomNumber": 423,
+    "userType": "User"
+  },
+  {
+    "id": 6,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 623,
+    "userType": "User"
+  },
+  {
+    "id": 7,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 183,
+    "userType": "User"
+  },
+  {
+    "id": 8,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 193,
+    "userType": "User"
+  },
+  {
+    "id": 9,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "userType": "User"
+  },
+  {
+    "id": 10,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "userType": "User"
+  },
+  {
+    "id": 11,
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "userType": "User"
+  }
+]

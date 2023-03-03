@@ -1,42 +1,48 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { HeadCell, UserData } from '../../common/types/TableTypes.types';
+import { CustomTableHeadProps } from '../../components/CustomTable/CustomTable.types';
+import { HeadCell } from '../../components/CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
-import { UserListHeadProps } from './UserList.types';
+import { User } from '../../common/types/ComponentTypes.types';
 
-const headCells: readonly HeadCell<UserData>[] = [
+const headCells: readonly HeadCell<User>[] = [
   {
     disablePadding: true,
-    id: 'name',
+    instance: 'email',
+    label: t('userList.email'),
+  },
+  {
+    disablePadding: true,
+    instance: 'password',
+    label: t('userList.password'),
+  },
+  {
+    disablePadding: true,
+    instance: 'name',
     label: t('userList.name'),
   },
   {
     disablePadding: true,
-    id: 'surname',
+    instance: 'surname',
     label: t('userList.surname'),
   },
   {
-    disablePadding: true,
-    id: 'email',
-    label: t('userList.email'),
-  },
-  {
     disablePadding: false,
-    id: 'room',
+    instance: 'roomNumber',
     label: t('userList.roomNumber'),
   },
   {
     disablePadding: true,
-    id: 'userType',
+    instance: 'roles',
     label: t('userList.userType'),
   },
 ];
 
-export function UserListHead(props: UserListHeadProps) {
+export function UserListHead(props: CustomTableHeadProps<User>) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = (property: keyof UserData) => {
+  const createSortHandler = (property: keyof User) => {
     return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
@@ -59,18 +65,18 @@ export function UserListHead(props: UserListHeadProps) {
         {headCells.map((headCell) => {
           return (
             <TableCell
-              key={headCell.id}
+              key={headCell.instance}
               align='left'
               padding={headCell.disablePadding ? 'none' : 'normal'}
-              sortDirection={orderBy === headCell.id ? order : false}
+              sortDirection={orderBy === headCell.instance ? order : false}
             >
               <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : SortingDirection.ASC}
-                onClick={createSortHandler(headCell.id)}
+                active={orderBy === headCell.instance}
+                direction={orderBy === headCell.instance ? order : SortingDirection.ASC}
+                onClick={createSortHandler(headCell.instance)}
               >
                 {headCell.label}
-                {orderBy === headCell.id ? (
+                {orderBy === headCell.instance ? (
                   <Box
                     component='span'
                     sx={{ display: 'none' }}

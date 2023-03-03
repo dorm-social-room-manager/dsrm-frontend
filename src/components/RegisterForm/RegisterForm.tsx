@@ -20,7 +20,7 @@ export function RegisterForm() {
     mutate(values);
   };
 
-  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }

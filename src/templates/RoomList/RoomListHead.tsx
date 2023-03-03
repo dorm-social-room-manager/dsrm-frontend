@@ -1,47 +1,63 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { HeadCell, RoomData } from '../../common/types/TableTypes.types';
+import { CustomTableHeadProps } from '../../components/CustomTable/CustomTable.types';
+import { HeadCell } from '../../components/CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
-import { RoomListHeadProps } from './RoomList.types';
+import { Room } from '../../common/types/ComponentTypes.types';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 
-const headCells: readonly HeadCell<RoomData>[] = [
+const headCells: readonly HeadCell<Room>[] = [
   {
     disablePadding: true,
-    id: 'number',
-    label: t('roomList.number'),
+    instance: 'roomNumber',
+    label: t('roomList.roomNumber'),
   },
   {
     disablePadding: true,
-    id: 'floor',
+    instance: 'floor',
     label: t('roomList.floor'),
   },
   {
     disablePadding: true,
-    id: 'type',
-    label: t('roomList.type'),
+    instance: 'roomType',
+    label: t('roomList.roomType'),
+  },
+  {
+    disablePadding: true,
+    instance: 'maxCapacity',
+    label: t('roomList.maxCapacity'),
   },
   {
     disablePadding: false,
-    id: 'keyOwner',
+    instance: 'keyOwner',
     label: t('roomList.keyOwner'),
   },
   {
     disablePadding: true,
-    id: 'openingHours',
-    label: t('roomList.openingHours'),
+    instance: 'openingTime',
+    label: t('roomList.openingTime'),
   },
   {
     disablePadding: true,
-    id: 'capacity',
-    label: t('roomList.capacity'),
+    instance: 'closingTime',
+    label: t('roomList.closingTime'),
+  },
+  {
+    disablePadding: true,
+    instance: 'unavailableStart',
+    label: t('roomList.unavailableStart'),
+  },
+  {
+    disablePadding: true,
+    instance: 'unavailableEnd',
+    label: t('roomList.unavailableEnd'),
   },
 ];
 
-export function RoomListHead(props: RoomListHeadProps) {
+export function RoomListHead(props: CustomTableHeadProps<Room>) {
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
-  const createSortHandler = (property: keyof RoomData) => {
+  const createSortHandler = (property: keyof Room) => {
     return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };
@@ -64,18 +80,18 @@ export function RoomListHead(props: RoomListHeadProps) {
         {headCells.map((headCell) => {
           return (
             <TableCell
-              key={headCell.id}
+              key={headCell.instance}
               align='left'
               padding={headCell.disablePadding ? 'none' : 'normal'}
-              sortDirection={orderBy === headCell.id ? order : false}
+              sortDirection={orderBy === headCell.instance ? order : false}
             >
               <TableSortLabel
-                active={orderBy === headCell.id}
-                direction={orderBy === headCell.id ? order : SortingDirection.ASC}
-                onClick={createSortHandler(headCell.id)}
+                active={orderBy === headCell.instance}
+                direction={orderBy === headCell.instance ? order : SortingDirection.ASC}
+                onClick={createSortHandler(headCell.instance)}
               >
                 {headCell.label}
-                {orderBy === headCell.id ? (
+                {orderBy === headCell.instance ? (
                   <Box
                     component='span'
                     sx={{ display: 'none' }}

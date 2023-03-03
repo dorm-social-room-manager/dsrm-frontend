@@ -2,7 +2,7 @@ import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { DashboardHeader } from '../components/DashboardHeader/DashboardHeader';
 import { DashboardHeaderProps } from '../components/DashboardHeader/DashboardHeader.types';
 import { Footer } from '../templates/Footer/Footer';
-import { UserList } from '../components/UserList/UserList';
+import { UserList } from '../templates/UserList/UserList';
 import { useTranslation } from 'react-i18next';
 
 export function UserListPage() {

@@ -1,8 +1,9 @@
 {
   "logo": "USERS",
+  "email": "Email",
+  "password": "Password",
   "name": "Name",
   "surname": "Surname",
-  "email": "Email",
   "roomNumber": "Room Number",
   "userType": "User Type",
   "rows": "Rows per page",

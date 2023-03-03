@@ -1,15 +1,15 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
-import { CustomTableToolbarProps } from '../../common/types/TableTypes.types';
+import { CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { RoomData } from '../../common/types/TableTypes.types';
+import { Room } from '../../common/types/ComponentTypes.types';
 import { useTranslation } from 'react-i18next';
 
-export function RoomListToolbar(props: CustomTableToolbarProps<RoomData>) {
+export function RoomListToolbar(props: CustomTableToolbarProps<Room>) {
   const { allSelected, allRows } = props;
   const numSelected = allSelected.length;
   const selectedRows = allRows.filter((row) => {
-    return allSelected.includes(row.id);
+    return allSelected.includes(row);
   });
   const { t } = useTranslation();
 
@@ -38,7 +38,7 @@ export function RoomListToolbar(props: CustomTableToolbarProps<RoomData>) {
       {numSelected > 0 ? (
         <>
           {selectedRows.every((row) => {
-            return row.keyOwner === 'Pending';
+            return row.keyOwner?.name === 'Pending';
           }) ? (
             <Tooltip title={t('roomList.accept')}>
               <IconButton>
@@ -49,7 +49,7 @@ export function RoomListToolbar(props: CustomTableToolbarProps<RoomData>) {
             <></>
           )}
           {selectedRows.every((row) => {
-            return row.keyOwner !== 'Admin';
+            return row.keyOwner?.name !== 'Admin';
           }) ? (
             <Tooltip title={t('roomList.del')}>
               <IconButton>

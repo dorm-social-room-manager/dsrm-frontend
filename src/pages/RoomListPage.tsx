@@ -2,7 +2,7 @@ import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { DashboardHeader } from '../components/DashboardHeader/DashboardHeader';
 import { DashboardHeaderProps } from '../components/DashboardHeader/DashboardHeader.types';
 import { Footer } from '../templates/Footer/Footer';
-import { RoomList } from '../components/RoomList/RoomList';
+import { RoomList } from '../templates/RoomList/RoomList';
 import { useTranslation } from 'react-i18next';
 
 export function RoomListPage() {

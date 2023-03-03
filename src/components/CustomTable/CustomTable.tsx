@@ -2,22 +2,26 @@ import * as React from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, MouseEvent, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
-import { CustomTableProps } from '../../common/types/TableTypes.types';
+import { CustomTableProps } from './CustomTable.types';
 import { FetchError } from '../../errors/FetchError';
 
-export function CustomTable<Type extends { id: number }>(props: CustomTableProps<Type>) {
+export function CustomTable<Type extends { id?: string }>(props: CustomTableProps<Type>) {
   const { head, toolbar, fetchUrl, customTableStatefulVariables } = props;
   const { selected, page, rows, rowsPerPage, setSelected, setPage, setRows, setRowsPerPage } = customTableStatefulVariables;
 
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleClick = (event: MouseEvent<unknown>, id: number) => {
-    const selectedIndex = selected.indexOf(id);
-    let newSelected: readonly number[] = [];
+  const handleClick = (event: MouseEvent<unknown>, row: Type) => {
+    const selectedIndex = selected.indexOf(
+      selected.find((item) => {
+        return item.id === row.id;
+      }) as Type
+    );
+    let newSelected: readonly Type[] = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
+      newSelected = newSelected.concat(selected, row);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -29,7 +33,7 @@ export function CustomTable<Type extends { id: number }>(props: CustomTableProps
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event: unknown, newPage: number) => {
+  const handleChangePage = (_event: unknown, newPage: number) => {
     setPage(newPage);
   };
 
@@ -38,8 +42,12 @@ export function CustomTable<Type extends { id: number }>(props: CustomTableProps
     setPage(0);
   };
 
-  const isSelected = (id: number) => {
-    return selected.indexOf(id) !== -1;
+  const isSelected = (row: Type) => {
+    return (
+      selected.filter((item) => {
+        return item.id === row.id;
+      }).length > 0
+    );
   };
 
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
@@ -71,7 +79,7 @@ export function CustomTable<Type extends { id: number }>(props: CustomTableProps
           {head}
           <TableBody>
             {rows.map((row, index) => {
-              const isItemSelected = isSelected(row.id);
+              const isItemSelected = isSelected(row);
               const labelId = `enhanced-table-checkbox-${index}`;
 
               type TableDataKeys = Exclude<keyof Type, symbol>;
@@ -92,7 +100,7 @@ export function CustomTable<Type extends { id: number }>(props: CustomTableProps
                 <TableRow
                   hover
                   onClick={(event) => {
-                    return handleClick(event, row.id);
+                    return handleClick(event, row);
                   }}
                   role='checkbox'
                   aria-checked={isItemSelected}
