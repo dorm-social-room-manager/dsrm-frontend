@@ -1,7 +1,7 @@
 import { ChangeEvent, MouseEvent, useState } from 'react';
 import { CustomTableHeadProps, CustomTableStatefulVariables, CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import { CustomTable } from '../../components/CustomTable/CustomTable';
-import { Room } from '../../common/types/ComponentTypes.types';
+import { Room } from '../../common/types/componentTypes.types';
 import { RoomListHead } from './RoomListHead';
 import { RoomListToolbar } from './RoomListToolbar';
 import { SortingDirection } from '../../common/utils/SortingDirection';

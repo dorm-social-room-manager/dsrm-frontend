@@ -5,7 +5,7 @@ import { HeadCell } from '../../components/CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
-import { User } from '../../common/types/ComponentTypes.types';
+import { User } from '../../common/types/componentTypes.types';
 
 const headCells: readonly HeadCell<User>[] = [
   {

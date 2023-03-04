@@ -2,7 +2,7 @@ import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
 import { CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { User } from '../../common/types/ComponentTypes.types';
+import { User } from '../../common/types/componentTypes.types';
 import { useTranslation } from 'react-i18next';
 
 export function UserListToolbar(props: CustomTableToolbarProps<User>) {

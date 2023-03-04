@@ -2,7 +2,7 @@ import { ChangeEvent, MouseEvent, useState } from 'react';
 import { CustomTableHeadProps, CustomTableStatefulVariables, CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import { CustomTable } from '../../components/CustomTable/CustomTable';
 import { SortingDirection } from '../../common/utils/SortingDirection';
-import { User } from '../../common/types/ComponentTypes.types';
+import { User } from '../../common/types/componentTypes.types';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 

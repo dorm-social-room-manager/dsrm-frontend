@@ -1,6 +1,6 @@
 import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { CreateUserType } from '../../common/types/OperationTypes.types';
+import { CreateUserType } from '../../common/types/operationTypes.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './RegisterForm.module.scss';

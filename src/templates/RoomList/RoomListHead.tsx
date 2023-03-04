@@ -3,7 +3,7 @@ import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@
 import { CustomTableHeadProps } from '../../components/CustomTable/CustomTable.types';
 import { HeadCell } from '../../components/CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
-import { Room } from '../../common/types/ComponentTypes.types';
+import { Room } from '../../common/types/componentTypes.types';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 

@@ -1,4 +1,4 @@
-import { CreateUserType } from '../../types/OperationTypes.types';
+import { CreateUserType } from '../../types/operationTypes.types';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
