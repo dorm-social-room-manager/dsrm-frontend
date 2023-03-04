@@ -6,10 +6,10 @@ import { User } from '../../common/types/componentTypes.types';
 import { useTranslation } from 'react-i18next';
 
 export function UserListToolbar(props: CustomTableToolbarProps<User>) {
-  const { allSelected, allRows } = props;
-  const numSelected = allSelected.length;
+  const { selected, allRows } = props;
+  const numSelected = selected.length;
   const selectedRows = allRows.filter((row) => {
-    return allSelected.includes(row);
+    return selected.includes(row);
   });
   const { t } = useTranslation();
   return (
@@ -29,7 +29,7 @@ export function UserListToolbar(props: CustomTableToolbarProps<User>) {
           variant='subtitle1'
           component='div'
         >
-          {numSelected} allSelected
+          {numSelected} selected
         </Typography>
       ) : (
         <></>

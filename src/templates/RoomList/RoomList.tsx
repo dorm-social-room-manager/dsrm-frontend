@@ -71,7 +71,7 @@ export function RoomList() {
     orderBy: orderBy,
     rowCount: rows.length,
   };
-  const toolbarProps: CustomTableToolbarProps<Room> = { allRows: rows, allSelected: selected };
+  const toolbarProps: CustomTableToolbarProps<Room> = { allRows: rows, selected: selected };
 
   return (
     <CustomTable<Room>

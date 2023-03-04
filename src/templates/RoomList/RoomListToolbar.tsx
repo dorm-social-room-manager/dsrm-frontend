@@ -6,10 +6,10 @@ import { Room } from '../../common/types/componentTypes.types';
 import { useTranslation } from 'react-i18next';
 
 export function RoomListToolbar(props: CustomTableToolbarProps<Room>) {
-  const { allSelected, allRows } = props;
-  const numSelected = allSelected.length;
+  const { selected, allRows } = props;
+  const numSelected = selected.length;
   const selectedRows = allRows.filter((row) => {
-    return allSelected.includes(row);
+    return selected.includes(row);
   });
   const { t } = useTranslation();
 

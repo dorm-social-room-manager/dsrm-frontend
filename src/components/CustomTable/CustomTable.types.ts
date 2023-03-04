@@ -9,7 +9,7 @@ export interface HeadCell<T extends Record<PropertyKey, unknown>> {
 }
 
 export interface CustomTableToolbarProps<T extends Record<PropertyKey, unknown>> {
-  allSelected: readonly T[];
+  selected: readonly T[];
   allRows: readonly T[];
 }
 export interface CustomTableHeadProps<T extends Record<PropertyKey, unknown>> {

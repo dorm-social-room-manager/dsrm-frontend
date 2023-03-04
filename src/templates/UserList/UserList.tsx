@@ -71,7 +71,7 @@ export function UserList() {
     orderBy: orderBy,
     rowCount: rows.length,
   };
-  const toolbarProps: CustomTableToolbarProps<User> = { allRows: rows, allSelected: selected };
+  const toolbarProps: CustomTableToolbarProps<User> = { allRows: rows, selected: selected };
 
   return (
     <CustomTable<User>
