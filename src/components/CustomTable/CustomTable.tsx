@@ -5,7 +5,7 @@ import Checkbox from '@mui/material/Checkbox';
 import { CustomTableProps } from './CustomTable.types';
 import { FetchError } from '../../errors/FetchError';
 
-export function CustomTable<T extends { id?: string }>(props: CustomTableProps<T>) {
+export function CustomTable<T extends Record<PropertyKey, unknown>>(props: CustomTableProps<T>) {
   const { head, toolbar, fetchUrl, customTableStatefulVariables } = props;
   const { selected, page, rows, rowsPerPage, setSelected, setPage, setRows, setRowsPerPage } = customTableStatefulVariables;
 
@@ -99,13 +99,13 @@ export function CustomTable<T extends { id?: string }>(props: CustomTableProps<T
               return (
                 <TableRow
                   hover
-                  onClick={(event) => {
+                  onClick={(event: MouseEvent<unknown>) => {
                     return handleClick(event, row);
                   }}
                   role='checkbox'
                   aria-checked={isItemSelected}
                   tabIndex={-1}
-                  key={row.id}
+                  key={row.id as number}
                   selected={isItemSelected}
                 >
                   <TableCell padding='checkbox'>

@@ -2,17 +2,17 @@ import { ChangeEvent, MouseEvent } from 'react';
 import { ReactElement } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 
-export interface HeadCell<T extends { id?: string }> {
+export interface HeadCell<T extends Record<PropertyKey, unknown>> {
   disablePadding: boolean;
   instance: keyof T;
   label: string;
 }
 
-export interface CustomTableToolbarProps<T extends { id?: string }> {
+export interface CustomTableToolbarProps<T extends Record<PropertyKey, unknown>> {
   allSelected: readonly T[];
   allRows: readonly T[];
 }
-export interface CustomTableHeadProps<T extends { id?: string }> {
+export interface CustomTableHeadProps<T extends Record<PropertyKey, unknown>> {
   numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof T) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
