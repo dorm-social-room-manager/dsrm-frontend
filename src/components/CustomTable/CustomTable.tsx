@@ -1,6 +1,5 @@
-import * as React from 'react';
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
-import { ChangeEvent, MouseEvent, useEffect } from 'react';
+import { ChangeEvent, MouseEvent, ReactNode, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { CustomTableProps } from './CustomTable.types';
 import { FetchError } from '../../errors/FetchError';
@@ -91,7 +90,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
                     key={key}
                     align='left'
                   >
-                    {row[key] as React.ReactNode}
+                    {row[key] as ReactNode}
                   </TableCell>
                 );
               });
