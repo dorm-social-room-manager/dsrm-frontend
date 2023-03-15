@@ -1,5 +1,5 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
-import { ChangeEvent, MouseEvent, ReactNode, useEffect } from 'react';
+import { ChangeEvent, MouseEvent, useEffect } from 'react';
 import Checkbox from '@mui/material/Checkbox';
 import { CustomTableProps } from './CustomTable.types';
 import { FetchError } from '../../errors/FetchError';
@@ -66,6 +66,45 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
       });
   });
 
+  const renderRow = (row: T, rowIdx: number) => {
+    const isItemSelected = isSelected(row);
+    const labelId = `enhanced-table-checkbox-${rowIdx}`;
+
+    return (
+      <TableRow
+        hover
+        onClick={(event: MouseEvent<unknown>) => {
+          return handleClick(event, row);
+        }}
+        role='checkbox'
+        aria-checked={isItemSelected}
+        tabIndex={-1}
+        key={row.id as number}
+        selected={isItemSelected}
+      >
+        <TableCell padding='checkbox'>
+          <Checkbox
+            color='primary'
+            checked={isItemSelected}
+            inputProps={{
+              'aria-labelledby': labelId,
+            }}
+          />
+        </TableCell>
+        {Object.entries(row).map(([key, value]) => {
+          return (
+            <TableCell
+              key={key}
+              align='left'
+            >
+              {String(value)}
+            </TableCell>
+          );
+        })}
+      </TableRow>
+    );
+  };
+
   return (
     <Box
       width='100%'
@@ -78,47 +117,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
           {head}
           <TableBody>
             {rows.map((row, index) => {
-              const isItemSelected = isSelected(row);
-              const labelId = `enhanced-table-checkbox-${index}`;
-
-              type TableDataKeys = Exclude<keyof T, symbol>;
-              const columnNames: TableDataKeys[] = Object.keys(row) as TableDataKeys[];
-
-              const tableCells = columnNames.slice(1).map((key) => {
-                return (
-                  <TableCell
-                    key={key}
-                    align='left'
-                  >
-                    {row[key] as ReactNode}
-                  </TableCell>
-                );
-              });
-
-              return (
-                <TableRow
-                  hover
-                  onClick={(event: MouseEvent<unknown>) => {
-                    return handleClick(event, row);
-                  }}
-                  role='checkbox'
-                  aria-checked={isItemSelected}
-                  tabIndex={-1}
-                  key={row.id as number}
-                  selected={isItemSelected}
-                >
-                  <TableCell padding='checkbox'>
-                    <Checkbox
-                      color='primary'
-                      checked={isItemSelected}
-                      inputProps={{
-                        'aria-labelledby': labelId,
-                      }}
-                    />
-                  </TableCell>
-                  {tableCells}
-                </TableRow>
-              );
+              return renderRow(row, index);
             })}
             {emptyRows > 0 && (
               <TableRow
