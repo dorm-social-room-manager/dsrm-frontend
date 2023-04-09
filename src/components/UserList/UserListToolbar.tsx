@@ -1,7 +1,7 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
+import { UserListToolbarProps, UserTypesId } from './UserList.types';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { UserListToolbarProps } from './UserList.types';
 import { useTranslation } from 'react-i18next';
 
 export function UserListToolbar(props: UserListToolbarProps) {
@@ -34,7 +34,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
         <>
           {selected.every((row) => {
             /*back doesn't have a pending type yet, this will need to be changed later*/
-            return row.rolesId === '2';
+            return row.rolesId === UserTypesId.PENDING;
           }) ? (
             <Tooltip title={t('userList.accept')}>
               <IconButton>
@@ -45,7 +45,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
             <></>
           )}
           {selected.every((row) => {
-            return row.rolesId !== '1';
+            return row.rolesId !== UserTypesId.ADMIN;
           }) ? (
             <Tooltip title={t('userList.del')}>
               <IconButton>

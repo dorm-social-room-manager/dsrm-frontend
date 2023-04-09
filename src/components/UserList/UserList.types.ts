@@ -4,14 +4,18 @@ export enum SortingDirection {
   ASC = 'asc',
   DESC = 'desc',
 }
+export enum UserTypesId {
+  ADMIN = '1',
+  PENDING = '2',
+}
 export interface Data {
-  id: number;
-  name: string;
-  surname: string;
-  email: string;
-  roomNumber: number;
-  roles: string;
-  rolesId: string;
+  id?: number | undefined;
+  name: string | undefined;
+  surname?: string | undefined;
+  email?: string | undefined;
+  roomNumber?: number | undefined;
+  roles?: string | undefined;
+  rolesId?: string | undefined;
 }
 export interface UserListToolbarProps {
   selected: readonly Data[];
@@ -22,7 +26,7 @@ export interface UserListHeadProps {
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: SortingDirection;
   orderBy: string;
-  rowCount: number;
+  rows: Data[];
 }
 
 export interface HeadCell {

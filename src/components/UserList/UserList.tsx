@@ -2,6 +2,7 @@ import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, Tabl
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { Data, SortingDirection } from './UserList.types';
 import Checkbox from '@mui/material/Checkbox';
+import { useIsFetching } from '@tanstack/react-query';
 import { useReadUsersMutation } from '../../common/services/UserService/UserService';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
@@ -9,7 +10,7 @@ import { UserListToolbar } from './UserListToolbar';
 export function UserList() {
   const [order, setOrder] = useState<SortingDirection>(SortingDirection.ASC);
   const [orderBy, setOrderBy] = useState<keyof Data>('id');
-  const [selected, setSelected] = useState<readonly Data[]>([]);
+  const [selected, setSelected] = useState<Data[]>([]);
   const [page, setPage] = useState(0);
   const [rows, setRows] = useState<Data[]>([]);
   const [totalUsers, setTotalUsers] = useState(0);
@@ -30,7 +31,7 @@ export function UserList() {
 
   const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected: readonly Data[] = rows.filter((row) => {
+      const newSelected: Data[] = rows.filter((row) => {
         return !isSelected(row);
       });
       setSelected(selected.concat(newSelected));
@@ -51,7 +52,7 @@ export function UserList() {
         return item.id === row.id;
       }) as Data
     );
-    let newSelected: readonly Data[] = [];
+    let newSelected: Data[] = [];
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, row);
@@ -90,7 +91,10 @@ export function UserList() {
   useEffect(() => {
     mutate({ query: { page: page, size: rowsPerPage, sort: [orderBy, order] } });
   }, [orderBy, order, page, rowsPerPage, mutate]);
-
+  const isFetching = useIsFetching();
+  if (isFetching || rows.length === 0) {
+    return <div>Loading...</div>;
+  }
   return (
     <Box
       width='100%'
@@ -114,7 +118,7 @@ export function UserList() {
             orderBy={orderBy}
             onSelectAllClick={handleSelectAllClick}
             onRequestSort={handleRequestSort}
-            rowCount={rows.length}
+            rows={rows}
           />
           <TableBody>
             {rows.map((row, index) => {
