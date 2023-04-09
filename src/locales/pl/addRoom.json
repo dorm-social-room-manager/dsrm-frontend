@@ -6,5 +6,13 @@
     "maxCapacity": "Maksymalna liczba osób",
     "openingTime": "Godzina otwarcia",
     "closingTime": "Godzina zamknięcia",
-    "create": "Utwórz"
+    "create": "Utwórz",
+    "roomTypeRequired": "Typ pokoju jest wymagany",
+    "keyOwnerRequired": "Właściciel klucza jest wymagany",
+    "roomNumberRequired": "Numer pokoju jest wymagany",
+    "floorRequired": "Numer piętra jest wymagany",
+    "maxCapacityRequired": "Maksymalna pojemność jest wymagana",
+    "openingTimeRequired": "Czas otwarcia jest wymagany",
+    "closingTimeRequired": "Czas zamknięcia jest wymagany",
+    "closingTimeBeforeOpeningTime": "Czas zamknięcia nie może być wcześniejszy niż czas otwarcia"
 }
