@@ -60,6 +60,7 @@ export function AddRoomPage() {
         justifyItems='center'
         justifySelf='center'
         mobile={12}
+        margin={1}
       >
         <AddRoomForm roomTypes={ROOM_TYPES} />
       </Grid>
