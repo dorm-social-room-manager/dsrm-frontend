@@ -6,5 +6,13 @@
     "maxCapacity": "Max Capacity",
     "openingTime": "Opening Time",
     "closingTime": "Closing Time",
-    "create": "Create"
+    "create": "Create",
+    "roomTypeRequired": "Room Type is required",
+    "keyOwnerRequired": "Key Owner is required",
+    "roomNumberRequired": "Room Number is required",
+    "floorRequired": "Floor is required",
+    "maxCapacityRequired": "Max Capacity is required",
+    "openingTimeRequired": "Opening Time is required",
+    "closingTimeRequired": "Closing Time is required",
+    "closingTimeBeforeOpeningTime": "Closing Time must be after Opening Time"
 }

@@ -1,36 +1,26 @@
+import { AddRoomFormErrors, AddRoomFormValues, RoomTypeProps } from './AddRoomForm.types';
 import { Box, Button, Grid, MenuItem, TextField } from '@mui/material';
-import { ChangeEvent, useState } from 'react';
 import { Field, Formik } from 'formik';
-import { RegisterFormErrors, RoomTypeProps } from './AddRoomForm.types';
+import { ChangeEvent } from 'react';
 import styles from './AddRoomForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export function AddRoomForm({ roomTypes }: RoomTypeProps) {
-  const [selectedRoomType, setSelectedRoomType] = useState('');
-  const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: { email: string; password: string; lname: string; fname: string; phone: string }) => {
-    const errors: RegisterFormErrors = {};
-    if (values.email.length < minLength) {
-      errors.email = t('registerForm.emailEmpty');
-    }
-    if (values.password.length < minLength) {
-      errors.password = t('registerForm.passwordEmpty');
-    }
-    if (values.lname.length < minLength) {
-      errors.lastName = t('registerForm.lastNameEmpty');
-    }
-    if (values.fname.length < minLength) {
-      errors.firstNme = t('registerForm.firstNameEmpty');
-    }
-    if (values.phone.length < minLength) {
-      errors.phone = t('registerForm.phoneEmpty');
+  const validate = (values: AddRoomFormValues) => {
+    const errors: AddRoomFormErrors = {};
+    const requiredFields = Object.keys(values) as (keyof AddRoomFormValues)[];
+    requiredFields
+      .filter((field) => {
+        return !values[field];
+      })
+      .forEach((field) => {
+        errors[field] = t(`addRoom.${field}Required`) || undefined;
+      });
+    if (values.closingTime < values.openingTime) {
+      errors.closingTime = t(`addRoom.closingTimeBeforeOpeningTime`);
     }
     return errors;
-  };
-
-  const handleRoomTypeChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setSelectedRoomType(event.target.value);
   };
 
   return (
@@ -40,12 +30,25 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', fname: '', lname: '', password: '', phone: '' }}
+      initialValues={{
+        closingTime: '',
+        floor: '',
+        keyOwner: '',
+        maxCapacity: '',
+        openingTime: '',
+        roomNumber: '',
+        roomType: '',
+      }}
       onSubmit={function () {
         throw new Error('Function not implemented.');
       }}
     >
-      {({ isValid, handleSubmit }) => {
+      {({ isValid, handleSubmit, setFieldValue, values }) => {
+        const handleInputChange = (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+          const fieldName = event.target.name;
+          const fieldValue = event.target.value;
+          setFieldValue(fieldName, fieldValue);
+        };
         return (
           <form onSubmit={handleSubmit}>
             <Box
@@ -69,10 +72,35 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                 >
                   <TextField
                     label={t('addRoom.roomType')}
+                    value={values.roomType}
                     className={styles.input}
-                    value={selectedRoomType}
-                    onChange={handleRoomTypeChange}
-                    name='fname'
+                    onChange={handleInputChange}
+                    name='roomType'
+                    select
+                    required
+                  >
+                    {roomTypes.map((selectableRoomType) => {
+                      return (
+                        <MenuItem
+                          key={selectableRoomType.id}
+                          value={selectableRoomType.name}
+                        >
+                          {selectableRoomType.name}
+                        </MenuItem>
+                      );
+                    })}
+                  </TextField>
+                </Grid>
+                <Grid
+                  item
+                  mobile={12}
+                >
+                  <TextField
+                    label={t('addRoom.keyOwner')}
+                    className={styles.input}
+                    value={values.keyOwner}
+                    onChange={handleInputChange}
+                    name='keyOwner'
                     select
                     required
                   >
@@ -95,23 +123,10 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                   <Field
                     as={TextField}
                     className={styles.input}
-                    label={t('addRoom.keyOwner')}
-                    type='text'
-                    name='lname'
-                    required
-                  />
-                </Grid>
-                <Grid
-                  item
-                  mobile={12}
-                >
-                  <Field
-                    as={TextField}
-                    className={styles.input}
                     label={t('addRoom.roomNumber')}
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
-                    name='phone'
+                    name='roomNumber'
                     required
                   />
                 </Grid>
@@ -123,8 +138,9 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                     as={TextField}
                     className={styles.input}
                     label={t('addRoom.floor')}
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
-                    name='email'
+                    name='floor'
                     required
                   />
                 </Grid>
@@ -136,8 +152,9 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                     as={TextField}
                     className={styles.input}
                     label={t('addRoom.maxCapacity')}
+                    inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
-                    name='email'
+                    name='maxCapacity'
                     required
                   />
                 </Grid>
@@ -147,10 +164,11 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                 >
                   <Field
                     as={TextField}
+                    InputLabelProps={{ shrink: true }}
                     className={styles.input}
                     label={t('addRoom.openingTime')}
-                    type='email'
-                    name='email'
+                    type='date'
+                    name='openingTime'
                     required
                   />
                 </Grid>
@@ -160,10 +178,11 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                 >
                   <Field
                     as={TextField}
+                    InputLabelProps={{ shrink: true }}
                     className={styles.input}
                     label={t('addRoom.closingTime')}
-                    type='email'
-                    name='email'
+                    type='date'
+                    name='closingTime'
                     required
                   />
                 </Grid>
