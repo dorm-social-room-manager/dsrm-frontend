@@ -1,11 +1,11 @@
-import { AddRoomFormErrors, AddRoomFormValues, RoomTypeProps } from './AddRoomForm.types';
+import { AddRoomFormErrors, AddRoomFormValues, MockTypeProps } from './AddRoomForm.types';
 import { Box, Button, Grid, MenuItem, TextField } from '@mui/material';
 import { Field, Formik } from 'formik';
 import { ChangeEvent } from 'react';
 import styles from './AddRoomForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
-export function AddRoomForm({ roomTypes }: RoomTypeProps) {
+export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
   const { t } = useTranslation();
   const validate = (values: AddRoomFormValues) => {
     const errors: AddRoomFormErrors = {};
@@ -104,13 +104,13 @@ export function AddRoomForm({ roomTypes }: RoomTypeProps) {
                     select
                     required
                   >
-                    {roomTypes.map((selectableRoomType) => {
+                    {users.map((selectableUser) => {
                       return (
                         <MenuItem
-                          key={selectableRoomType.id}
-                          value={selectableRoomType.name}
+                          key={selectableUser.id}
+                          value={selectableUser.name}
                         >
-                          {selectableRoomType.name}
+                          {selectableUser.name}
                         </MenuItem>
                       );
                     })}
