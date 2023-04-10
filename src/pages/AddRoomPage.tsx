@@ -3,10 +3,10 @@ import { DashboardHeader } from '../components/DashboardHeader/DashboardHeader';
 import { DashboardHeaderProps } from '../components/DashboardHeader/DashboardHeader.types';
 import { Footer } from '../templates/Footer/Footer';
 import { Grid } from '@mui/material';
-import { RoomType } from '../components/AddRoomForm/AddRoomForm.types';
+import { MockType } from '../components/AddRoomForm/AddRoomForm.types';
 import { useTranslation } from 'react-i18next';
 
-const ROOM_TYPES: RoomType[] = [
+const ROOM_TYPES: MockType[] = [
   {
     id: 1,
     name: 'STUDY',
@@ -28,7 +28,28 @@ const ROOM_TYPES: RoomType[] = [
     name: 'LAUNDRY',
   },
 ];
-
+const USERS: MockType[] = [
+  {
+    id: 1,
+    name: 'Jan Kowalski',
+  },
+  {
+    id: 2,
+    name: 'Jan Kowalski2',
+  },
+  {
+    id: 3,
+    name: 'Jan Kowalski3',
+  },
+  {
+    id: 4,
+    name: 'Jan Kowalski4',
+  },
+  {
+    id: 5,
+    name: 'Jan Kowalski5',
+  },
+];
 export function AddRoomPage() {
   const { t } = useTranslation();
   const dashboardHeaderProps: DashboardHeaderProps = {
@@ -62,7 +83,10 @@ export function AddRoomPage() {
         mobile={12}
         margin={1}
       >
-        <AddRoomForm roomTypes={ROOM_TYPES} />
+        <AddRoomForm
+          roomTypes={ROOM_TYPES}
+          users={USERS}
+        />
       </Grid>
       <Grid
         item

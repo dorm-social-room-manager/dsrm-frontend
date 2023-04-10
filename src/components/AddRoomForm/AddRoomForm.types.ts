@@ -10,11 +10,12 @@ export type AddRoomFormValues = {
 
 export type AddRoomFormErrors = Partial<Record<keyof AddRoomFormValues, string>>;
 
-export interface RoomType {
+export interface MockType {
   id: number;
   name: string;
 }
 
-export interface RoomTypeProps {
-  roomTypes: RoomType[];
+export interface MockTypeProps {
+  roomTypes: MockType[];
+  users: MockType[];
 }
