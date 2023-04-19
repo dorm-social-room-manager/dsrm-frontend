@@ -20,14 +20,8 @@ export interface UserListHeadProps {
   rows: UserDTO[];
 }
 
-export interface HeadCell {
-  disablePadding: boolean;
-  id: keyof UserDTO;
-  label: string;
-}
-
-export type UserDTOProps<T extends keyof UserDTO> = {
+export interface HeadCell<T extends keyof UserDTO> {
   disablePadding: boolean;
   id: T;
   label: string;
-};
+}
