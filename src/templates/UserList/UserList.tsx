@@ -6,7 +6,7 @@ import { UserListToolbar } from './UserListToolbar';
 import { useState } from 'react';
 
 export function UserList() {
-  const [sortingConfig, setSortingConfig] = useState<SortingRule[]>([]);
+  const [sortingConfig, setSortingConfig] = useState<SortingRule[]>(buildCustomTableSortingConfig());
   const [selectedRowsIds, setSelectedRowsIds] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
   const [initialRows, setRows] = useState<User[]>([]);
@@ -16,18 +16,20 @@ export function UserList() {
 
   function buildCustomTableHeaderCells(): HeadCell<keyof User>[] {
     const headerCells: HeadCell<keyof User>[] = [];
-    const row = {} as User;
-    if (row) {
-      Object.keys(row).forEach((key) => {
-        headerCells.push({ id: key as keyof User, label: key });
-      });
-    }
+    // eslint-disable-next-line sort-keys
+    const row = { id: '', email: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' } as User;
+
+    Object.keys(row).forEach((key) => {
+      headerCells.push({ id: key as keyof User, label: key });
+    });
+
     return headerCells;
   }
 
   function buildCustomTableSortingConfig(): SortingRule[] {
     const rowConfigs: SortingRule[] = [];
-    const row = {} as User;
+    // eslint-disable-next-line sort-keys
+    const row = { id: '', email: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' } as User;
 
     Object.keys(row).forEach((key) => {
       rowConfigs.push({ columnName: key, sortDirection: SortingDirection.ASC });
@@ -38,7 +40,6 @@ export function UserList() {
   const toolbarProps: CustomTableToolbarProps<User> = { allRows: initialRows, selected: selectedRowsIds };
 
   const headerCells = buildCustomTableHeaderCells();
-  setSortingConfig(buildCustomTableSortingConfig());
   return (
     <CustomTable<User>
       fetchUrl={url}
