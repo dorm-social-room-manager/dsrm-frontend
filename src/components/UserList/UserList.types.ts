@@ -1,5 +1,5 @@
 import { ChangeEvent, MouseEvent } from 'react';
-
+import { UserDTO } from '../../common/types/OperationTypes.types';
 export enum SortingDirection {
   ASC = 'asc',
   DESC = 'desc',
@@ -8,29 +8,26 @@ export enum UserTypesId {
   ADMIN = '1',
   PENDING = '2',
 }
-export interface Data {
-  id?: number | undefined;
-  name: string | undefined;
-  surname?: string | undefined;
-  email?: string | undefined;
-  roomNumber?: number | undefined;
-  roles?: string | undefined;
-  rolesId?: string | undefined;
-}
 export interface UserListToolbarProps {
-  selected: readonly Data[];
+  selected: readonly UserDTO[];
 }
 export interface UserListHeadProps {
   numSelectedOnPage: number;
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof UserDTO) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: SortingDirection;
   orderBy: string;
-  rows: Data[];
+  rows: UserDTO[];
 }
 
 export interface HeadCell {
   disablePadding: boolean;
-  id: keyof Data;
+  id: keyof UserDTO;
   label: string;
 }
+
+export type UserDTOProps<T extends keyof UserDTO> = {
+  disablePadding: boolean;
+  id: T;
+  label: string;
+};

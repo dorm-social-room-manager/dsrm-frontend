@@ -34,7 +34,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
         <>
           {selected.every((row) => {
             /*back doesn't have a pending type yet, this will need to be changed later*/
-            return row.rolesId === UserTypesId.PENDING;
+            return row.roles?.at(0)?.id === UserTypesId.PENDING;
           }) ? (
             <Tooltip title={t('userList.accept')}>
               <IconButton>
@@ -45,7 +45,7 @@ export function UserListToolbar(props: UserListToolbarProps) {
             <></>
           )}
           {selected.every((row) => {
-            return row.rolesId !== UserTypesId.ADMIN;
+            return row.roles?.at(0)?.id !== UserTypesId.ADMIN;
           }) ? (
             <Tooltip title={t('userList.del')}>
               <IconButton>

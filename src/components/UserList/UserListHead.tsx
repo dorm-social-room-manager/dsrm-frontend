@@ -1,44 +1,40 @@
 import 'i18next';
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
-import { Data, HeadCell, SortingDirection, UserListHeadProps } from './UserList.types';
+import { HeadCell, SortingDirection, UserListHeadProps } from './UserList.types';
 import { MouseEvent } from 'react';
 import { t } from 'i18next';
+import { UserDTO } from '../../common/types/OperationTypes.types';
 
 export function UserListHead(props: UserListHeadProps) {
   const { onSelectAllClick, order, orderBy, numSelectedOnPage, rows, onRequestSort } = props;
-  const keys = Object.keys(rows[0]);
-  const filteredKeys = keys.filter((key, index) => {
-    return [0, 2, 3, 4, 5, 6].includes(index);
-  });
-  console.log(filteredKeys);
-  const headCells: HeadCell[] = [
+  const headCells: HeadCell<keyof UserDTO>[] = [
     {
       disablePadding: true,
-      id: filteredKeys[1] as keyof Data,
-      label: t('userList.name'),
+      id: 'name',
+      label: t(`userList.name`),
     },
     {
       disablePadding: true,
-      id: filteredKeys[5] as keyof Data,
+      id: 'surname',
       label: t('userList.surname'),
     },
     {
       disablePadding: true,
-      id: filteredKeys[0] as keyof Data,
+      id: 'email',
       label: t('userList.email'),
     },
     {
       disablePadding: false,
-      id: filteredKeys[4] as keyof Data,
+      id: 'roomNumber',
       label: t('userList.roomNumber'),
     },
     {
       disablePadding: true,
-      id: filteredKeys[2] as keyof Data,
+      id: 'roles',
       label: t('userList.userType'),
     },
   ];
-  const createSortHandler = (property: keyof Data) => {
+  const createSortHandler = (property: keyof UserDTO) => {
     return (event: MouseEvent<unknown>) => {
       onRequestSort(event, property);
     };

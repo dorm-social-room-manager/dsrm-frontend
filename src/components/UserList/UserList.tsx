@@ -1,29 +1,29 @@
-import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
+import { Box, Checkbox, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
-import { Data, SortingDirection } from './UserList.types';
-import Checkbox from '@mui/material/Checkbox';
+import { SortingDirection } from './UserList.types';
 import { useIsFetching } from '@tanstack/react-query';
+import { UserDTO } from '../../common/types/OperationTypes.types';
 import { useReadUsersMutation } from '../../common/services/UserService/UserService';
 import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
 
 export function UserList() {
   const [order, setOrder] = useState<SortingDirection>(SortingDirection.ASC);
-  const [orderBy, setOrderBy] = useState<keyof Data>('id');
-  const [selected, setSelected] = useState<Data[]>([]);
+  const [orderBy, setOrderBy] = useState<keyof UserDTO>('id');
+  const [selected, setSelected] = useState<UserDTO[]>([]);
   const [page, setPage] = useState(0);
-  const [rows, setRows] = useState<Data[]>([]);
+  const [rows, setRows] = useState<UserDTO[]>([]);
   const [totalUsers, setTotalUsers] = useState(0);
   const defaultRowsPerPage = 10;
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleInputData = (data: Data[], totalElements: number) => {
+  const handleInputData = (data: UserDTO[], totalElements: number) => {
     setRows(data);
     setTotalUsers(totalElements);
   };
-  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof Data) => {
+  const handleRequestSort = (event: MouseEvent<unknown>, property: keyof UserDTO) => {
     const isAsc = orderBy === property && order === SortingDirection.ASC;
     setOrder(isAsc ? SortingDirection.DESC : SortingDirection.ASC);
     setOrderBy(property);
@@ -31,7 +31,7 @@ export function UserList() {
 
   const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
-      const newSelected: Data[] = rows.filter((row) => {
+      const newSelected: UserDTO[] = rows.filter((row) => {
         return !isSelected(row);
       });
       setSelected(selected.concat(newSelected));
@@ -46,13 +46,13 @@ export function UserList() {
     );
   };
 
-  const handleClick = (event: MouseEvent<unknown>, row: Data) => {
+  const handleClick = (event: MouseEvent<unknown>, row: UserDTO) => {
     const selectedIndex = selected.indexOf(
       selected.find((item) => {
         return item.id === row.id;
-      }) as Data
+      }) as UserDTO
     );
-    let newSelected: Data[] = [];
+    let newSelected: UserDTO[] = [];
 
     if (selectedIndex === -1) {
       newSelected = newSelected.concat(selected, row);
@@ -76,7 +76,7 @@ export function UserList() {
     setPage(0);
   };
 
-  const isSelected = (row: Data) => {
+  const isSelected = (row: UserDTO) => {
     return (
       selected.filter((item) => {
         return item.id === row.id;
@@ -134,7 +134,7 @@ export function UserList() {
                   role='checkbox'
                   aria-checked={isItemSelected}
                   tabIndex={-1}
-                  key={row.id}
+                  key={Number(row.id)}
                   selected={isItemSelected}
                 >
                   <TableCell padding='checkbox'>
@@ -161,7 +161,7 @@ export function UserList() {
                     align='left'
                     width='200px'
                   >
-                    {row.roles}
+                    {row.roles?.at(0)?.name}
                   </TableCell>
                 </TableRow>
               );

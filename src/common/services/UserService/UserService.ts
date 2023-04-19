@@ -1,6 +1,4 @@
-import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType } from '../../types/OperationTypes.types';
-import { components } from '../../../generated/types';
-import { Data } from '../../../components/UserList/UserList.types';
+import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType, UserDTO } from '../../types/OperationTypes.types';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
@@ -28,9 +26,9 @@ const createUser = async (values: CreateUserType): Promise<Response> => {
 
 const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseType> => {
   return await fetch(
-    `${import.meta.env.VITE_API_URL}/admin/users?size=${params?.query?.size as number}&page=${params?.query?.page as number}&sort=${
-      params?.query?.sort === undefined ? '' : params?.query?.sort[0]
-    },${params?.query?.sort === undefined ? '' : params?.query?.sort[1]}`
+    `${import.meta.env.VITE_API_URL}/admin/users?size=${params?.query?.size === undefined ? '' : params?.query?.size}&page=${
+      params?.query?.page === undefined ? '' : params?.query?.page
+    }&sort=${params?.query?.sort === undefined ? '' : params?.query?.sort[0]},${params?.query?.sort === undefined ? '' : params?.query?.sort[1]}`
   )
     .then((response) => {
       if (response !== null && response.ok) {
@@ -48,22 +46,11 @@ export const useCreateUserMutation = () => {
   return useMutation(createUser);
 };
 
-export const useReadUsersMutation = (handleInputData: (data: Data[], totalElements: number) => void) => {
+export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements: number) => void) => {
   return useMutation(readUsers, {
     onSuccess: (data) => {
       if (data.content !== undefined) {
-        const rows2: Data[] = [];
-        data.content.forEach((user: components['schemas']['UserDTO']) => {
-          rows2.push({
-            email: user.email,
-            id: parseInt(user.id as string, 10),
-            name: user.name,
-            roles: user.roles === undefined || user.roles[0] === undefined ? '' : user.roles[0].name,
-            rolesId: user.roles === undefined || user.roles[0] === undefined ? '0' : user.roles[0].id,
-            roomNumber: user.roomNumber,
-            surname: user.surname,
-          });
-        });
+        const rows2: UserDTO[] = data.content;
         handleInputData(rows2, data.totalElements as number);
       }
     },
