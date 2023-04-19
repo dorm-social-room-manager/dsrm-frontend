@@ -16,46 +16,15 @@ export function RoomList() {
   const url = '../src/templates/RoomList/testRooms.json';
 
   function buildCustomTableHeaderCells(): HeadCell<keyof Room>[] {
-    const headerCells: HeadCell<keyof Room>[] = [];
-    const row = {
-      id: '1234',
-      roomNumber: 101,
-      floor: 1,
-      roomType: {
-        id: '5678',
-        name: 'Standard',
-      },
-      maxCapacity: 4,
-      keyOwner: {
-        id: 'abcd',
-        email: 'john.doe@example.com',
-        password: 'password123',
-        name: 'John',
-        surname: 'Doe',
-        roomNumber: 101,
-        roles: [],
-      },
-      openingTime: {
-        hour: 9,
-        minute: 0,
-        second: 0,
-        nano: 0,
-      },
-      closingTime: {
-        hour: 21,
-        minute: 0,
-        second: 0,
-        nano: 0,
-      },
-      unavailableStart: '2023-05-01',
-      unavailableEnd: '2023-05-05',
-    } as Room;
-
+    const roomsListColumns: Array<HeadCell< keyof Room> = [
+      { id: 'roomNumber', label: 'Room Number' },
+      { id: 'openingTime', label: 'Opening Time' },
+    ];
     Object.keys(row).forEach((key) => {
       headerCells.push({ id: key as keyof Room, label: key });
     });
 
-    return headerCells;
+    return ;
   }
 
   function buildCustomTableSortingConfig(): SortingRule[] {
