@@ -1,84 +1,60 @@
-import { ChangeEvent, MouseEvent, useState } from 'react';
-import { CustomTableHeadProps, CustomTableStatefulVariables, CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
+import { CustomTableToolbarProps, HeadCell, SortingRule } from '../../components/CustomTable/CustomTable.types';
 import { CustomTable } from '../../components/CustomTable/CustomTable';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { User } from '../../common/types/componentTypes.types';
-import { UserListHead } from './UserListHead';
 import { UserListToolbar } from './UserListToolbar';
+import { useState } from 'react';
 
 export function UserList() {
-  const [order, setOrder] = useState<SortingDirection>(SortingDirection.ASC);
-  const [orderBy, setOrderBy] = useState<keyof User>('id');
-  const [selected, setSelected] = useState<readonly User[]>([]);
+  const [sortingConfig, setSortingConfig] = useState<SortingRule[]>([]);
+  const [selectedRowsIds, setSelectedRowsIds] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
-  const [rows, setRows] = useState<User[]>([]);
+  const [initialRows, setRows] = useState<User[]>([]);
   const defaultRowsPerPage = 10;
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const url = '../src/templates/UserList/testUsers.json';
 
-  const handleRequestSort = (_event: MouseEvent<unknown>, property: keyof User) => {
-    const isAsc = orderBy === property && order === SortingDirection.ASC;
-    setOrder(isAsc ? SortingDirection.DESC : SortingDirection.ASC);
-    setOrderBy(property);
-    /* when backend synchronization will be done, this will send out a REST request*/
-  };
-
-  const isSelected = (row: User) => {
-    return (
-      selected.filter((item) => {
-        return item.id === row.id;
-      }).length > 0
-    );
-  };
-
-  const handleSelectAllClick = (event: ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelected: readonly User[] = rows.filter((row) => {
-        return !isSelected(row);
+  function buildCustomTableHeaderCells(): HeadCell<keyof User>[] {
+    const headerCells: HeadCell<keyof User>[] = [];
+    const row = {} as User;
+    if (row) {
+      Object.keys(row).forEach((key) => {
+        headerCells.push({ id: key as keyof User, label: key });
       });
-      setSelected(selected.concat(newSelected));
-      return;
     }
-    setSelected(
-      selected.filter((row) => {
-        return !rows.find((item) => {
-          return item.id === row.id;
-        });
-      })
-    );
-  };
+    return headerCells;
+  }
 
-  const userListStatefulVariables: CustomTableStatefulVariables<User> = {
-    order,
-    orderBy,
-    page,
-    rows,
-    rowsPerPage,
-    selected,
-    setOrder,
-    setOrderBy,
-    setPage,
-    setRows,
-    setRowsPerPage,
-    setSelected,
-  };
+  function buildCustomTableSortingConfig(): SortingRule[] {
+    const rowConfigs: SortingRule[] = [];
+    const row = {} as User;
 
-  const headProps: CustomTableHeadProps<User> = {
-    numSelected: selected.length,
-    onRequestSort: handleRequestSort,
-    onSelectAllClick: handleSelectAllClick,
-    order: order,
-    orderBy: orderBy,
-    rowCount: rows.length,
-  };
-  const toolbarProps: CustomTableToolbarProps<User> = { allRows: rows, selected: selected };
+    Object.keys(row).forEach((key) => {
+      rowConfigs.push({ columnName: key, sortDirection: SortingDirection.ASC });
+    });
+    return rowConfigs;
+  }
 
+  const toolbarProps: CustomTableToolbarProps<User> = { allRows: initialRows, selected: selectedRowsIds };
+
+  const headerCells = buildCustomTableHeaderCells();
+  setSortingConfig(buildCustomTableSortingConfig());
   return (
     <CustomTable<User>
       fetchUrl={url}
-      customTableStatefulVariables={userListStatefulVariables}
-      head={<UserListHead {...headProps} />}
+      headerCells={headerCells}
       toolbar={<UserListToolbar {...toolbarProps} />}
+      sortingConfig={sortingConfig}
+      selectedRowsIds={selectedRowsIds}
+      page={page}
+      tableName={'userList'}
+      rows={initialRows}
+      rowsPerPage={rowsPerPage}
+      setSortingConfig={setSortingConfig}
+      setSelectedRowsIds={setSelectedRowsIds}
+      setPage={setPage}
+      setRowsPerPage={setRowsPerPage}
+      setRows={setRows}
     />
   );
 }

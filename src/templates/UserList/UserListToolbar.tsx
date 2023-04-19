@@ -8,8 +8,8 @@ import { useTranslation } from 'react-i18next';
 export function UserListToolbar(props: CustomTableToolbarProps<User>) {
   const { selected, allRows } = props;
   const numSelected = selected.length;
-  const selectedRows = allRows.filter((row) => {
-    return selected.includes(row);
+  const selectedRows = allRows.filter((row, index) => {
+    return allRows.indexOf(row) === Number(selected[index]);
   });
   const { t } = useTranslation();
   return (

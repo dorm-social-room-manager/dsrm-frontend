@@ -2,16 +2,16 @@ import { ChangeEvent, MouseEvent } from 'react';
 import { ReactElement } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 
-export interface HeadCell<T extends Record<PropertyKey, unknown>> {
-  disablePadding: boolean;
-  instance: keyof T;
+export interface HeadCell<T extends PropertyKey> {
+  id: T;
   label: string;
 }
 
 export interface CustomTableToolbarProps<T extends Record<PropertyKey, unknown>> {
-  selected: readonly T[];
+  selected: readonly string[];
   allRows: readonly T[];
 }
+
 export interface CustomTableHeadProps<T extends Record<PropertyKey, unknown>> {
   numSelected: number;
   onRequestSort: (event: MouseEvent<unknown>, property: keyof T) => void;
@@ -24,22 +24,22 @@ export interface CustomTableHeadProps<T extends Record<PropertyKey, unknown>> {
 
 export interface CustomTableProps<T> {
   toolbar: ReactElement;
-  head: ReactElement;
+  headerCells: HeadCell<keyof T>[];
   fetchUrl: string;
-  customTableStatefulVariables: CustomTableStatefulVariables<T>;
-}
-
-export interface CustomTableStatefulVariables<T> {
-  order: SortingDirection;
-  orderBy: keyof T;
-  selected: readonly T[];
+  sortingConfig: SortingRule[];
+  selectedRowsIds: readonly string[];
   page: number;
+  tableName: string;
   rows: T[];
   rowsPerPage: number;
-  setOrder: (value: SortingDirection) => void;
-  setOrderBy: (value: keyof T) => void;
-  setSelected: (value: readonly T[]) => void;
+  setSortingConfig: (value: SortingRule[]) => void;
+  setSelectedRowsIds: (value: readonly string[]) => void;
   setPage: (value: number) => void;
-  setRows: (value: T[]) => void;
   setRowsPerPage: (value: number) => void;
+  setRows: (value: T[]) => void;
+}
+
+export interface SortingRule {
+  columnName: string;
+  sortDirection: SortingDirection;
 }
