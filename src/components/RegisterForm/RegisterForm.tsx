@@ -47,6 +47,9 @@ export function RegisterForm() {
     if (values.name === undefined || values.name.length < minLength) {
       errors.name = t('registerForm.firstNameEmpty');
     }
+    if (values.roomNumber === undefined) {
+      errors.roomNumber = t('registerForm.roomNumberEmpty');
+    }
     return errors;
   };
 
@@ -62,7 +65,7 @@ export function RegisterForm() {
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', name: '', password: '', surname: '' }}
+      initialValues={{ email: '', name: '', password: '', roomNumber: 0, surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
