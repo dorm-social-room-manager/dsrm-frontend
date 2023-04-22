@@ -183,8 +183,8 @@ export interface components {
       pageNumber?: number;
       /** Format: int32 */
       pageSize?: number;
-      paged?: boolean;
       unpaged?: boolean;
+      paged?: boolean;
     };
     RoomDTO: {
       /** Format: int32 */

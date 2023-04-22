@@ -1,5 +1,6 @@
 import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
+import { CreateUserError } from '../../common/types/CreateUserError.types';
 import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
@@ -34,7 +35,13 @@ export function RegisterForm() {
   const minLength = 1;
   const { t } = useTranslation();
   const validate = (values: CreateUserType) => {
-    const errors: CreateUserType = {};
+    const errors: CreateUserError = {
+      email: '',
+      name: '',
+      password: '',
+      roomNumber: '',
+      surname: '',
+    };
     if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
