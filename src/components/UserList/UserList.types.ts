@@ -6,7 +6,6 @@ export enum SortingDirection {
 }
 export enum UserTypesId {
   ADMIN = '1',
-  PENDING = '2',
 }
 export interface UserListToolbarProps {
   selected: readonly UserDTO[];
