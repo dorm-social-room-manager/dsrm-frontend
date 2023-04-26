@@ -2,21 +2,13 @@ import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType, UserDTO } fr
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
-interface ParamsWithQuery extends Object {
-  query?: { [key: string]: string | number | boolean | string[] };
-}
-
-const addQueryParams = <T extends ParamsWithQuery>(url: string, params: T) => {
+const addQueryParams = <T extends Record<string, string | string[] | number | boolean>>(url: string, params: T) => {
   const urlParams = new URLSearchParams();
-  if (params && typeof params === 'object') {
-    if (params.query) {
-      Object.entries(params.query).forEach(([key, value]) => {
-        if (value !== undefined) {
-          urlParams.append(key, value as string);
-        }
-      });
+  Object.entries(params).forEach(([key, value]) => {
+    if (value !== undefined) {
+      urlParams.append(key, value.toString());
     }
-  }
+  });
   return `${url}?${urlParams.toString()}`;
 };
 
@@ -44,8 +36,8 @@ const createUser = async (values: CreateUserType): Promise<Response> => {
 
 const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseType> => {
   let fetchQuery = `${import.meta.env.VITE_API_URL}/admin/users`;
-  if (params) {
-    fetchQuery = addQueryParams(fetchQuery, params);
+  if (params?.query) {
+    fetchQuery = addQueryParams(fetchQuery, params.query);
     console.log(fetchQuery);
   }
   return await fetch(fetchQuery)

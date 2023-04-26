@@ -162,7 +162,7 @@ export function UserList() {
                     width='200px'
                   >
                     {row.roles?.at(0)?.name}
-                    {row.roles?.at(0) === undefined && 'Pending'}
+                    {row.roles?.length === 0 && 'Pending'}
                   </TableCell>
                 </TableRow>
               );
