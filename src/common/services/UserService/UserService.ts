@@ -1,16 +1,7 @@
 import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType, UserDTO } from '../../types/OperationTypes.types';
+import { addQueryParams } from '../../utils/addQueryParams';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
-
-const addQueryParams = <T extends Record<string, string | string[] | number | boolean>>(url: string, params: T) => {
-  const urlParams = new URLSearchParams();
-  Object.entries(params).forEach(([key, value]) => {
-    if (value !== undefined) {
-      urlParams.append(key, value.toString());
-    }
-  });
-  return `${url}?${urlParams.toString()}`;
-};
 
 const getRequestObject = (values: CreateUserType) => {
   return {
@@ -38,7 +29,6 @@ const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseT
   let fetchQuery = `${import.meta.env.VITE_API_URL}/admin/users`;
   if (params?.query) {
     fetchQuery = addQueryParams(fetchQuery, params.query);
-    console.log(fetchQuery);
   }
   return await fetch(fetchQuery)
     .then((response) => {
