@@ -37,7 +37,9 @@ export function UserListToolbar(props: CustomTableToolbarProps<User>) {
       {numSelected > 0 ? (
         <>
           {selectedRows.every((row) => {
-            return row.roles?.includes({ id: '0', name: 'admin' });
+            return row.roles?.some((role) => {
+              return role.name === 'admin';
+            });
           }) ? (
             <Tooltip title={t('userList.accept')}>
               <IconButton>
@@ -48,7 +50,9 @@ export function UserListToolbar(props: CustomTableToolbarProps<User>) {
             <></>
           )}
           {selectedRows.every((row) => {
-            return row.roles?.includes({ id: '1', name: 'user' });
+            return row.roles?.some((role) => {
+              return role.name === 'user';
+            });
           }) ? (
             <Tooltip title={t('userList.del')}>
               <IconButton>
