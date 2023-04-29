@@ -9,15 +9,14 @@ import { t } from 'i18next';
 export function CustomTable<T extends Record<PropertyKey, unknown>>(props: CustomTableProps<T>) {
   const {
     toolbar,
-    headerCells,
     fetchUrl,
-    sortingConfig,
+    columnConfig,
     selectedRowsIds,
     page,
     tableName,
     rows,
     rowsPerPage,
-    setSortingConfig,
+    setColumnConfig,
     setSelectedRowsIds,
     setPage,
     setRowsPerPage,
@@ -33,9 +32,9 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
   };
 
   function updateSortingRule(index: number, columnName: string, sortDirection: SortingDirection) {
-    const updatedConfig = [...sortingConfig];
-    updatedConfig.splice(index, 1, { columnName, sortDirection });
-    setSortingConfig(updatedConfig);
+    const updatedConfig = [...columnConfig];
+    updatedConfig.splice(index, 1, { id: columnName as keyof T, label: columnName.toUpperCase(), sortDirection: sortDirection });
+    setColumnConfig(updatedConfig);
   }
 
   const pixelHeightPerRow = 53;
@@ -70,11 +69,11 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
   };
 
   const handleRequestSort = (_event: MouseEvent<unknown>, property: keyof T) => {
-    const idx = sortingConfig.findIndex((config) => {
-      return config.columnName === property;
+    const idx = columnConfig.findIndex((config) => {
+      return config.id === property;
     });
 
-    const isAsc = sortingConfig[idx].columnName === property && sortingConfig[idx].sortDirection === SortingDirection.ASC;
+    const isAsc = columnConfig[idx].id === property && columnConfig[idx].sortDirection === SortingDirection.ASC;
     const newSortingDirection = isAsc ? SortingDirection.DESC : SortingDirection.ASC;
 
     updateSortingRule(idx, String(property), newSortingDirection);
@@ -184,25 +183,25 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
               }}
             />
           </TableCell>
-          {headerCells.map((headCell, index) => {
+          {columnConfig.map((configItem, index) => {
             return (
               <TableCell
-                key={String(headCell.id)}
+                key={String(configItem.id)}
                 align='left'
-                sortDirection={sortingConfig[index].columnName === String(headCell.id) ? sortingConfig[0].sortDirection : false}
+                sortDirection={columnConfig[index].id === String(configItem.id) ? columnConfig[0].sortDirection : false}
               >
                 <TableSortLabel
-                  active={sortingConfig[index].columnName === String(headCell.id)}
-                  direction={sortingConfig[index].columnName === String(headCell.id) ? sortingConfig[0].sortDirection : SortingDirection.ASC}
-                  onClick={createSortHandler(headCell.id)}
+                  active={columnConfig[index].id === String(configItem.id)}
+                  direction={columnConfig[index].id === String(configItem.id) ? columnConfig[0].sortDirection : SortingDirection.ASC}
+                  onClick={createSortHandler(configItem.id)}
                 >
-                  {headCell.label}
-                  {sortingConfig[index].columnName === headCell.id ? (
+                  {configItem.label}
+                  {columnConfig[index].id === configItem.id ? (
                     <Box
                       component='span'
                       sx={{ display: 'none' }}
                     >
-                      {sortingConfig[index].sortDirection === SortingDirection.DESC ? t(`${tableName}.sortDsc`) : t(`${tableName}.sortAsc`)}
+                      {columnConfig[index].sortDirection === SortingDirection.DESC ? t(`${tableName}.sortDsc`) : t(`${tableName}.sortAsc`)}
                     </Box>
                   ) : null}
                 </TableSortLabel>

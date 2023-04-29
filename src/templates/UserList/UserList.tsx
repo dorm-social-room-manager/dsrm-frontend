@@ -1,4 +1,4 @@
-import { CustomTableToolbarProps, HeadCell, SortingRule } from '../../components/CustomTable/CustomTable.types';
+import { ColumnConfig, CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import { CustomTable } from '../../components/CustomTable/CustomTable';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { User } from '../../common/types/componentTypes.types';
@@ -6,7 +6,7 @@ import { UserListToolbar } from './UserListToolbar';
 import { useState } from 'react';
 
 export function UserList() {
-  const [sortingConfig, setSortingConfig] = useState<SortingRule[]>(buildCustomTableSortingConfig());
+  const [columnConfig, setColumnConfig] = useState<ColumnConfig<keyof User>[]>(buildCustomTableColumnConfig());
   const [selectedRowsIds, setSelectedRowsIds] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
   const [initialRows, setRows] = useState<User[]>([]);
@@ -14,44 +14,29 @@ export function UserList() {
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const url = '../src/templates/UserList/testUsers.json';
 
-  function buildCustomTableHeaderCells(): HeadCell<keyof User>[] {
-    const headerCells: HeadCell<keyof User>[] = [];
-    // eslint-disable-next-line sort-keys
-    const row = { id: '', email: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' } as User;
+  function buildCustomTableColumnConfig(): ColumnConfig<keyof User>[] {
+    const columnConfigArr: ColumnConfig<keyof User>[] = [];
+    const row = { email: '', id: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' } as User;
 
     Object.keys(row).forEach((key) => {
-      headerCells.push({ id: key as keyof User, label: key });
+      columnConfigArr.push({ id: key as keyof User, label: key.toUpperCase(), sortDirection: SortingDirection.ASC });
     });
 
-    return headerCells;
-  }
-
-  function buildCustomTableSortingConfig(): SortingRule[] {
-    const rowConfigs: SortingRule[] = [];
-    // eslint-disable-next-line sort-keys
-    const row = { id: '', email: '', name: '', password: '', roles: [], roomNumber: 0, surname: '' } as User;
-
-    Object.keys(row).forEach((key) => {
-      rowConfigs.push({ columnName: key, sortDirection: SortingDirection.ASC });
-    });
-    return rowConfigs;
+    return columnConfigArr;
   }
 
   const toolbarProps: CustomTableToolbarProps<User> = { allRows: initialRows, selected: selectedRowsIds };
-
-  const headerCells = buildCustomTableHeaderCells();
   return (
     <CustomTable<User>
       fetchUrl={url}
-      headerCells={headerCells}
+      columnConfig={columnConfig}
       toolbar={<UserListToolbar {...toolbarProps} />}
-      sortingConfig={sortingConfig}
       selectedRowsIds={selectedRowsIds}
       page={page}
       tableName={'userList'}
       rows={initialRows}
       rowsPerPage={rowsPerPage}
-      setSortingConfig={setSortingConfig}
+      setColumnConfig={setColumnConfig}
       setSelectedRowsIds={setSelectedRowsIds}
       setPage={setPage}
       setRowsPerPage={setRowsPerPage}

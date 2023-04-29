@@ -1,5 +1,4 @@
-/* eslint-disable sort-keys */
-import { CustomTableToolbarProps, HeadCell, SortingRule } from '../../components/CustomTable/CustomTable.types';
+import { ColumnConfig, CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import { CustomTable } from '../../components/CustomTable/CustomTable';
 import { Room } from '../../common/types/componentTypes.types';
 import { RoomListToolbar } from './RoomListToolbar';
@@ -7,7 +6,7 @@ import { SortingDirection } from '../../common/utils/SortingDirection';
 import { useState } from 'react';
 
 export function RoomList() {
-  const [sortingConfig, setSortingConfig] = useState<SortingRule[]>(buildCustomTableSortingConfig());
+  const [columnConfig, setColumnConfig] = useState<ColumnConfig<keyof Room>[]>(buildCustomTableColumnConfig());
   const [selectedRowsIds, setSelectedRowsIds] = useState<readonly string[]>([]);
   const [page, setPage] = useState(0);
   const [initialRows, setRows] = useState<Room[]>([]);
@@ -15,75 +14,62 @@ export function RoomList() {
   const [rowsPerPage, setRowsPerPage] = useState(defaultRowsPerPage);
   const url = '../src/templates/RoomList/testRooms.json';
 
-  function buildCustomTableHeaderCells(): HeadCell<keyof Room>[] {
-    const roomsListColumns: Array<HeadCell< keyof Room> = [
-      { id: 'roomNumber', label: 'Room Number' },
-      { id: 'openingTime', label: 'Opening Time' },
-    ];
-    Object.keys(row).forEach((key) => {
-      headerCells.push({ id: key as keyof Room, label: key });
-    });
-
-    return ;
-  }
-
-  function buildCustomTableSortingConfig(): SortingRule[] {
-    const rowConfigs: SortingRule[] = [];
+  function buildCustomTableColumnConfig(): ColumnConfig<keyof Room>[] {
+    const columnConfigArr: ColumnConfig<keyof Room>[] = [];
     const row = {
-      id: '1234',
-      roomNumber: 101,
+      closingTime: {
+        hour: 21,
+        minute: 0,
+        nano: 0,
+        second: 0,
+      },
       floor: 1,
+      id: '1234',
+      keyOwner: {
+        email: 'john.doe@example.com',
+        id: 'abcd',
+        name: 'John',
+        password: 'password123',
+        roles: [],
+        roomNumber: 101,
+        surname: 'Doe',
+      },
+      maxCapacity: 4,
+      openingTime: {
+        hour: 9,
+        minute: 0,
+        nano: 0,
+        second: 0,
+      },
+      roomNumber: 101,
       roomType: {
         id: '5678',
         name: 'Standard',
       },
-      maxCapacity: 4,
-      keyOwner: {
-        id: 'abcd',
-        email: 'john.doe@example.com',
-        password: 'password123',
-        name: 'John',
-        surname: 'Doe',
-        roomNumber: 101,
-        roles: [],
-      },
-      openingTime: {
-        hour: 9,
-        minute: 0,
-        second: 0,
-        nano: 0,
-      },
-      closingTime: {
-        hour: 21,
-        minute: 0,
-        second: 0,
-        nano: 0,
-      },
-      unavailableStart: '2023-05-01',
       unavailableEnd: '2023-05-05',
+      unavailableStart: '2023-05-01',
     } as Room;
 
     Object.keys(row).forEach((key) => {
-      rowConfigs.push({ columnName: key, sortDirection: SortingDirection.ASC });
+      columnConfigArr.push({ id: key as keyof Room, label: key.toUpperCase(), sortDirection: SortingDirection.ASC });
     });
-    return rowConfigs;
+
+    return columnConfigArr;
   }
 
   const toolbarProps: CustomTableToolbarProps<Room> = { allRows: initialRows, selected: selectedRowsIds };
 
-  const headerCells = buildCustomTableHeaderCells();
   return (
     <CustomTable<Room>
       fetchUrl={url}
-      headerCells={headerCells}
       toolbar={<RoomListToolbar {...toolbarProps} />}
-      sortingConfig={sortingConfig}
+      columnConfig={columnConfig}
       selectedRowsIds={selectedRowsIds}
       page={page}
       tableName={'roomList'}
       rows={initialRows}
       rowsPerPage={rowsPerPage}
-      setSortingConfig={setSortingConfig}
+      setColumnConfig={setColumnConfig}
       setSelectedRowsIds={setSelectedRowsIds}
       setPage={setPage}
       setRowsPerPage={setRowsPerPage}

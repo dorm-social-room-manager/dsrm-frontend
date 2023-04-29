@@ -26,16 +26,11 @@ export interface CustomTableProps<T> {
   tableName: string;
   rows: T[];
   rowsPerPage: number;
-  setColumnConfig: (value: SortingRule<keyof T>[]) => void;
+  setColumnConfig: (value: ColumnConfig<keyof T>[]) => void;
   setSelectedRowsIds: (value: readonly string[]) => void;
   setPage: (value: number) => void;
   setRowsPerPage: (value: number) => void;
   setRows: (value: T[]) => void;
-}
-
-export interface SortingRule<T extends PropertyKey> {
-  id: T;
-  sortDirection: SortingDirection;
 }
 
 export interface ColumnConfig<T extends PropertyKey> {
