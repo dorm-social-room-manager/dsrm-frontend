@@ -33,7 +33,6 @@ export function UserListToolbar(props: UserListToolbarProps) {
       {numSelected > 0 ? (
         <>
           {selected.every((row) => {
-            /*back doesn't have a pending type yet, this will need to be changed later*/
             return row.roles?.length === 0;
           }) ? (
             <Tooltip title={t('userList.accept')}>

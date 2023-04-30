@@ -32,10 +32,10 @@ const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseT
   }
   return await fetch(fetchQuery)
     .then((response) => {
-      if (response !== null && response.ok) {
+      try {
         return response.json();
-      } else {
-        throw new FetchError("Couldn't fetch users");
+      } catch (error) {
+        throw new FetchError("Couldn't read users");
       }
     })
     .then((data: ReadUsersResponseType) => {
@@ -47,12 +47,12 @@ export const useCreateUserMutation = () => {
   return useMutation(createUser);
 };
 
-export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements: number) => void) => {
+export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements: number | undefined) => void) => {
   return useMutation(readUsers, {
     onSuccess: (data) => {
       if (data.content !== undefined) {
         const rows2: UserDTO[] = data.content;
-        handleInputData(rows2, data.totalElements as number);
+        handleInputData(rows2, data.totalElements);
       }
     },
   });

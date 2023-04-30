@@ -19,9 +19,9 @@ export function UserList() {
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleInputData = (data: UserDTO[], totalElements: number) => {
+  const handleInputData = (data: UserDTO[], totalElements: number | undefined) => {
     setRows(data);
-    setTotalUsers(totalElements);
+    setTotalUsers(totalElements === undefined ? data.length : totalElements);
   };
   const handleRequestSort = (event: MouseEvent<unknown>, property: keyof UserDTO) => {
     const isAsc = orderBy === property && order === SortingDirection.ASC;
@@ -47,11 +47,10 @@ export function UserList() {
   };
 
   const handleClick = (event: MouseEvent<unknown>, row: UserDTO) => {
-    const selectedIndex = selected.indexOf(
-      selected.find((item) => {
-        return item.id === row.id;
-      }) as UserDTO
-    );
+    const selectedItem = selected.find((item) => {
+      return item.id === row.id;
+    });
+    const selectedIndex = selectedItem ? selected.indexOf(selectedItem) : -1;
     let newSelected: UserDTO[] = [];
 
     if (selectedIndex === -1) {
@@ -161,8 +160,7 @@ export function UserList() {
                     align='left'
                     width='200px'
                   >
-                    {row.roles?.at(0)?.name}
-                    {row.roles?.length === 0 && 'Pending'}
+                    {row.roles?.length === 0 ? 'Pending' : row.roles?.at(0)?.name}
                   </TableCell>
                 </TableRow>
               );
