@@ -6,7 +6,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 123,
-    "userType": "Admin"
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
   },
   {
     "id": 2,
@@ -15,7 +20,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 523,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
   },
   {
     "id": 3,
@@ -24,7 +34,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 123,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
   },
   {
     "id": 4,
@@ -33,7 +48,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 133,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 5,
@@ -42,7 +62,12 @@
     "name": "asdasd",
     "surname": "asdsd",
     "roomNumber": 423,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 6,
@@ -51,7 +76,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 623,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 7,
@@ -60,7 +90,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 183,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 8,
@@ -69,7 +104,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 193,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 9,
@@ -78,7 +118,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 123,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 10,
@@ -87,7 +132,12 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 123,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
   },
   {
     "id": 11,
@@ -96,6 +146,11 @@
     "name": "asdasd",
     "surname": "asdasd",
     "roomNumber": 123,
-    "userType": "User"
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
   }
 ]

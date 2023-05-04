@@ -14,7 +14,6 @@ export interface CustomTableHeadProps<T extends Record<PropertyKey, unknown>> {
   order: SortingDirection;
   orderBy: string;
   rowCount: number;
-  // onSortCallback: (headCellName: string, direction: SortingDirection) => void; // will be used later, when we synchronize lists with backend
 }
 
 export interface CustomTableProps<T> {
