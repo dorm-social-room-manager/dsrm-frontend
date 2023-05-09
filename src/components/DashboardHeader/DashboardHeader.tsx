@@ -1,4 +1,4 @@
-import { AppBar, AppBarProps, Avatar, Box, Divider, Drawer, IconButton, List, styled, Menu, MenuItem, Toolbar, Typography } from '@mui/material';
+import { AppBar, AppBarProps, Avatar, Box, Divider, Drawer, IconButton, List, styled, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
 import AddPhotoAlternateSharpIcon from '@mui/icons-material/AddPhotoAlternateSharp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { MouseEvent, useState } from 'react';
@@ -48,7 +48,15 @@ const MyAppBar = styled(AppBar, {
 
 const drawerWidth = 240;
 export function DashboardHeader(props: DashboardHeaderProps) {
-  const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
+  const [anchorElement, setanchorElement] = useState<null | HTMLElement>(null);
+
+  const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
+    setanchorElement(event.currentTarget);
+  };
+
+  const handleCloseMenu = () => {
+    setanchorElement(null);
+  };
 
   const settings = ['Account', 'Dashboard', 'Log out'];
 
@@ -134,15 +142,22 @@ export function DashboardHeader(props: DashboardHeaderProps) {
           >
             {props.logo}
           </Typography>
-          <IconButton onClick={handleOpenUserMenu}>
-            <Avatar
-              alt={props.userName === undefined ? 'User' : props.userName}
-              src={props.userAvatar === undefined ? '' : props.userAvatar}
-            />
+          <Box>
+            <Tooltip title='Open settings'>
+              <IconButton
+                onClick={handleOpenMenu}
+                sx={{ p: 0 }}
+              >
+                <Avatar
+                  alt={props.userName === undefined ? 'User' : props.userName}
+                  src={props.userAvatar === undefined ? '' : props.userAvatar}
+                />
+              </IconButton>
+            </Tooltip>
             <Menu
               sx={{ mt: '45px' }}
               id='menu-appbar'
-              anchorEl={anchorElUser}
+              anchorEl={anchorElement}
               anchorOrigin={{
                 horizontal: 'right',
                 vertical: 'top',
@@ -152,14 +167,14 @@ export function DashboardHeader(props: DashboardHeaderProps) {
                 horizontal: 'right',
                 vertical: 'top',
               }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
+              open={Boolean(anchorElement)}
+              onClose={handleCloseMenu}
             >
               {settings.map((setting) => {
                 return (
                   <MenuItem
                     key={setting}
-                    onClick={handleCloseUserMenu}
+                    onClick={handleCloseMenu}
                   >
                     <Typography textAlign='center'>{setting}</Typography>
                   </MenuItem>
