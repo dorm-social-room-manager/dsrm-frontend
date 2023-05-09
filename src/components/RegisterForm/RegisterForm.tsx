@@ -16,9 +16,16 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
-  const onFormSubmit = (values: CreateUserType) => {
+  const onFormSubmit = (values: CreateUserError) => {
+    const user: CreateUserType = {
+      email: values.email,
+      name: values.name,
+      password: values.password,
+      roomNumber: parseInt(values.roomNumber, 10),
+      surname: values.surname,
+    };
     setOpen(true);
-    mutate(values);
+    mutate(user);
   };
 
   const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
@@ -34,7 +41,7 @@ export function RegisterForm() {
 
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: CreateUserType) => {
+  const validate = (values: CreateUserError) => {
     const errors: CreateUserError = {
       email: '',
       name: '',
@@ -66,13 +73,13 @@ export function RegisterForm() {
   const tabletGap = 8;
 
   return (
-    <Formik<CreateUserType>
+    <Formik<CreateUserError>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', name: '', password: '', roomNumber: 0, surname: '' }}
+      initialValues={{ email: '', name: '', password: '', roomNumber: '', surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
