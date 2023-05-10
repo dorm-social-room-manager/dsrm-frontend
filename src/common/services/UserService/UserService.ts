@@ -30,17 +30,17 @@ const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseT
   if (params?.query) {
     fetchQuery = addQueryParams(fetchQuery, params.query);
   }
-  return await fetch(fetchQuery)
-    .then((response) => {
-      try {
+  try {
+    return await fetch(fetchQuery)
+      .then((response) => {
         return response.json();
-      } catch (error) {
-        throw new FetchError("Couldn't read users");
-      }
-    })
-    .then((data: ReadUsersResponseType) => {
-      return data;
-    });
+      })
+      .then((data: ReadUsersResponseType) => {
+        return data;
+      });
+  } catch (error) {
+    throw new FetchError("Couldn't read users");
+  }
 };
 
 export const useCreateUserMutation = () => {

@@ -19,9 +19,9 @@ export function UserList() {
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleInputData = (data: UserDTO[], totalElements: number | undefined) => {
+  const handleInputData = (data: UserDTO[], totalElements: number = data.length) => {
     setRows(data);
-    setTotalUsers(totalElements === undefined ? data.length : totalElements);
+    setTotalUsers(totalElements);
   };
   const handleRequestSort = (event: MouseEvent<unknown>, property: keyof UserDTO) => {
     const isAsc = orderBy === property && order === SortingDirection.ASC;
@@ -47,10 +47,9 @@ export function UserList() {
   };
 
   const handleClick = (event: MouseEvent<unknown>, row: UserDTO) => {
-    const selectedItem = selected.find((item) => {
+    const selectedIndex = selected.findIndex((item) => {
       return item.id === row.id;
     });
-    const selectedIndex = selectedItem ? selected.indexOf(selectedItem) : -1;
     let newSelected: UserDTO[] = [];
 
     if (selectedIndex === -1) {
