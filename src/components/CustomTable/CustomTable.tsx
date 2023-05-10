@@ -26,7 +26,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
   const handleClick = (event: MouseEvent<unknown>, row: T) => {
     const selectedIndex = selectedRowsIds.indexOf(
       selectedRowsIds.find((item) => {
-        return String(row.id) === item;
+        return row.id === item;
       }) as string
     );
     let newSelectedRowsIds: readonly string[];
