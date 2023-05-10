@@ -30,8 +30,8 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
     if (event.target.checked) {
       //check whether the rows have been selected
       const newSelectedRowsIds: readonly string[] = rows
-        .map((row, index) => {
-          return !isSelected(row) ? index : -1;
+        .map((row) => {
+          return !isSelected(row) ? String(row.id) : -1;
         })
         .filter((index) => {
           return index !== -1;
