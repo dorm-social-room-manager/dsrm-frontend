@@ -45,7 +45,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
   const pixelHeightPerRow = 53;
   const rowsPerPageArray = [5, 10, 25];
 
-  const handleChangePage = (_event: unknown, newPage: number) => {
+  const handleChangePage = (_event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
   };
 
@@ -80,9 +80,8 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
         return setRows(data);
       })
       .catch((error) => {
-        if (error instanceof FetchError) {
-          throw new FetchError(`Failed to fetch with error: ${error.message}`);
-        }
+        const errorMessage = JSON.stringify(error);
+        throw new FetchError(`Failed to fetch with error: ${errorMessage}`);
       });
   });
 

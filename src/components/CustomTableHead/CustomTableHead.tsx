@@ -20,9 +20,9 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
     };
   };
 
-  function updateSortingRule(index: number, columnName: string, sortDirection: SortingDirection) {
+  function updateSortingRule(index: number, keyName: string, sortDirection: SortingDirection) {
     const updatedConfig = [...columnConfig];
-    updatedConfig.splice(index, 1, { id: columnName as keyof T, label: columnName.toUpperCase(), sortDirection: sortDirection });
+    updatedConfig.splice(index, 1, { id: keyName as keyof T, label: keyName.toUpperCase(), sortDirection: sortDirection });
     setColumnConfig(updatedConfig);
   }
 
