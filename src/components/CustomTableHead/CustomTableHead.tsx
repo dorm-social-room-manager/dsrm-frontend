@@ -10,7 +10,7 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
   const isSelected = (row: T) => {
     return (
       selectedRowsIds.filter((item) => {
-        return (row.id as string) === item;
+        return row.id === item;
       }).length > 0
     );
   };

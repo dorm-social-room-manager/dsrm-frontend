@@ -15,7 +15,7 @@ export function CustomTableRow<T extends Record<PropertyKey, unknown>>(props: Cu
       role='checkbox'
       aria-checked={isSelected}
       tabIndex={-1}
-      key={row.id as number}
+      key={row.id as string}
       selected={isSelected}
     >
       <TableCell padding='checkbox'>

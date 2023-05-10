@@ -63,6 +63,8 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
 
     return columnConfigArr;
   }
+  //if we are not on the first page, we need to calculate the number of empty rows to be displayed
+  //in most cases this is zero, on the last page it is usually less than the number of rows per page
   const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   useEffect(() => {
@@ -98,7 +100,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
             {rows.map((row, index) => {
               return (
                 <CustomTableRow<T>
-                  key={row.id as number}
+                  key={row.id as string}
                   row={row}
                   rowIdx={index}
                   isSelected={selectedRowsIds.indexOf(String(row.id)) !== -1}
