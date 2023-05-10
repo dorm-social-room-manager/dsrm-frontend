@@ -8,11 +8,10 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
   const { columnConfig, selectedRowsIds, rows, setColumnConfig, setSelectedRowsIds, tableName } = props;
 
   const isSelected = (row: T) => {
-    return (
-      selectedRowsIds.filter((item) => {
-        return row.id === item;
-      }).length > 0
-    );
+    const selectedItems = selectedRowsIds.filter((item) => {
+      return String(row.id) === item;
+    });
+    return selectedItems.length > 0;
   };
 
   const createSortHandler = (property: keyof T) => {
@@ -48,7 +47,7 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
     setSelectedRowsIds(
       selectedRowsIds.filter((rowId) => {
         return !rows.find((item) => {
-          return item.id === rowId;
+          return String(item.id) === rowId;
         });
       })
     );
