@@ -9,7 +9,7 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
 
   const isSelected = (row: T) => {
     const selectedItems = selectedRowsIds.filter((item) => {
-      return String(row.id) === item;
+      return row.id === item;
     });
     return selectedItems.length > 0;
   };
@@ -31,7 +31,7 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
       //check whether the rows have been selected
       const newSelectedRowsIds: readonly string[] = rows
         .map((row) => {
-          return !isSelected(row) ? String(row.id) : -1;
+          return !isSelected(row) ? row.id : -1;
         })
         .filter((index) => {
           return index !== -1;
@@ -47,7 +47,7 @@ export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: C
     setSelectedRowsIds(
       selectedRowsIds.filter((rowId) => {
         return !rows.find((item) => {
-          return String(item.id) === rowId;
+          return item.id === rowId;
         });
       })
     );
