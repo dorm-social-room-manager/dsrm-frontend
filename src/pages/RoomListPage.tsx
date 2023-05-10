@@ -2,17 +2,17 @@ import { Grid, useMediaQuery, useTheme } from '@mui/material';
 import { DashboardHeader } from '../components/DashboardHeader/DashboardHeader';
 import { DashboardHeaderProps } from '../components/DashboardHeader/DashboardHeader.types';
 import { Footer } from '../templates/Footer/Footer';
-import { UserList } from '../templates/UserList/UserList';
+import { RoomList } from '../templates/RoomList/RoomList';
 import { useTranslation } from 'react-i18next';
 
-export function UserListPage() {
+export function RoomListPage() {
   const { t } = useTranslation();
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const mobileGap = 1;
   const tabletGap = 4;
   const dashboardHeaderProps: DashboardHeaderProps = {
-    logo: t('userList.logo'),
+    logo: t('roomList.logo'),
     userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
     userName: 'John Doe',
   };
@@ -37,7 +37,7 @@ export function UserListPage() {
         marginTop={1}
         marginBottom={0}
       >
-        <UserList />
+        <RoomList />
       </Grid>
       <Grid
         item

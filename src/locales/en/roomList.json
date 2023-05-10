@@ -1,0 +1,14 @@
+{
+  "logo": "ROOMS",
+  "roomNumber": "Number",
+  "floor": "Floor",
+  "roomType": "Type",
+  "maxCapacity": "Max Capacity",
+  "keyOwner": "Key Owner",
+  "openingTime": "Opening Time",
+  "closingTime": "Closing Time",
+  "unavailableStart": "Unavailable Start",
+  "unavailableEnd": "Unavailable End",
+  "accept": "Accept",
+  "del": "Delete"
+}

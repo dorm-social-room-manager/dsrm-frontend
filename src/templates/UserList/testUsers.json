@@ -1,0 +1,156 @@
+[
+  {
+    "id": "1",
+    "email": "asda@sa.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
+  },
+  {
+    "id": "2",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 523,
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
+  },
+  {
+    "id": "3",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
+  },
+  {
+    "id": "4",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 133,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "5",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdsd",
+    "roomNumber": 423,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "6",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 623,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 183,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 193,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "9",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "10",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "roles": [
+      {
+        "id": 2,
+        "name": "user"
+      }
+    ]
+  },
+  {
+    "id": "11",
+    "email": "dint@asd.pl",
+    "password": "asdasd",
+    "name": "asdasd",
+    "surname": "asdasd",
+    "roomNumber": 123,
+    "roles": [
+      {
+        "id": 1,
+        "name": "admin"
+      }
+    ]
+  }
+]

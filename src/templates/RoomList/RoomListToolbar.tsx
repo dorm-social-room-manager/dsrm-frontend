@@ -1,16 +1,18 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
 import CheckIcon from '@mui/icons-material/Check';
+import { CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { UserListToolbarProps } from './UserList.types';
+import { Room } from '../../common/types/componentTypes.types';
 import { useTranslation } from 'react-i18next';
 
-export function UserListToolbar(props: UserListToolbarProps) {
-  const { selected, rows } = props;
+export function RoomListToolbar(props: CustomTableToolbarProps<Room>) {
+  const { selected, allRows } = props;
   const numSelected = selected.length;
-  const selectedRows = rows.filter((row) => {
-    return selected.includes(row.id);
+  const selectedRows = allRows.filter((row, index) => {
+    return allRows.indexOf(row) === Number(selected[index]);
   });
   const { t } = useTranslation();
+
   return (
     <Toolbar
       sx={{
@@ -36,9 +38,9 @@ export function UserListToolbar(props: UserListToolbarProps) {
       {numSelected > 0 ? (
         <>
           {selectedRows.every((row) => {
-            return row.userType === 'Pending';
+            return row.keyOwner?.name === 'Pending';
           }) ? (
-            <Tooltip title={t('userList.accept')}>
+            <Tooltip title={t('roomList.accept')}>
               <IconButton>
                 <CheckIcon />
               </IconButton>
@@ -47,9 +49,9 @@ export function UserListToolbar(props: UserListToolbarProps) {
             <></>
           )}
           {selectedRows.every((row) => {
-            return row.userType !== 'Admin';
+            return row.keyOwner?.name !== 'Admin';
           }) ? (
-            <Tooltip title={t('userList.del')}>
+            <Tooltip title={t('roomList.del')}>
               <IconButton>
                 <DeleteIcon />
               </IconButton>

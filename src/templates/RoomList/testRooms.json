@@ -1,0 +1,86 @@
+[
+  {
+    "id": "1",
+    "roomNumber": "120",
+    "floor": 1,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  },
+  {
+    "id": "2",
+    "roomNumber": "220",
+    "floor": 2,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Admin",
+    "openingTime": "13:00",
+    "closingTime": "19:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-03"
+  },
+  {
+    "id": "3",
+    "roomNumber": "320",
+    "floor": 3,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  },
+  {
+    "id": "4",
+    "roomNumber": "420",
+    "floor": 4,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  },
+  {
+    "id": "5",
+    "roomNumber": "520",
+    "floor": 5,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  },
+  {
+    "id": "6",
+    "roomNumber": "620",
+    "floor": 6,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  },
+  {
+    "id": "7",
+    "roomNumber": "720",
+    "floor": 7,
+    "roomType": "room",
+    "maxCapacity": 4,
+    "keyOwner": "Pending",
+    "openingTime": "12:00",
+    "closingTime": "18:00",
+    "unavailableStart": "2019-01-01",
+    "unavailableEnd": "2019-01-01"
+  }
+]

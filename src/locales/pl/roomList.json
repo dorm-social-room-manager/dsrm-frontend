@@ -1,0 +1,14 @@
+{
+  "logo": "POKOJE",
+  "roomNumber": "Numer pokoju",
+  "floor": "Piętro",
+  "roomType": "Typ pokoju",
+  "maxCapacity": "Maksymalna liczba osób",
+  "keyOwner": "Właściciel klucza",
+  "openingTime": "Godziny otwarcia",
+  "closingTime": "Godziny zamknięcia",
+  "unavailableStart": "Niedostępny od",
+  "unavailableEnd": "Niedostępny do",
+  "accept": "Akceptuj",
+  "del": "Usuń"
+}

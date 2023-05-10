@@ -1,8 +1,9 @@
 {
     "logo": "Użytkownicy",
+    "email": "Email",
+    "password": "Hasło",
     "name": "Imie",
     "surname": "Nazwisko",
-    "email": "Email",
     "roomNumber": "Numer pokoju",
     "userType": "Typ użytkownika",
     "rows": "Rows per page",
@@ -11,5 +12,4 @@
     "selectAll": "Zaznacz wszystko",
     "sortDsc": "Sortuj malejąco",
     "sortAsc": "Sortuj rosnąco"
-
 }
