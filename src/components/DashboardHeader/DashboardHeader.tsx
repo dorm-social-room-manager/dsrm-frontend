@@ -109,6 +109,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
             onClick={handleDrawerOpen}
             size='large'
             edge='start'
+            sx={{ ...(open && { display: 'none' }) }}
           >
             <MenuIcon />
           </IconButton>
