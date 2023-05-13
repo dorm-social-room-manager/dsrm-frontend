@@ -45,10 +45,14 @@ const MyAppBar = styled(AppBar, {
     }),
   };
 });
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 export function DashboardHeader(props: DashboardHeaderProps) {
   const [anchorElement, setanchorElement] = useState<null | HTMLElement>(null);
+  const { t } = useTranslation();
+  const navigate = useNavigate();
 
   const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
     setanchorElement(event.currentTarget);
@@ -58,7 +62,29 @@ export function DashboardHeader(props: DashboardHeaderProps) {
     setanchorElement(null);
   };
 
-  const settings = ['Account', 'Dashboard', 'Log out'];
+  const settings = [
+    {
+      action: () => {
+        navigate('/account');
+      },
+      key: 'account',
+      option: t('dashboardHeader.account'),
+    },
+    {
+      action: () => {
+        navigate('/dashboard');
+      },
+      key: 'dashboard',
+      option: t('dashboardHeader.dashboard'),
+    },
+    {
+      action: () => {
+        navigate('/');
+      },
+      key: 'logOut',
+      option: t('dashboardHeader.logOut'),
+    },
+  ];
 
   const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
     setAnchorElUser(event.currentTarget);
@@ -173,10 +199,15 @@ export function DashboardHeader(props: DashboardHeaderProps) {
               {settings.map((setting) => {
                 return (
                   <MenuItem
-                    key={setting}
+                    key={setting.key}
                     onClick={handleCloseMenu}
                   >
-                    <Typography textAlign='center'>{setting}</Typography>
+                    <Typography
+                      textAlign='center'
+                      onClick={setting.action}
+                    >
+                      {setting.option}
+                    </Typography>
                   </MenuItem>
                 );
               })}
