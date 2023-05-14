@@ -188,7 +188,7 @@ export function RegisterForm() {
                         className={styles.input}
                         label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
-                        type='text'
+                        type='number'
                         name='roomNumber'
                         required
                       />
