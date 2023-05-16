@@ -30,24 +30,24 @@ const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseT
   if (params?.query) {
     fetchQuery = addQueryParams(fetchQuery, params.query);
   }
-  try {
-    return await fetch(fetchQuery)
-      .then((response) => {
-        return response.json();
-      })
-      .then((data: ReadUsersResponseType) => {
-        return data;
-      });
-  } catch (error) {
-    throw new FetchError("Couldn't read users");
-  }
+
+  return await fetch(fetchQuery)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data: ReadUsersResponseType) => {
+      return data;
+    })
+    .catch(() => {
+      throw new FetchError("Couldn't read users");
+    });
 };
 
 export const useCreateUserMutation = () => {
   return useMutation(createUser);
 };
 
-export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements: number | undefined) => void) => {
+export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements?: number) => void) => {
   return useMutation(readUsers, {
     onSuccess: (data) => {
       if (data.content !== undefined) {
