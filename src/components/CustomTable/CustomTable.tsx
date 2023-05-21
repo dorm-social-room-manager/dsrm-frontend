@@ -24,11 +24,9 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
   } = props;
 
   const handleClick = (event: MouseEvent<unknown>, row: T) => {
-    const selectedIndex = selectedRowsIds.indexOf(
-      selectedRowsIds.find((item) => {
-        return row.id === item;
-      }) as string
-    );
+    const selectedIndex = selectedRowsIds.findIndex((item) => {
+      return row.id === item;
+    });
     let newSelectedRowsIds: readonly string[];
 
     if (selectedIndex === -1) {
@@ -41,9 +39,6 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
 
     setSelectedRowsIds(newSelectedRowsIds);
   };
-
-  const pixelHeightPerRow = 53;
-  const rowsPerPageArray = [5, 10, 25];
 
   const handleChangePage = (_event: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
     setPage(newPage);
@@ -111,7 +106,7 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
             {emptyRows > 0 && (
               <TableRow
                 style={{
-                  height: pixelHeightPerRow * emptyRows,
+                  height: 53 * emptyRows,
                 }}
               >
                 <TableCell colSpan={6} />
@@ -121,7 +116,7 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={rowsPerPageArray}
+        rowsPerPageOptions={[5, 10, 25]}
         component='div'
         count={rows.length}
         rowsPerPage={rowsPerPage}
