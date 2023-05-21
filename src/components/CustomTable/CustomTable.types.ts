@@ -2,6 +2,8 @@ import { ChangeEvent, MouseEvent } from 'react';
 import { ReactElement } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 
+export type IdentifiableObject = Record<PropertyKey, unknown> & { id: string };
+
 export interface CustomTableToolbarProps<T extends Record<PropertyKey, unknown>> {
   selected: readonly string[];
   allRows: readonly T[];

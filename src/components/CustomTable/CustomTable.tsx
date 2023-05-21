@@ -1,13 +1,13 @@
 import { Box, Table, TableBody, TableCell, TableContainer, TablePagination, TableRow } from '@mui/material';
 import { ChangeEvent, useEffect } from 'react';
-import { ColumnConfig, CustomTableProps } from './CustomTable.types';
+import { ColumnConfig, CustomTableProps, IdentifiableObject } from './CustomTable.types';
 import { CustomTableHead } from '../CustomTableHead/CustomTableHead';
 import { CustomTableRow } from '../CustomTableRow/CustomTableRow';
 import { FetchError } from '../../errors/FetchError';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 
-export function CustomTable<T extends Record<PropertyKey, unknown>>(props: CustomTableProps<T>) {
+export function CustomTable<T extends IdentifiableObject>(props: CustomTableProps<T>) {
   const {
     toolbar,
     columnConfig,
@@ -99,7 +99,7 @@ export function CustomTable<T extends Record<PropertyKey, unknown>>(props: Custo
             {rows.map((row, index) => {
               return (
                 <CustomTableRow<T>
-                  key={row.id as string}
+                  key={row.id}
                   row={row}
                   rowIdx={index}
                   isSelected={selectedRowsIds.indexOf(String(row.id)) !== -1}

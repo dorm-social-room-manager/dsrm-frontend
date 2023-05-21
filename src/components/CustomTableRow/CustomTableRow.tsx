@@ -1,8 +1,9 @@
 import { Checkbox, TableCell, TableRow } from '@mui/material';
 import { CustomTableRowProps } from './CustomTableRowProps.types';
+import { IdentifiableObject } from '../CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
 
-export function CustomTableRow<T extends Record<PropertyKey, unknown>>(props: CustomTableRowProps<T>) {
+export function CustomTableRow<T extends IdentifiableObject>(props: CustomTableRowProps<T>) {
   const { row, columnConfig, rowIdx, isSelected, handleClick } = props;
   const labelId = `enhanced-table-checkbox-${rowIdx}`;
 
@@ -15,7 +16,7 @@ export function CustomTableRow<T extends Record<PropertyKey, unknown>>(props: Cu
       role='checkbox'
       aria-checked={isSelected}
       tabIndex={-1}
-      key={row.id as string}
+      key={row.id}
       selected={isSelected}
     >
       <TableCell padding='checkbox'>

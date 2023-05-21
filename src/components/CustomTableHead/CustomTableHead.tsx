@@ -1,10 +1,10 @@
 import { Box, Checkbox, TableCell, TableHead, TableRow, TableSortLabel } from '@mui/material';
 import { ChangeEvent, MouseEvent } from 'react';
-import { CustomTableProps } from '../CustomTable/CustomTable.types';
+import { CustomTableProps, IdentifiableObject } from '../CustomTable/CustomTable.types';
 import { SortingDirection } from '../../common/utils/SortingDirection';
 import { t } from 'i18next';
 
-export function CustomTableHead<T extends Record<PropertyKey, unknown>>(props: CustomTableProps<T>) {
+export function CustomTableHead<T extends IdentifiableObject>(props: CustomTableProps<T>) {
   const { columnConfig, selectedRowsIds, rows, setColumnConfig, setSelectedRowsIds, tableName } = props;
 
   const isSelected = (row: T) => {
