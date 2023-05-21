@@ -6,6 +6,7 @@ import { CustomTableRow } from '../CustomTableRow/CustomTableRow';
 import { FetchError } from '../../errors/FetchError';
 import { MouseEvent } from 'react';
 import { SortingDirection } from '../../common/utils/SortingDirection';
+import { t } from 'i18next';
 
 export function CustomTable<T extends IdentifiableObject>(props: CustomTableProps<T>) {
   const {
@@ -13,6 +14,7 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
     columnConfig,
     fetchUrl,
     selectedRowsIds,
+    tableName,
     page,
     rows,
     rowsPerPage,
@@ -53,7 +55,7 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
     const columnConfigArr: ColumnConfig<keyof T>[] = [];
 
     Object.keys(data).forEach((key) => {
-      columnConfigArr.push({ id: key as keyof T, label: key.toUpperCase(), sortDirection: SortingDirection.ASC });
+      columnConfigArr.push({ id: key as keyof T, label: t(`${tableName}.${key}`), sortDirection: SortingDirection.ASC });
     });
 
     return columnConfigArr;

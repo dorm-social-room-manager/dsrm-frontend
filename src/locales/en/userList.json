@@ -1,11 +1,12 @@
 {
+  "id": "ID",
   "logo": "USERS",
   "email": "Email",
   "password": "Password",
   "name": "Name",
   "surname": "Surname",
   "roomNumber": "Room Number",
-  "userType": "User Type",
+  "roles": "User Roles",
   "rows": "Rows per page",
   "accept": "Accep",
   "del": "Delete",
