@@ -1,6 +1,6 @@
 import { alpha, IconButton, Toolbar, Tooltip, Typography } from '@mui/material';
+import { CustomTableToolbarProps, UserTypesId } from '../../components/CustomTable/CustomTable.types';
 import CheckIcon from '@mui/icons-material/Check';
-import { CustomTableToolbarProps } from '../../components/CustomTable/CustomTable.types';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { User } from '../../common/types/componentTypes.types';
 import { useTranslation } from 'react-i18next';
@@ -37,9 +37,7 @@ export function UserListToolbar(props: CustomTableToolbarProps<User>) {
       {numSelected > 0 ? (
         <>
           {selectedRows.every((row) => {
-            return row.roles?.some((role) => {
-              return role.name === 'admin';
-            });
+            return row.roles?.length === 0;
           }) ? (
             <Tooltip title={t('userList.accept')}>
               <IconButton>
@@ -50,9 +48,7 @@ export function UserListToolbar(props: CustomTableToolbarProps<User>) {
             <></>
           )}
           {selectedRows.every((row) => {
-            return row.roles?.some((role) => {
-              return role.name === 'user';
-            });
+            return row.roles?.at(0)?.id !== UserTypesId.ADMIN;
           }) ? (
             <Tooltip title={t('userList.del')}>
               <IconButton>

@@ -4,6 +4,10 @@ import { SortingDirection } from '../../common/utils/SortingDirection';
 
 export type IdentifiableObject = Record<PropertyKey, unknown> & { id?: string };
 
+export enum UserTypesId {
+  ADMIN = '1',
+}
+
 export interface CustomTableToolbarProps<T extends Record<PropertyKey, unknown>> {
   selected: readonly string[];
   allRows: readonly T[];
