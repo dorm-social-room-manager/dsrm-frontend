@@ -42,28 +42,24 @@ export function RegisterForm() {
   const minLength = 1;
   const { t } = useTranslation();
   const validate = (values: CreateUserError) => {
-    const errors: CreateUserError = {
-      email: '',
-      name: '',
-      password: '',
-      roomNumber: '',
-      surname: '',
-    };
+    let errors = {} as CreateUserError;
+
     if (values.email === undefined || values.email.length < minLength) {
-      errors.email = t('registerForm.emailEmpty');
+      errors = { ...errors, email: t('registerForm.emailEmpty') };
     }
     if (values.password === undefined || values.password.length < minLength) {
-      errors.password = t('registerForm.passwordEmpty');
+      errors = { ...errors, password: t('registerForm.passwordEmpty') };
     }
     if (values.surname === undefined || values.surname.length < minLength) {
-      errors.surname = t('registerForm.lastNameEmpty');
+      errors = { ...errors, surname: t('registerForm.lastNameEmpty') };
     }
     if (values.name === undefined || values.name.length < minLength) {
-      errors.name = t('registerForm.firstNameEmpty');
+      errors = { ...errors, name: t('registerForm.firstNameEmpty') };
     }
-    if (values.roomNumber === undefined) {
-      errors.roomNumber = t('registerForm.roomNumberEmpty');
+    if (values.roomNumber === undefined || values.roomNumber.length < minLength) {
+      errors = { ...errors, roomNumber: t('registerForm.roomNumberEmpty') };
     }
+
     return errors;
   };
 
