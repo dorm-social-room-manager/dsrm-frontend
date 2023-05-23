@@ -167,7 +167,7 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
                     InputLabelProps={{ shrink: true }}
                     className={styles.input}
                     label={t('addRoom.openingTime')}
-                    type='date'
+                    type='time'
                     name='openingTime'
                     required
                   />
@@ -181,7 +181,7 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
                     InputLabelProps={{ shrink: true }}
                     className={styles.input}
                     label={t('addRoom.closingTime')}
-                    type='date'
+                    type='time'
                     name='closingTime'
                     required
                   />
