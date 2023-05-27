@@ -1,8 +1,8 @@
-import { ColumnConfig } from '../CustomTable/CustomTable.types';
+import { ColumnConfig, IdentifiableObject } from '../CustomTable/CustomTable.types';
 import { MouseEvent } from 'react';
 
-export interface CustomTableRowProps<T extends Record<PropertyKey, unknown>> {
-  columnConfig: ColumnConfig<keyof T>[];
+export interface CustomTableRowProps<T extends IdentifiableObject> {
+  columnConfig: ColumnConfig<T, keyof T>[];
   row: T;
   rowIdx: number;
   isSelected: boolean;

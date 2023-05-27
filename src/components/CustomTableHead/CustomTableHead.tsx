@@ -20,9 +20,15 @@ export function CustomTableHead<T extends IdentifiableObject>(props: CustomTable
     };
   };
 
-  function updateSortingRule(index: number, id: string, sortDirection: SortingDirection) {
+  function updateSortingRule(index: number, id: string, sortDirection: SortingDirection, rowDisplayValue: (param: T[keyof T]) => string) {
+    // TODO: zmiana - tylko sortowanie zamiast wszystkich parametrow
     const updatedConfig = [...columnConfig];
-    updatedConfig.splice(index, 1, { id: id as keyof T, label: t(`${tableName}.${id}`), sortDirection: sortDirection });
+    updatedConfig.splice(index, 1, {
+      id: id as keyof T,
+      label: t(`${tableName}.${id}`),
+      rowDisplayValue: rowDisplayValue,
+      sortDirection: sortDirection,
+    });
     setColumnConfig(updatedConfig);
   }
 
@@ -61,7 +67,7 @@ export function CustomTableHead<T extends IdentifiableObject>(props: CustomTable
     const isAsc = columnConfig[idx].id === property && columnConfig[idx].sortDirection === SortingDirection.ASC;
     const newSortingDirection = isAsc ? SortingDirection.DESC : SortingDirection.ASC;
 
-    updateSortingRule(idx, String(property), newSortingDirection);
+    updateSortingRule(idx, String(property), newSortingDirection, columnConfig[idx].rowDisplayValue);
 
     /* when backend synchronization will be done, this will send out a REST request*/
   };

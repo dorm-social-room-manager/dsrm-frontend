@@ -51,11 +51,28 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
     setPage(0);
   };
 
-  function createColumnConfig(data: T) {
-    const columnConfigArr: ColumnConfig<keyof T>[] = [];
+  function createColumnConfig(data: T, specificColumnConfig?: ColumnConfig<T, keyof T>[]) {
+    const columnConfigArr: ColumnConfig<T, keyof T>[] = [];
 
     Object.keys(data).forEach((key) => {
-      columnConfigArr.push({ id: key as keyof T, label: t(`${tableName}.${key}`), sortDirection: SortingDirection.ASC });
+      if (specificColumnConfig) {
+        const specificColumn = specificColumnConfig.find((item) => {
+          return item.id === key;
+        });
+
+        if (specificColumn) {
+          columnConfigArr.push(specificColumn);
+        }
+      } else {
+        columnConfigArr.push({
+          id: key as keyof T,
+          label: t(`${tableName}.${key}`),
+          rowDisplayValue: (param: T[keyof T]) => {
+            return param as unknown as string;
+          },
+          sortDirection: SortingDirection.ASC,
+        });
+      }
     });
 
     return columnConfigArr;
@@ -70,10 +87,7 @@ export function CustomTable<T extends IdentifiableObject>(props: CustomTableProp
         return res.json();
       })
       .then((data: T[]) => {
-        if (data) {
-          const colConfigArr = createColumnConfig(data[0]);
-          setColumnConfig(colConfigArr);
-        }
+        /
         return setRows(data);
       })
       .catch((error) => {

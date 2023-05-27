@@ -30,7 +30,7 @@ export function CustomTableRow<T extends IdentifiableObject>(props: CustomTableR
       </TableCell>
 
       {columnConfig.map((column, index) => {
-        return <TableCell key={index}>{String(row[column.id])}</TableCell>;
+        return <TableCell key={index}>{column.rowDisplayValue(row[column.id])}</TableCell>;
       })}
     </TableRow>
   );
