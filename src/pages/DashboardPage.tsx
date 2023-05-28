@@ -12,11 +12,6 @@ import { useTranslation } from 'react-i18next';
 
 export function DashboardPage() {
   const { t } = useTranslation();
-  const dashboardHeaderProps: DashboardHeaderProps = {
-    logo: t('dashboard.logo'),
-    userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
-    userName: 'John Doe',
-  };
 
   const ADMIN_ITEMS: DashboardItem[] = [
     {
@@ -40,6 +35,12 @@ export function DashboardPage() {
       url: '/dashboard/add-room',
     },
   ];
+  const dashboardHeaderProps: DashboardHeaderProps = {
+    logo: t('dashboard.logo'),
+    userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
+    userName: 'John Doe',
+    userRole: 'Admin',
+  };
   return (
     <Grid
       container

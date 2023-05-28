@@ -2,5 +2,6 @@
     "users": "Users",
     "rooms": "Rooms",
     "reservations": "Reservations",
-    "addRoom": "Add room"
+    "addRoom": "Add room",
+    "addReservation": "Add reservation"
 }

@@ -2,5 +2,6 @@
     "users": "Użytkownicy",
     "rooms": "Pokoje",
     "reservations": "Rezerwacje",
-    "addRoom": "Dodaj pokój"
+    "addRoom": "Dodaj pokój",
+    "addReservation": "Dodaj rezerwację"
 }
