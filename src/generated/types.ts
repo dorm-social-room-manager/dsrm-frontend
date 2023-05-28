@@ -158,10 +158,10 @@ export interface components {
       sort?: (string)[];
     };
     PageRoomDTO: {
-      /** Format: int32 */
-      totalPages?: number;
       /** Format: int64 */
       totalElements?: number;
+      /** Format: int32 */
+      totalPages?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoomDTO"])[];
@@ -222,10 +222,10 @@ export interface components {
       roles?: (components["schemas"]["Role"])[];
     };
     PageRoomTypeDTO: {
-      /** Format: int32 */
-      totalPages?: number;
       /** Format: int64 */
       totalElements?: number;
+      /** Format: int32 */
+      totalPages?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoomTypeDTO"])[];
@@ -243,10 +243,10 @@ export interface components {
       name?: string;
     };
     PageReservationDTO: {
-      /** Format: int32 */
-      totalPages?: number;
       /** Format: int64 */
       totalElements?: number;
+      /** Format: int32 */
+      totalPages?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["ReservationDTO"])[];
@@ -286,10 +286,10 @@ export interface components {
       unavailableEnd?: string;
     };
     PageUserDTO: {
-      /** Format: int32 */
-      totalPages?: number;
       /** Format: int64 */
       totalElements?: number;
+      /** Format: int32 */
+      totalPages?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["UserDTO"])[];
@@ -304,10 +304,10 @@ export interface components {
       empty?: boolean;
     };
     PageRoleDTO: {
-      /** Format: int32 */
-      totalPages?: number;
       /** Format: int64 */
       totalElements?: number;
+      /** Format: int32 */
+      totalPages?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoleDTO"])[];

@@ -1,32 +1,26 @@
 import { ChangeEvent, MouseEvent } from 'react';
-
+import { UserDTO } from '../../common/types/OperationTypes.types';
 export enum SortingDirection {
   ASC = 'asc',
   DESC = 'desc',
 }
-export interface Data {
-  id: number;
-  name: string;
-  surname: string;
-  email: string;
-  room: number;
-  userType: string;
+export enum UserTypesId {
+  ADMIN = '1',
 }
 export interface UserListToolbarProps {
-  selected: readonly number[];
-  rows: readonly Data[];
+  selected: readonly UserDTO[];
 }
 export interface UserListHeadProps {
-  numSelected: number;
-  onRequestSort: (event: MouseEvent<unknown>, property: keyof Data) => void;
+  numSelectedOnPage: number;
+  onRequestSort: (event: MouseEvent<unknown>, property: keyof UserDTO) => void;
   onSelectAllClick: (event: ChangeEvent<HTMLInputElement>) => void;
   order: SortingDirection;
   orderBy: string;
-  rowCount: number;
+  rows: UserDTO[];
 }
 
-export interface HeadCell {
+export interface HeadCell<T extends keyof UserDTO> {
   disablePadding: boolean;
-  id: keyof Data;
+  id: T;
   label: string;
 }

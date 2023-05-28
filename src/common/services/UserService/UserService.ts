@@ -1,4 +1,5 @@
-import { CreateUserType } from '../../types/OperationTypes.types';
+import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType, UserDTO } from '../../types/OperationTypes.types';
+import { addQueryParams } from '../../utils/addQueryParams';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
@@ -24,6 +25,35 @@ const createUser = async (values: CreateUserType): Promise<Response> => {
   });
 };
 
+const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseType> => {
+  let fetchQuery = `${import.meta.env.VITE_API_URL}/admin/users`;
+  if (params?.query) {
+    fetchQuery = addQueryParams(fetchQuery, params.query);
+  }
+
+  return await fetch(fetchQuery)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data: ReadUsersResponseType) => {
+      return data;
+    })
+    .catch(() => {
+      throw new FetchError("Couldn't read users");
+    });
+};
+
 export const useCreateUserMutation = () => {
   return useMutation(createUser);
+};
+
+export const useReadUsersMutation = (handleInputData: (data: UserDTO[], totalElements?: number) => void) => {
+  return useMutation(readUsers, {
+    onSuccess: (data) => {
+      if (data.content !== undefined) {
+        const rows2: UserDTO[] = data.content;
+        handleInputData(rows2, data.totalElements);
+      }
+    },
+  });
 };
