@@ -1,7 +1,22 @@
-import { AppBar, AppBarProps, Avatar, Box, Divider, Drawer, IconButton, List, styled, Menu, MenuItem, Toolbar, Tooltip, Typography } from '@mui/material';
+import {
+  AppBar,
+  AppBarProps,
+  Avatar,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List,
+  Menu,
+  MenuItem,
+  styled,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@mui/material';
+import { MouseEvent, useState } from 'react';
 import AddPhotoAlternateSharpIcon from '@mui/icons-material/AddPhotoAlternateSharp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { MouseEvent, useState } from 'react';
 import { DashboardHeaderProps } from './DashboardHeader.types';
 import { DashboardItem } from '../DashboardCard/DashboardCard.types';
 import { DrawerItem } from './DrawerItem';
@@ -10,7 +25,6 @@ import InsertPhotoSharpIcon from '@mui/icons-material/InsertPhotoSharp';
 import MenuIcon from '@mui/icons-material/Menu';
 import NoteAddIcon from '@mui/icons-material/NoteAdd';
 import PersonIcon from '@mui/icons-material/Person';
-import { t } from 'i18next';
 
 const DrawerHeader = styled('div')(({ theme }) => {
   return {
@@ -50,16 +64,16 @@ import { useTranslation } from 'react-i18next';
 
 const drawerWidth = 240;
 export function DashboardHeader(props: DashboardHeaderProps) {
-  const [anchorElement, setanchorElement] = useState<null | HTMLElement>(null);
+  const [anchorElement, setAnchorElement] = useState<null | HTMLElement>(null);
   const { t } = useTranslation();
   const navigate = useNavigate();
 
   const handleOpenMenu = (event: MouseEvent<HTMLElement>) => {
-    setanchorElement(event.currentTarget);
+    setAnchorElement(event.currentTarget);
   };
 
   const handleCloseMenu = () => {
-    setanchorElement(null);
+    setAnchorElement(null);
   };
 
   const settings = [
@@ -85,15 +99,6 @@ export function DashboardHeader(props: DashboardHeaderProps) {
       option: t('dashboardHeader.logOut'),
     },
   ];
-
-  const handleOpenUserMenu = (event: MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseUserMenu = () => {
-    console.log('click');
-    setAnchorElUser(null);
-  };
 
   const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
@@ -212,7 +217,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
                 );
               })}
             </Menu>
-          </IconButton>
+          </Box>
         </Toolbar>
       </MyAppBar>
       <Drawer
