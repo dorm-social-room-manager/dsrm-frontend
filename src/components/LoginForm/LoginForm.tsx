@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 import { LoginFormErrors } from './LoginForm.types';
 import { LoginOptions } from './LoginOptions';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import styles from './LoginForm.module.scss';
 import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
@@ -64,7 +63,7 @@ export function LoginForm() {
                   >
                     <Field
                       as={TextField}
-                      className={styles.input}
+                      sx={{ width: '100%' }}
                       label={t('loginForm.email')}
                       type='email'
                       name='email'

@@ -1,7 +1,6 @@
 import { IconButton, InputAdornment, TextField } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { Field } from 'formik';
-import styles from './PasswordInput.module.scss';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
@@ -17,7 +16,12 @@ export function PasswordInput() {
   return (
     <Field
       as={TextField}
-      className={styles.input}
+      sx={{
+        '& input::-ms-reveal, & input::-ms-clear': {
+          display: 'none',
+        },
+        width: '100%',
+      }}
       label={t('loginForm.password')}
       type={showPassword ? 'text' : 'password'}
       name='password'

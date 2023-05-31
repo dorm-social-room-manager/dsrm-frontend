@@ -3,7 +3,6 @@ import { Field, Formik } from 'formik';
 import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
-import styles from './RegisterForm.module.scss';
 import { SyntheticEvent } from 'react';
 import { useCreateUserMutation } from '../../common/services/UserService/UserService';
 import { useNavigate } from 'react-router-dom';
@@ -140,7 +139,7 @@ export function RegisterForm() {
                     >
                       <Field
                         as={TextField}
-                        className={styles.input}
+                        sx={{ width: '100%' }}
                         label={t('registerForm.firstName')}
                         type='text'
                         name='name'
@@ -154,7 +153,7 @@ export function RegisterForm() {
                     >
                       <Field
                         as={TextField}
-                        className={styles.input}
+                        sx={{ width: '100%' }}
                         label={t('registerForm.lastName')}
                         type='text'
                         name='surname'
@@ -168,7 +167,7 @@ export function RegisterForm() {
                     >
                       <Field
                         as={TextField}
-                        className={styles.input}
+                        sx={{ width: '100%' }}
                         label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type='text'
@@ -191,7 +190,7 @@ export function RegisterForm() {
                     >
                       <Field
                         as={TextField}
-                        className={styles.input}
+                        sx={{ width: '100%' }}
                         label={t('registerForm.email')}
                         type='email'
                         name='email'
