@@ -21,7 +21,7 @@ export function Header(props: HeaderProps) {
         gap: '1rem',
       };
   return (
-    <div style={{ alignItems: 'center', display: 'inline-lex', flexDirection: 'column', justifyContent: 'center', margin: '0px', padding: '0px' }}>
+    <div style={{ alignItems: 'center', display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', margin: '0px', padding: '0px' }}>
       <Typography
         variant='h2'
         component='h2'
