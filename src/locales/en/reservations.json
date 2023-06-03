@@ -1,3 +1,13 @@
 {
-    "logo": "Reservations"
+    "logo": "Reservations",
+    "dateStartBeforeDateEnd": "Reservation cannot end before it starts",
+    "dateStartBeforeCurrentDate": "Reservation cannot made for a day that has passed already",
+    "invalidRoomNumber": "Given roomNumber is invalid",
+
+    "dialogInputDate": "Date",
+    "dialogInputStartTime": "Start Time",
+    "dialogInputEndTime": "End time",
+    "dialogInputRoomNumber": "Room Number",
+    "dialogButtonClose": "Close",
+    "dialogButtonReserve": "Reserve"
 }

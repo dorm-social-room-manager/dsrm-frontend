@@ -9,3 +9,24 @@ body {
   box-sizing: border-box;
 }
 
+.fc .fc-button-primary {
+  background-color: #1976d2;
+  border-color: #1976d2;
+}
+
+.fc .fc-button-primary:hover{
+  background-color: #09427a;
+  border-color: #09427a;
+}
+
+.fc-theme-standard td, .fc-theme-standard td, .fc-theme-standard th, .fc-theme-standard .fc-scrollgrid{
+  border: 1px solid #b8b8b8;
+}
+
+.fc .fc-toolbar.fc-header-toolbar{
+  margin-bottom: 1em;
+}
+
+.fc .fc-toolbar-title, .fc .fc-col-header-cell-cushion{
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+}

@@ -1,3 +1,13 @@
 {
-    "logo": "Rezerwacje"
+    "logo": "Rezerwacje",
+    "dateStartBeforeDateEnd": "Czas rozpoczęcia rezerwacji nie może wystąpić po czasie jej zakończenia",
+    "dateStartBeforeCurrentDate": "Rezerwacaj nie może zostać stworzona dla dnia, który minął",
+    "invalidRoomNumber": "POdano niepoprawny numer pokoju",
+
+    "dialogInputDate": "Data",
+    "dialogInputStartTime": "Czas rozpoczęcia",
+    "dialogInputEndTime": "Czas zakończenia",
+    "dialogInputRoomNumber": "Numer Pokoju",
+    "dialogButtonClose": "Zamknij",
+    "dialogButtonReserve": "Rezerwuj"
 }
