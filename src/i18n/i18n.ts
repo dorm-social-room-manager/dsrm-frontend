@@ -1,4 +1,6 @@
 import * as dashboardEN from '../locales/en/dashboard.json';
+import * as dashboardHeaderEN from '../locales/en/dashboardHeader.json';
+import * as dashboardHeaderPL from '../locales/en/dashboardHeader.json';
 import * as dashboardPageEN from '../locales/en/dashboardPage.json';
 import * as dashboardPagePL from '../locales/pl/dashboardPage.json';
 import * as dashboardPL from '../locales/pl/dashboard.json';
@@ -20,6 +22,7 @@ const resources = {
   en: {
     components: {
       dashboard: dashboardEN,
+      dashboardHeader: dashboardHeaderEN,
       dashboardPage: dashboardPageEN,
       footer: footerEN,
       header: headerEN,
@@ -31,6 +34,7 @@ const resources = {
   pl: {
     components: {
       dashboard: dashboardPL,
+      dashboardHeader: dashboardHeaderPL,
       dashboardPage: dashboardPagePL,
       footer: footerPL,
       header: headerPL,
