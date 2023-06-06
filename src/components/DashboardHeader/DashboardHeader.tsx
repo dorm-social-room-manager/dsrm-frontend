@@ -180,8 +180,8 @@ export function DashboardHeader(props: DashboardHeaderProps) {
                 sx={{ p: 0 }}
               >
                 <Avatar
-                  alt={props.userName === undefined ? 'User' : props.userName}
-                  src={props.userAvatar === undefined ? '' : props.userAvatar}
+                  alt={props.userName ?? 'User'}
+                  src={props.userAvatar ?? ''}
                 />
               </IconButton>
             </Tooltip>
