@@ -14,8 +14,3 @@ export interface MockType {
   id: number;
   name: string;
 }
-
-export interface MockTypeProps {
-  roomTypes: MockType[];
-  users: MockType[];
-}

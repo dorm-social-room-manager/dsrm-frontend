@@ -1,11 +1,14 @@
-import { AddRoomFormErrors, AddRoomFormValues, MockTypeProps } from './AddRoomForm.types';
+import { addRoom, useReadRoomTypesMutation } from '../../common/services/RoomService/RoomService';
+import { AddRoomFormErrors, AddRoomFormValues } from './AddRoomForm.types';
+import { AddRoomQueryType, RoomTypeDTO, UserDTO } from '../../common/types/OperationTypes.types';
 import { Box, Button, Grid, MenuItem, TextField } from '@mui/material';
+import { ChangeEvent, useEffect, useState } from 'react';
 import { Field, Formik } from 'formik';
-import { ChangeEvent } from 'react';
 import styles from './AddRoomForm.module.scss';
+import { useReadUsersMutation } from '../../common/services/UserService/UserService';
 import { useTranslation } from 'react-i18next';
 
-export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
+export function AddRoomForm() {
   const { t } = useTranslation();
   const validate = (values: AddRoomFormValues) => {
     const errors: AddRoomFormErrors = {};
@@ -22,6 +25,20 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
     }
     return errors;
   };
+  const [users, setUsers] = useState<UserDTO[]>([]);
+  const handleUserInputData = (userData: UserDTO[]) => {
+    setUsers(userData);
+  };
+  const [roomTypes, setRoomTypes] = useState<RoomTypeDTO>([]);
+  const handleRoomTypeInputData = (roomTypeData: RoomTypeDTO) => {
+    setRoomTypes(roomTypeData);
+  };
+  const mutateUsers = useReadUsersMutation(handleUserInputData).mutate;
+  const mutateRoomTypes = useReadRoomTypesMutation(handleRoomTypeInputData).mutate;
+  useEffect(() => {
+    mutateUsers({});
+    mutateRoomTypes();
+  }, [mutateUsers, mutateRoomTypes]);
 
   return (
     <Formik
@@ -39,8 +56,18 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
         roomNumber: '',
         roomType: '',
       }}
-      onSubmit={function () {
-        throw new Error('Function not implemented.');
+      onSubmit={async (values) => {
+        const room: AddRoomQueryType = {
+          closingTime: `${values.closingTime}:00`,
+          floor: Number(values.floor),
+          maxCapacity: Number(values.maxCapacity),
+          name: 'none',
+          number: Number(values.roomNumber),
+          openingTime: `${values.openingTime}:00`,
+          type: values.roomType,
+        };
+        console.log(room);
+        await addRoom(room);
       }}
     >
       {({ isValid, handleSubmit, setFieldValue, values }) => {
@@ -79,16 +106,17 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
                     select
                     required
                   >
-                    {roomTypes.map((selectableRoomType) => {
-                      return (
-                        <MenuItem
-                          key={selectableRoomType.id}
-                          value={selectableRoomType.name}
-                        >
-                          {selectableRoomType.name}
-                        </MenuItem>
-                      );
-                    })}
+                    {roomTypes &&
+                      roomTypes.map((selectableRoomType) => {
+                        return (
+                          <MenuItem
+                            key={selectableRoomType.name}
+                            value={selectableRoomType.name}
+                          >
+                            {selectableRoomType.name}
+                          </MenuItem>
+                        );
+                      })}
                   </TextField>
                 </Grid>
                 <Grid
@@ -110,7 +138,7 @@ export function AddRoomForm({ roomTypes, users }: MockTypeProps) {
                           key={selectableUser.id}
                           value={selectableUser.name}
                         >
-                          {selectableUser.name}
+                          {selectableUser.name} {selectableUser.surname}
                         </MenuItem>
                       );
                     })}
