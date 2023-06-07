@@ -46,11 +46,12 @@ const loginUser = async (values: LoginDetailsRequestDTO): Promise<JwtResponse> =
       }
       const decoded = jwt<JwtPayload>(data.accessToken);
       if (decoded.exp === undefined) {
-        throw new FetchError("Couldn't login user");
+        cookies.set('jwt_authorization', data);
+      } else {
+        cookies.set('jwt_authorization', data, {
+          expires: new Date(decoded.exp * 1000),
+        });
       }
-      cookies.set('jwt_authorization', data, {
-        expires: new Date(decoded.exp * 1000),
-      });
       return data;
     })
     .catch(() => {

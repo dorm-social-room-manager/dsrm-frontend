@@ -58,7 +58,6 @@ export function LoginForm() {
             username: values.email,
           };
           mutate(loginInfo);
-          console.log(isSuccess);
         }}
       >
         {({ isValid, handleSubmit }) => {
