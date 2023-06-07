@@ -1,12 +1,14 @@
-import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
-import { Field, Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Box, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { ButtonStyled, InputStyled } from './LoginForm.styled';
+import { Formik } from 'formik';
 import { LoginFormErrors } from './LoginForm.types';
 import { LoginOptions } from './LoginOptions';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
+  const navigate = useNavigate();
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const minLength = 1;
@@ -61,9 +63,8 @@ export function LoginForm() {
                     item
                     mobile={11}
                   >
-                    <Field
+                    <InputStyled
                       as={TextField}
-                      sx={{ width: '100%' }}
                       label={t('loginForm.email')}
                       type='email'
                       name='email'
@@ -96,35 +97,28 @@ export function LoginForm() {
                     item
                     mobile={8}
                   >
-                    <Button
+                    <ButtonStyled
                       variant='contained'
                       color='primary'
-                      sx={{
-                        padding: 1,
-                        width: 1,
-                      }}
                       type='submit'
                       disabled={!isValid}
                     >
                       {t('loginForm.login')}
-                    </Button>
+                    </ButtonStyled>
                   </Grid>
                   <Grid
                     item
                     mobile={8}
                   >
-                    <Button
+                    <ButtonStyled
                       variant='contained'
                       color='secondary'
-                      sx={{
-                        padding: 1,
-                        width: 1,
+                      onClick={() => {
+                        navigate('/register');
                       }}
-                      component={Link}
-                      to='/register'
                     >
                       {t('loginForm.register')}
-                    </Button>
+                    </ButtonStyled>
                   </Grid>
 
                   {!isTablet && (

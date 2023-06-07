@@ -165,11 +165,7 @@ export function UserList() {
               );
             })}
             {emptyRows > 0 && (
-              <TableRow
-                style={{
-                  height: pixelHeightPerRow * emptyRows,
-                }}
-              >
+              <TableRow style={{ height: pixelHeightPerRow * emptyRows }}>
                 <TableCell colSpan={6} />
               </TableRow>
             )}

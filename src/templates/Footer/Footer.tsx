@@ -1,5 +1,6 @@
 import { GitHub, ImportContacts } from '@mui/icons-material';
-import { Grid, Link, Typography, useMediaQuery, useTheme } from '@mui/material';
+import { Grid, Link, useMediaQuery, useTheme } from '@mui/material';
+import { StyledTypographyBold, StyledTypographyMedium } from './Footer.styled';
 import { IconLinkProps } from '../../components/IconLink/IconLink.types';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
@@ -39,35 +40,9 @@ export function Footer() {
         marginTop={0}
       >
         <div>
-          <Typography
-            sx={{
-              display: 'inline',
-              fontWeight: (theme) => {
-                return theme.typography.fontWeightMedium;
-              },
-            }}
-          >
-            {t('footer.copyright')}
-          </Typography>
-          <Typography
-            sx={{
-              display: 'inline',
-              fontWeight: (theme) => {
-                return theme.typography.fontWeightBold;
-              },
-            }}
-          >
-            {` ${t('footer.authors')} `}
-          </Typography>
-          <Typography
-            sx={{
-              display: 'inline',
-              fontWeight: (theme) => {
-                return theme.typography.fontWeightBold;
-              },
-              textDecoration: 'underline',
-            }}
-          >
+          <StyledTypographyMedium>{t('footer.copyright')}</StyledTypographyMedium>
+          <StyledTypographyBold>{` ${t('footer.authors')} `}</StyledTypographyBold>
+          <StyledTypographyBold sx={{ textDecoration: 'underline' }}>
             <Link
               href='https://github.com/dorm-social-room-manager/dsrm-frontend/blob/master/LICENSE.MD'
               target='_blank'
@@ -75,7 +50,7 @@ export function Footer() {
             >
               {t('footer.policy')}
             </Link>
-          </Typography>
+          </StyledTypographyBold>
         </div>
         <IconsGroup icons={FOOTER_ICON_PROPS}></IconsGroup>
       </Grid>

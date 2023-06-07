@@ -1,6 +1,7 @@
-import { Alert, Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
-import { Field, Formik } from 'formik';
+import { AlertStyled, InputStyled } from './RegisterForm.styled';
+import { Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { CreateUserType } from '../../common/types/OperationTypes.types';
+import { Formik } from 'formik';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import { SyntheticEvent } from 'react';
@@ -77,13 +78,12 @@ export function RegisterForm() {
               autoHideDuration={6000}
               onClose={handleClose}
             >
-              <Alert
+              <AlertStyled
                 onClose={handleClose}
                 severity='success'
-                sx={{ width: '100%' }}
               >
                 {t('registerForm.successSnackbarRegister')}
-              </Alert>
+              </AlertStyled>
             </Snackbar>
 
             <Snackbar
@@ -92,13 +92,12 @@ export function RegisterForm() {
               autoHideDuration={6000}
               onClose={handleClose}
             >
-              <Alert
+              <AlertStyled
                 onClose={handleClose}
                 severity='error'
-                sx={{ width: '100%' }}
               >
                 {t('registerForm.errorSnackbarRegister')}
-              </Alert>
+              </AlertStyled>
             </Snackbar>
             <Box
               padding={0}
@@ -137,9 +136,8 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <Field
+                      <InputStyled
                         as={TextField}
-                        sx={{ width: '100%' }}
                         label={t('registerForm.firstName')}
                         type='text'
                         name='name'
@@ -151,9 +149,8 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <Field
+                      <InputStyled
                         as={TextField}
-                        sx={{ width: '100%' }}
                         label={t('registerForm.lastName')}
                         type='text'
                         name='surname'
@@ -165,9 +162,8 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <Field
+                      <InputStyled
                         as={TextField}
-                        sx={{ width: '100%' }}
                         label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                         type='text'
@@ -188,9 +184,8 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <Field
+                      <InputStyled
                         as={TextField}
-                        sx={{ width: '100%' }}
                         label={t('registerForm.email')}
                         type='email'
                         name='email'
