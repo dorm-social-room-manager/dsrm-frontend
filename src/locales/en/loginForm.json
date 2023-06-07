@@ -9,5 +9,7 @@
   "passwordEmpty": "Password is required",
   "showPassword": "Show Password",
   "rememberMe": "Remember me",
-  "forgotPassword": "Forgot Password"
+  "forgotPassword": "Forgot Password",
+  "successSnackbarLogin": "You have successfully logged in!",
+  "errorSnackbarLogin": "Incorrect email or password"
 }

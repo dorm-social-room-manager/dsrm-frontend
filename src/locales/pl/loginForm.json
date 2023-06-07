@@ -9,5 +9,7 @@
   "passwordEmpty": "Hasło jest wymagane",
   "showPassword": "Pokaż hasło",
   "rememberMe": "Zapamiętaj mnie",
-  "forgotPassword": "Zapomniałeś hasła?"
+  "forgotPassword": "Zapomniałeś hasła?",
+  "successSnackbarLogin": "Udało Ci się zalogować!",
+  "errorSnackbarLogin": "Nie udało Ci się zalogować!"
 }
