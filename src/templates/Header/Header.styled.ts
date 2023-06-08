@@ -11,11 +11,11 @@ export const HeaderContainerStyled = styled('div')(() => {
 //TODO
 //przypisac defaultowe paddingi w defaultOverrides
 export const LinkContainerStyled = styled(Grid)(({ theme }) => {
-  const tablet = useMediaQuery(theme.breakpoints.up('tablet'));
+  const tabletOrHigher = useMediaQuery(theme.breakpoints.up('tablet'));
   return {
     alignItems: 'center',
     display: 'flex',
     gap: '1rem',
-    marginRight: tablet ? 'auto' : undefined,
+    marginRight: tabletOrHigher ? 'auto' : 0,
   };
 });
