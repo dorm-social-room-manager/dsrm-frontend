@@ -9,8 +9,3 @@ export type AddRoomFormValues = {
 };
 
 export type AddRoomFormErrors = Partial<Record<keyof AddRoomFormValues, string>>;
-
-export interface MockType {
-  id: number;
-  name: string;
-}

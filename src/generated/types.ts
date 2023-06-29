@@ -10,9 +10,11 @@ export interface paths {
   };
   "/admin/rooms/{id}": {
     put: operations["updateRoom"];
+    delete: operations["deleteRoom"];
   };
   "/admin/reservations/{id}": {
     put: operations["updateReservation"];
+    delete: operations["deleteReservation"];
   };
   "/users": {
     post: operations["addUser"];
@@ -61,9 +63,13 @@ export interface paths {
   };
   "/admin/users/{id}": {
     get: operations["getUser_1"];
+    delete: operations["deleteUser"];
   };
   "/admin/roles/{id}": {
     get: operations["getRole"];
+  };
+  "/admin/room-types/{id}": {
+    delete: operations["deleteRoomType"];
   };
 }
 
@@ -85,7 +91,8 @@ export interface components {
       number: number;
       /** Format: int32 */
       floor: number;
-      type?: string;
+      keyOwner: string;
+      type: string;
       /** Format: int32 */
       maxCapacity: number;
       openingTime: string;
@@ -132,10 +139,10 @@ export interface components {
       banned?: boolean;
     };
     PageRoomDTO: {
-      /** Format: int64 */
-      totalElements?: number;
       /** Format: int32 */
       totalPages?: number;
+      /** Format: int64 */
+      totalElements?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoomDTO"])[];
@@ -165,10 +172,10 @@ export interface components {
       roomNumber?: number;
       /** Format: int32 */
       floor?: number;
-      roomType?: components["schemas"]["RoomType"];
+      roomType?: components["schemas"]["RoomTypeDTO"];
       /** Format: int32 */
       maxCapacity?: number;
-      keyOwner?: components["schemas"]["User"];
+      keyOwner?: components["schemas"]["UserDTO"];
       openingTime?: string;
       closingTime?: string;
       /** Format: date */
@@ -176,7 +183,7 @@ export interface components {
       /** Format: date */
       unavailableEnd?: string;
     };
-    RoomType: {
+    RoomTypeDTO: {
       id?: string;
       name?: string;
     };
@@ -185,23 +192,11 @@ export interface components {
       sorted?: boolean;
       unsorted?: boolean;
     };
-    User: {
-      id?: string;
-      email?: string;
-      password?: string;
-      name?: string;
-      surname?: string;
-      /** Format: int32 */
-      roomNumber?: number;
-      /** Format: date-time */
-      banEnd?: string;
-      roles?: (components["schemas"]["Role"])[];
-    };
     PageRoomTypeDTO: {
-      /** Format: int64 */
-      totalElements?: number;
       /** Format: int32 */
       totalPages?: number;
+      /** Format: int64 */
+      totalElements?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoomTypeDTO"])[];
@@ -215,24 +210,11 @@ export interface components {
       pageable?: components["schemas"]["PageableObject"];
       empty?: boolean;
     };
-    RoomTypeDTO: {
-      name?: string;
-    };
-    LocalTime: {
-      /** Format: int32 */
-      hour?: number;
-      /** Format: int32 */
-      minute?: number;
-      /** Format: int32 */
-      second?: number;
-      /** Format: int32 */
-      nano?: number;
-    };
     PageReservationDTO: {
-      /** Format: int64 */
-      totalElements?: number;
       /** Format: int32 */
       totalPages?: number;
+      /** Format: int64 */
+      totalElements?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["ReservationDTO"])[];
@@ -247,33 +229,16 @@ export interface components {
       empty?: boolean;
     };
     ReservationDTO: {
-      room?: components["schemas"]["Room"];
+      room?: components["schemas"]["RoomDTO"];
       from?: string;
       to?: string;
-      user?: components["schemas"]["User"];
-    };
-    Room: {
-      id?: string;
-      /** Format: int32 */
-      roomNumber?: number;
-      /** Format: int32 */
-      floor?: number;
-      roomType?: components["schemas"]["RoomType"];
-      /** Format: int32 */
-      maxCapacity?: number;
-      keyOwner?: components["schemas"]["User"];
-      openingTime?: components["schemas"]["LocalTime"];
-      closingTime?: components["schemas"]["LocalTime"];
-      /** Format: date */
-      unavailableStart?: string;
-      /** Format: date */
-      unavailableEnd?: string;
+      user?: components["schemas"]["UserDTO"];
     };
     PageUserDTO: {
-      /** Format: int64 */
-      totalElements?: number;
       /** Format: int32 */
       totalPages?: number;
+      /** Format: int64 */
+      totalElements?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["UserDTO"])[];
@@ -288,10 +253,10 @@ export interface components {
       empty?: boolean;
     };
     PageRoleDTO: {
-      /** Format: int64 */
-      totalElements?: number;
       /** Format: int32 */
       totalPages?: number;
+      /** Format: int64 */
+      totalElements?: number;
       /** Format: int32 */
       size?: number;
       content?: (components["schemas"]["RoleDTO"])[];
@@ -363,6 +328,23 @@ export interface operations {
       };
     };
   };
+  deleteRoom: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: never;
+      /** @description Bad Request */
+      400: {
+        content: {
+          "*/*": (string)[];
+        };
+      };
+    };
+  };
   updateReservation: {
     parameters: {
       path: {
@@ -372,6 +354,23 @@ export interface operations {
     requestBody: {
       content: {
         "application/json": components["schemas"]["ReservationRequestDTO"];
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: never;
+      /** @description Bad Request */
+      400: {
+        content: {
+          "*/*": (string)[];
+        };
+      };
+    };
+  };
+  deleteReservation: {
+    parameters: {
+      path: {
+        id: string;
       };
     };
     responses: {
@@ -763,6 +762,23 @@ export interface operations {
       };
     };
   };
+  deleteUser: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: never;
+      /** @description Bad Request */
+      400: {
+        content: {
+          "*/*": (string)[];
+        };
+      };
+    };
+  };
   getRole: {
     parameters: {
       path: {
@@ -776,6 +792,23 @@ export interface operations {
           "application/json": components["schemas"]["RoleDTO"];
         };
       };
+      /** @description Bad Request */
+      400: {
+        content: {
+          "*/*": (string)[];
+        };
+      };
+    };
+  };
+  deleteRoomType: {
+    parameters: {
+      path: {
+        id: string;
+      };
+    };
+    responses: {
+      /** @description OK */
+      200: never;
       /** @description Bad Request */
       400: {
         content: {

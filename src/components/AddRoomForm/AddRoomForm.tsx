@@ -1,14 +1,17 @@
-import { addRoom, useReadRoomTypesMutation } from '../../common/services/RoomService/RoomService';
 import { AddRoomFormErrors, AddRoomFormValues } from './AddRoomForm.types';
 import { AddRoomQueryType, RoomTypeDTO, UserDTO } from '../../common/types/OperationTypes.types';
-import { Box, Button, Grid, MenuItem, TextField } from '@mui/material';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { Alert, Box, Button, Grid, MenuItem, Snackbar, TextField } from '@mui/material';
+import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { Field, Formik } from 'formik';
+import { useAddRoomMutation, useReadRoomTypesMutation } from '../../common/services/RoomService/RoomService';
 import styles from './AddRoomForm.module.scss';
+import { useNavigate } from 'react-router-dom';
 import { useReadUsersMutation } from '../../common/services/UserService/UserService';
 import { useTranslation } from 'react-i18next';
 
 export function AddRoomForm() {
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
   const { t } = useTranslation();
   const validate = (values: AddRoomFormValues) => {
     const errors: AddRoomFormErrors = {};
@@ -35,11 +38,21 @@ export function AddRoomForm() {
   };
   const mutateUsers = useReadUsersMutation(handleUserInputData).mutate;
   const mutateRoomTypes = useReadRoomTypesMutation(handleRoomTypeInputData).mutate;
+  const { mutate, isSuccess, isError } = useAddRoomMutation();
   useEffect(() => {
     mutateUsers({});
     mutateRoomTypes();
   }, [mutateUsers, mutateRoomTypes]);
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
+    setOpen(false);
+    if (isSuccess) {
+      navigate('/dashboard');
+    }
+  };
   return (
     <Formik
       enableReinitialize
@@ -53,21 +66,23 @@ export function AddRoomForm() {
         keyOwner: '',
         maxCapacity: '',
         openingTime: '',
+        roomName: '',
         roomNumber: '',
         roomType: '',
       }}
-      onSubmit={async (values) => {
+      onSubmit={(values) => {
         const room: AddRoomQueryType = {
           closingTime: `${values.closingTime}:00`,
           floor: Number(values.floor),
+          keyOwner: values.keyOwner,
           maxCapacity: Number(values.maxCapacity),
-          name: 'none',
+          name: values.roomName,
           number: Number(values.roomNumber),
           openingTime: `${values.openingTime}:00`,
           type: values.roomType,
         };
         console.log(room);
-        await addRoom(room);
+        mutate(room);
       }}
     >
       {({ isValid, handleSubmit, setFieldValue, values }) => {
@@ -78,11 +93,39 @@ export function AddRoomForm() {
         };
         return (
           <form onSubmit={handleSubmit}>
+            <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+              open={isSuccess && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='success'
+                sx={{ width: '100%' }}
+              >
+                {t('addRoom.successSnackbarRegister')}
+              </Alert>
+            </Snackbar>
+
+            <Snackbar
+              anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+              open={isError && open}
+              autoHideDuration={6000}
+              onClose={handleClose}
+            >
+              <Alert
+                onClose={handleClose}
+                severity='error'
+                sx={{ width: '100%' }}
+              >
+                {t('addRoom.errorSnackbarRegister')}
+              </Alert>
+            </Snackbar>
             <Box
               margin={'auto'}
               padding={0}
               boxShadow={'0px 0px 30px #ccc'}
-              height={632}
               maxWidth={640}
             >
               <Grid
@@ -110,8 +153,8 @@ export function AddRoomForm() {
                       roomTypes.map((selectableRoomType) => {
                         return (
                           <MenuItem
-                            key={selectableRoomType.name}
-                            value={selectableRoomType.name}
+                            key={selectableRoomType.id}
+                            value={selectableRoomType.id}
                           >
                             {selectableRoomType.name}
                           </MenuItem>
@@ -136,7 +179,7 @@ export function AddRoomForm() {
                       return (
                         <MenuItem
                           key={selectableUser.id}
-                          value={selectableUser.name}
+                          value={selectableUser.id}
                         >
                           {selectableUser.name} {selectableUser.surname}
                         </MenuItem>
@@ -155,6 +198,18 @@ export function AddRoomForm() {
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
                     name='roomNumber'
+                    required
+                  />
+                </Grid>
+                <Grid
+                  item
+                  mobile={12}
+                >
+                  <Field
+                    as={TextField}
+                    className={styles.input}
+                    label={t('addRoom.roomName')}
+                    name='roomName'
                     required
                   />
                 </Grid>

@@ -1,4 +1,4 @@
-import { AddRoomQueryType, ReadRoomTypesResponseType, RoomTypeDTO, UserDTO } from '../../types/OperationTypes.types';
+import { AddRoomQueryType, ReadRoomTypesResponseType, RoomTypeDTO } from '../../types/OperationTypes.types';
 import { useMutation } from '@tanstack/react-query';
 
 const getRequestObject = (values: AddRoomQueryType) => {
@@ -20,17 +20,19 @@ const readRoomTypes = async (): Promise<ReadRoomTypesResponseType> => {
       return response.json();
     })
     .then((data: ReadRoomTypesResponseType) => {
+      console.log(data);
       return data;
     })
     .catch(() => {
       throw new Error("Couldn't read room types");
     });
 };
-export const useReadRoomTypesMutation = (handleInputData: (userData: UserDTO[]) => void) => {
+export const useReadRoomTypesMutation = (handleInputData: (roomData: RoomTypeDTO) => void) => {
   return useMutation(readRoomTypes, {
     onSuccess: (data) => {
       if (data.content !== undefined) {
         const roomTypes: RoomTypeDTO = data.content;
+        // console.log(roomTypes);
         handleInputData(roomTypes);
       }
     },
@@ -45,4 +47,8 @@ export const addRoom = async (values: AddRoomQueryType): Promise<Response> => {
       throw new Error("Couldn't create room");
     }
   });
+};
+
+export const useAddRoomMutation = () => {
+  return useMutation(addRoom);
 };
