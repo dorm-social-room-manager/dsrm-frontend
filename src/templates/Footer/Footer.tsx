@@ -1,6 +1,6 @@
 import { GitHub, ImportContacts } from '@mui/icons-material';
 import { Grid, Link, useMediaQuery, useTheme } from '@mui/material';
-import { StyledTypographyBold, StyledTypographyMedium } from './Footer.styled';
+import { FooterInlineStyledTypography } from './Footer.styled';
 import { IconLinkProps } from '../../components/IconLink/IconLink.types';
 import { IconsGroup } from '../../components/IconsGroup/IconsGroup';
 import { useTranslation } from 'react-i18next';
@@ -20,6 +20,9 @@ const FOOTER_ICON_PROPS: IconLinkProps[] = [
 
 export function Footer() {
   const customTheme = useTheme();
+  if (!customTheme || !customTheme.breakpoints || !customTheme.typography.fontWeightBold || !customTheme.typography.fontWeightMedium) {
+    throw new Error('Theme is not defined');
+  }
   const tablet: boolean = useMediaQuery(customTheme.breakpoints.up('mobile'));
   const mobileGap = 4;
   const tabletGap = 0;
@@ -40,9 +43,13 @@ export function Footer() {
         marginTop={0}
       >
         <div>
-          <StyledTypographyMedium>{t('footer.copyright')}</StyledTypographyMedium>
-          <StyledTypographyBold>{` ${t('footer.authors')} `}</StyledTypographyBold>
-          <StyledTypographyBold sx={{ textDecoration: 'underline' }}>
+          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightMedium }}>
+            {t('footer.copyright')}
+          </FooterInlineStyledTypography>
+          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold }}>
+            ${t('footer.authors')}
+          </FooterInlineStyledTypography>
+          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold, textDecoration: 'underline' }}>
             <Link
               href='https://github.com/dorm-social-room-manager/dsrm-frontend/blob/master/LICENSE.MD'
               target='_blank'
@@ -50,7 +57,7 @@ export function Footer() {
             >
               {t('footer.policy')}
             </Link>
-          </StyledTypographyBold>
+          </FooterInlineStyledTypography>
         </div>
         <IconsGroup icons={FOOTER_ICON_PROPS}></IconsGroup>
       </Grid>

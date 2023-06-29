@@ -1,4 +1,4 @@
-import { DividerStyled, HeaderContainerStyled, LinkContainerStyled } from './Header.styled';
+import { HeaderContainerStyled, HeaderDividerStyled, HeaderLinkContainerStyled } from './Header.styled';
 import { Link, Typography } from '@mui/material';
 import { HeaderProps } from './Header.types';
 import { useMediaQuery } from '@mui/material';
@@ -18,8 +18,8 @@ export function Header(props: HeaderProps) {
       >
         {props.headerTitle}
       </Typography>
-      <DividerStyled />
-      <LinkContainerStyled
+      <HeaderDividerStyled />
+      <HeaderLinkContainerStyled
         item
         paddingRight={tablet ? NON_MOBILE_PADDING : MOBILE_PADDING}
         paddingLeft={tablet ? NON_MOBILE_PADDING : MOBILE_PADDING}
@@ -41,7 +41,7 @@ export function Header(props: HeaderProps) {
         >
           {props.faculty.urlName}
         </Link>
-      </LinkContainerStyled>
+      </HeaderLinkContainerStyled>
     </HeaderContainerStyled>
   );
 }

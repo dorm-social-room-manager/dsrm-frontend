@@ -1,5 +1,5 @@
 import { Box, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
-import { ButtonStyled, InputStyled } from './LoginForm.styled';
+import { LoginFormButtonStyled, LoginFormInputStyled } from './LoginForm.styled';
 import { Formik } from 'formik';
 import { LoginFormErrors } from './LoginForm.types';
 import { LoginOptions } from './LoginOptions';
@@ -63,7 +63,7 @@ export function LoginForm() {
                     item
                     mobile={11}
                   >
-                    <InputStyled
+                    <LoginFormInputStyled
                       as={TextField}
                       label={t('loginForm.email')}
                       type='email'
@@ -97,20 +97,20 @@ export function LoginForm() {
                     item
                     mobile={8}
                   >
-                    <ButtonStyled
+                    <LoginFormButtonStyled
                       variant='contained'
                       color='primary'
                       type='submit'
                       disabled={!isValid}
                     >
                       {t('loginForm.login')}
-                    </ButtonStyled>
+                    </LoginFormButtonStyled>
                   </Grid>
                   <Grid
                     item
                     mobile={8}
                   >
-                    <ButtonStyled
+                    <LoginFormButtonStyled
                       variant='contained'
                       color='secondary'
                       onClick={() => {
@@ -118,7 +118,7 @@ export function LoginForm() {
                       }}
                     >
                       {t('loginForm.register')}
-                    </ButtonStyled>
+                    </LoginFormButtonStyled>
                   </Grid>
 
                   {!isTablet && (

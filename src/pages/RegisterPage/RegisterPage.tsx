@@ -1,9 +1,9 @@
-import { Footer } from '../templates/Footer/Footer';
+import { Footer } from '../../templates/Footer/Footer';
 import { Grid } from '@mui/material';
-import { Header } from '../templates/Header/Header';
-import { HeaderProps } from '../templates/Header/Header.types';
-import { RegisterForm } from '../components/RegisterForm/RegisterForm';
-import { StyledBox } from './Page.styled';
+import { Header } from '../../templates/Header/Header';
+import { HeaderProps } from '../../templates/Header/Header.types';
+import { RegisterForm } from '../../components/RegisterForm/RegisterForm';
+import { StyledBox } from '../../common/utils/Page.styled';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';

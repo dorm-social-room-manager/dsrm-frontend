@@ -1,5 +1,5 @@
-import { AlertStyled, InputStyled } from './RegisterForm.styled';
 import { Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { RegisterFormAlertStyled, RegisterFormInputStyled } from './RegisterForm.styled';
 import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { Formik } from 'formik';
 import { LoadingButton } from '@mui/lab';
@@ -78,12 +78,12 @@ export function RegisterForm() {
               autoHideDuration={6000}
               onClose={handleClose}
             >
-              <AlertStyled
+              <RegisterFormAlertStyled
                 onClose={handleClose}
                 severity='success'
               >
                 {t('registerForm.successSnackbarRegister')}
-              </AlertStyled>
+              </RegisterFormAlertStyled>
             </Snackbar>
 
             <Snackbar
@@ -92,12 +92,12 @@ export function RegisterForm() {
               autoHideDuration={6000}
               onClose={handleClose}
             >
-              <AlertStyled
+              <RegisterFormAlertStyled
                 onClose={handleClose}
                 severity='error'
               >
                 {t('registerForm.errorSnackbarRegister')}
-              </AlertStyled>
+              </RegisterFormAlertStyled>
             </Snackbar>
             <Box
               padding={0}
@@ -136,7 +136,7 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <InputStyled
+                      <RegisterFormInputStyled
                         as={TextField}
                         label={t('registerForm.firstName')}
                         type='text'
@@ -149,7 +149,7 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <InputStyled
+                      <RegisterFormInputStyled
                         as={TextField}
                         label={t('registerForm.lastName')}
                         type='text'
@@ -162,7 +162,7 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <InputStyled
+                      <RegisterFormInputStyled
                         as={TextField}
                         label={t('registerForm.roomNumber')}
                         inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
@@ -184,7 +184,7 @@ export function RegisterForm() {
                       tablet={6}
                       mobile={12}
                     >
-                      <InputStyled
+                      <RegisterFormInputStyled
                         as={TextField}
                         label={t('registerForm.email')}
                         type='email'

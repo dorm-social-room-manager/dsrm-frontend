@@ -1,7 +1,7 @@
 import { Paper } from '@mui/material';
 import { styled } from '@mui/material';
 
-export const PaperStyled = styled(Paper)(() => {
+export const DashboardCardStyled = styled(Paper)(() => {
   return {
     '&:hover': {
       bgcolor: 'secondary.main',
