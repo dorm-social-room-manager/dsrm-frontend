@@ -14,5 +14,8 @@
     "maxCapacityRequired": "Max Capacity is required",
     "openingTimeRequired": "Opening Time is required",
     "closingTimeRequired": "Closing Time is required",
-    "closingTimeBeforeOpeningTime": "Closing Time must be after Opening Time"
+    "closingTimeBeforeOpeningTime": "Closing Time must be after Opening Time",
+    "roomName": "Room Name",
+    "successSnackbarRegister": "You have successfully added the room!",
+    "errorSnackbarRegister": "Something went wrong, please try again later!"
 }

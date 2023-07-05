@@ -14,5 +14,6 @@
     "maxCapacityRequired": "Maksymalna pojemność jest wymagana",
     "openingTimeRequired": "Czas otwarcia jest wymagany",
     "closingTimeRequired": "Czas zamknięcia jest wymagany",
-    "closingTimeBeforeOpeningTime": "Czas zamknięcia nie może być wcześniejszy niż czas otwarcia"
+    "closingTimeBeforeOpeningTime": "Czas zamknięcia nie może być wcześniejszy niż czas otwarcia",
+    "roomName": "Nazwa pokoju"
 }
