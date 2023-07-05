@@ -1,3 +1,5 @@
+import * as addRoomEN from '../locales/en/addRoom.json';
+import * as addRoomPL from '../locales/pl/addRoom.json';
 import * as dashboardEN from '../locales/en/dashboard.json';
 import * as dashboardHeaderEN from '../locales/en/dashboardHeader.json';
 import * as dashboardHeaderPL from '../locales/en/dashboardHeader.json';
@@ -21,6 +23,7 @@ import { initReactI18next } from 'react-i18next';
 const resources = {
   en: {
     components: {
+      addRoom: addRoomEN,
       dashboard: dashboardEN,
       dashboardHeader: dashboardHeaderEN,
       dashboardPage: dashboardPageEN,
@@ -33,6 +36,7 @@ const resources = {
   },
   pl: {
     components: {
+      addRoom: addRoomPL,
       dashboard: dashboardPL,
       dashboardHeader: dashboardHeaderPL,
       dashboardPage: dashboardPagePL,
