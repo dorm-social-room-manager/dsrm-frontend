@@ -7,6 +7,7 @@ import FeaturedPlayListSharpIcon from '@mui/icons-material/FeaturedPlayListSharp
 import { Footer } from '../templates/Footer/Footer';
 import { Grid } from '@mui/material';
 import InsertPhotoSharpIcon from '@mui/icons-material/InsertPhotoSharp';
+import NoteAddSharpIcon from '@mui/icons-material/NoteAddSharp';
 import PersonIcon from '@mui/icons-material/Person';
 import { useTranslation } from 'react-i18next';
 
@@ -35,12 +36,31 @@ export function DashboardPage() {
       url: '/dashboard/add-room',
     },
   ];
+
+  const USER_ITEMS: DashboardItem[] = [
+    {
+      icon: InsertPhotoSharpIcon,
+      title: t(`dashboardPage.rooms`),
+      url: '/dashboard/rooms',
+    },
+    {
+      icon: FeaturedPlayListSharpIcon,
+      title: t('dashboardPage.reservations'),
+      url: '/dashboard/reservations',
+    },
+    {
+      icon: NoteAddSharpIcon,
+      title: t('dashboardPage.addReservation'),
+      url: '/dashboard/add-reservation',
+    },
+  ];
   const dashboardHeaderProps: DashboardHeaderProps = {
     logo: t('dashboard.logo'),
     userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
     userName: 'John Doe',
     userRole: 'Admin',
   };
+  const dashboardItems = dashboardHeaderProps.userRole === 'Admin' ? ADMIN_ITEMS : USER_ITEMS;
   return (
     <Grid
       container
@@ -60,7 +80,7 @@ export function DashboardPage() {
         mobile={12}
         margin={19}
       >
-        <DashboardBody items={ADMIN_ITEMS} />
+        <DashboardBody items={dashboardItems} />
       </Grid>
       <Grid
         item
