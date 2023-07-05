@@ -4,7 +4,6 @@ import { Alert, Box, Button, Grid, MenuItem, Snackbar, TextField } from '@mui/ma
 import { ChangeEvent, SyntheticEvent, useEffect, useState } from 'react';
 import { Field, Formik } from 'formik';
 import { useAddRoomMutation, useReadRoomTypesMutation } from '../../common/services/RoomService/RoomService';
-import styles from './AddRoomForm.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { useReadUsersMutation } from '../../common/services/UserService/UserService';
 import { useTranslation } from 'react-i18next';
@@ -143,9 +142,9 @@ export function AddRoomForm() {
                   <TextField
                     label={t('addRoom.roomType')}
                     value={values.roomType}
-                    className={styles.input}
                     onChange={handleInputChange}
                     name='roomType'
+                    fullWidth
                     select
                     required
                   >
@@ -168,7 +167,7 @@ export function AddRoomForm() {
                 >
                   <TextField
                     label={t('addRoom.keyOwner')}
-                    className={styles.input}
+                    fullWidth
                     value={values.keyOwner}
                     onChange={handleInputChange}
                     name='keyOwner'
@@ -193,7 +192,7 @@ export function AddRoomForm() {
                 >
                   <Field
                     as={TextField}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.roomNumber')}
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
@@ -207,7 +206,7 @@ export function AddRoomForm() {
                 >
                   <Field
                     as={TextField}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.roomName')}
                     name='roomName'
                     required
@@ -219,7 +218,7 @@ export function AddRoomForm() {
                 >
                   <Field
                     as={TextField}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.floor')}
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
@@ -233,7 +232,7 @@ export function AddRoomForm() {
                 >
                   <Field
                     as={TextField}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.maxCapacity')}
                     inputProps={{ inputMode: 'numeric', pattern: '[0-9]*' }}
                     type='number'
@@ -248,7 +247,7 @@ export function AddRoomForm() {
                   <Field
                     as={TextField}
                     InputLabelProps={{ shrink: true }}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.openingTime')}
                     type='time'
                     name='openingTime'
@@ -262,7 +261,7 @@ export function AddRoomForm() {
                   <Field
                     as={TextField}
                     InputLabelProps={{ shrink: true }}
-                    className={styles.input}
+                    fullWidth
                     label={t('addRoom.closingTime')}
                     type='time'
                     name='closingTime'
