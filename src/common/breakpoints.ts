@@ -21,4 +21,5 @@ export const customTheme = createTheme({
       tablet: 768,
     },
   },
+  spacing: 8,
 });

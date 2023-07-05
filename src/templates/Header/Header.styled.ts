@@ -8,14 +8,12 @@ export const HeaderContainerStyled = styled('div')(() => {
   return { alignItems: 'center', display: 'inline-flex', flexDirection: 'column', justifyContent: 'center', margin: '0px', padding: '0px' };
 });
 
-//TODO
-//przypisac defaultowe paddingi w defaultOverrides
 export const HeaderLinkContainerStyled = styled(Grid)(({ theme }) => {
   const tabletOrHigher = useMediaQuery(theme.breakpoints.up('tablet'));
   return {
     alignItems: 'center',
     display: 'flex',
-    gap: '1rem',
+    gap: theme.spacing(2),
     marginRight: tabletOrHigher ? 'auto' : 0,
   };
 });
