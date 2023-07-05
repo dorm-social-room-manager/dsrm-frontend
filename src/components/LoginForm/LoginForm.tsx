@@ -1,13 +1,19 @@
-import { Box, Button, Divider, Grid, TextField, useMediaQuery, useTheme } from '@mui/material';
+import { Alert, Box, Button, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { Field, Formik } from 'formik';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { SyntheticEvent, useState } from 'react';
+import { LoadingButton } from '@mui/lab';
+import { LoginDetailsRequestDTO } from '../../common/types/OperationTypes.types';
 import { LoginFormErrors } from './LoginForm.types';
 import { LoginOptions } from './LoginOptions';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import styles from './LoginForm.module.scss';
+import { useLoginUserMutation } from '../../common/services/UserService/UserService';
 import { useTranslation } from 'react-i18next';
 
 export function LoginForm() {
+  const [open, setOpen] = useState(true);
+  const navigate = useNavigate();
   const theme = useTheme();
   const isTablet = useMediaQuery(theme.breakpoints.up('tablet'));
   const minLength = 1;
@@ -24,6 +30,19 @@ export function LoginForm() {
   };
   const mobileGap = 8;
   const tabletGap = 6;
+
+  const { mutate, isLoading, isSuccess, isError } = useLoginUserMutation();
+  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+    if (isSuccess) {
+      navigate('/dashboard');
+    }
+  };
+
   return (
     <>
       <Formik
@@ -33,13 +52,46 @@ export function LoginForm() {
         validateOnBlur={true}
         validate={validate}
         initialValues={{ email: '', password: '' }}
-        onSubmit={function () {
-          throw new Error('Function not implemented.');
+        onSubmit={(values) => {
+          const loginInfo: LoginDetailsRequestDTO = {
+            password: values.password,
+            username: values.email,
+          };
+          mutate(loginInfo);
         }}
       >
-        {({ isValid }) => {
+        {({ isValid, handleSubmit }) => {
           return (
-            <form>
+            <form onSubmit={handleSubmit}>
+              <Snackbar
+                anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+                open={isSuccess && open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+              >
+                <Alert
+                  onClose={handleClose}
+                  severity='success'
+                  sx={{ width: '100%' }}
+                >
+                  {t('loginForm.successSnackbarLogin')}
+                </Alert>
+              </Snackbar>
+
+              <Snackbar
+                anchorOrigin={{ horizontal: 'center', vertical: 'top' }}
+                open={isError && open}
+                autoHideDuration={6000}
+                onClose={handleClose}
+              >
+                <Alert
+                  onClose={handleClose}
+                  severity='error'
+                  sx={{ width: '100%' }}
+                >
+                  {t('loginForm.errorSnackbarLogin')}
+                </Alert>
+              </Snackbar>
               <Box
                 padding={0}
                 boxShadow={'0px 0px 30px #ccc'}
@@ -97,7 +149,7 @@ export function LoginForm() {
                     item
                     mobile={8}
                   >
-                    <Button
+                    <LoadingButton
                       variant='contained'
                       color='primary'
                       sx={{
@@ -105,10 +157,11 @@ export function LoginForm() {
                         width: 1,
                       }}
                       type='submit'
+                      loading={isLoading}
                       disabled={!isValid}
                     >
                       {t('loginForm.login')}
-                    </Button>
+                    </LoadingButton>
                   </Grid>
                   <Grid
                     item

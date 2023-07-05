@@ -1,9 +1,18 @@
-import { CreateUserType, ReadUsersQueryType, ReadUsersResponseType, UserDTO } from '../../types/OperationTypes.types';
+import {
+  CreateUserType,
+  JwtResponse,
+  LoginDetailsRequestDTO,
+  ReadUsersQueryType,
+  ReadUsersResponseType,
+  UserDTO,
+} from '../../types/OperationTypes.types';
+import jwt, { JwtPayload } from 'jwt-decode';
 import { addQueryParams } from '../../utils/addQueryParams';
+import Cookies from 'universal-cookie';
 import { FetchError } from '../../../errors/FetchError';
 import { useMutation } from '@tanstack/react-query';
 
-const getRequestObject = (values: CreateUserType) => {
+const getRequestObject = (values: Record<PropertyKey, unknown>, method: RequestInit['method'] = 'POST') => {
   return {
     body: JSON.stringify(values),
     headers: {
@@ -11,7 +20,7 @@ const getRequestObject = (values: CreateUserType) => {
       'Access-Control-Allow-Origin': '*',
       'Content-Type': 'application/json',
     },
-    method: 'POST',
+    method: method,
   };
 };
 
@@ -23,6 +32,35 @@ const createUser = async (values: CreateUserType): Promise<Response> => {
       throw new FetchError("Couldn't create user");
     }
   });
+};
+
+const loginUser = async (values: LoginDetailsRequestDTO): Promise<JwtResponse> => {
+  return await fetch(`${import.meta.env.VITE_API_URL}/authenticate`, getRequestObject(values, 'PUT'))
+    .then((response) => {
+      return response.json();
+    })
+    .then((data: JwtResponse) => {
+      const cookies = new Cookies();
+      if (data.accessToken === undefined) {
+        throw new FetchError("Couldn't login user");
+      }
+      const decoded = jwt<JwtPayload>(data.accessToken);
+      if (decoded.exp === undefined) {
+        cookies.set('jwt_authorization', data);
+      } else {
+        cookies.set('jwt_authorization', data, {
+          expires: new Date(decoded.exp * 1000),
+        });
+      }
+      return data;
+    })
+    .catch(() => {
+      throw new FetchError("Couldn't login user");
+    });
+};
+
+export const useLoginUserMutation = () => {
+  return useMutation(loginUser);
 };
 
 const readUsers = async (params: ReadUsersQueryType): Promise<ReadUsersResponseType> => {
