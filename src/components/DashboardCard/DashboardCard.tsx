@@ -1,4 +1,5 @@
-import { Box, Grid, Link, Paper, SvgIcon, Typography } from '@mui/material';
+import { Box, Grid, Link, SvgIcon, Typography } from '@mui/material';
+import { DashboardCardStyled } from './DashboardCard.styled';
 import { DashboardItem } from './DashboardCard.types';
 import { Link as RouterLink } from 'react-router-dom';
 
@@ -11,17 +12,7 @@ export function DashboardCard(props: DashboardItem) {
         underline='none'
         color='inherit'
       >
-        <Paper
-          elevation={1}
-          sx={{
-            '&:hover': {
-              bgcolor: 'secondary.main',
-              color: 'secondary.contrastText',
-            },
-            transitionDuration: '0.3s',
-            transitionProperty: 'all',
-          }}
-        >
+        <DashboardCardStyled elevation={1}>
           <Box
             display={'flex'}
             width={200}
@@ -31,9 +22,7 @@ export function DashboardCard(props: DashboardItem) {
             justifyContent='center'
           >
             <SvgIcon
-              sx={{
-                fontSize: 64,
-              }}
+              sx={{ fontSize: 64 }}
               color={'inherit'}
               component={props.icon}
             />
@@ -44,7 +33,7 @@ export function DashboardCard(props: DashboardItem) {
               {props.title}
             </Typography>
           </Box>
-        </Paper>
+        </DashboardCardStyled>
       </Link>
     </Grid>
   );

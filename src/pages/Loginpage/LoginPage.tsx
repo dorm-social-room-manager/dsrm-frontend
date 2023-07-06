@@ -1,8 +1,9 @@
-import { Box, Grid } from '@mui/material';
-import { Footer } from '../templates/Footer/Footer';
-import { Header } from '../templates/Header/Header';
-import { HeaderProps } from '../templates/Header/Header.types';
-import { LoginForm } from '../components/LoginForm/LoginForm';
+import { Footer } from '../../templates/Footer/Footer';
+import { Grid } from '@mui/material';
+import { Header } from '../../templates/Header/Header';
+import { HeaderProps } from '../../templates/Header/Header.types';
+import { LoginForm } from '../../components/LoginForm/LoginForm';
+import { StyledBox } from '../../common/utils/Page.styled';
 import { useMediaQuery } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import { useTranslation } from 'react-i18next';
@@ -48,9 +49,9 @@ export function LoginPage() {
           justifyContent={'center'}
           alignItems={'center'}
         >
-          <Box sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}>
+          <StyledBox>
             <Header {...headerProps}></Header>
-          </Box>
+          </StyledBox>
         </Grid>
         <Grid
           item
@@ -60,12 +61,9 @@ export function LoginPage() {
           justifyContent={'center'}
           alignItems={'center'}
         >
-          <Box
-            paddingTop={paddingTopValueForLoginForm}
-            sx={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
-          >
+          <StyledBox paddingTop={paddingTopValueForLoginForm}>
             <LoginForm />
-          </Box>
+          </StyledBox>
         </Grid>
       </Grid>
 

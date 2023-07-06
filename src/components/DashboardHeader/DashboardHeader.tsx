@@ -1,25 +1,11 @@
-import {
-  AppBar,
-  AppBarProps,
-  Avatar,
-  Box,
-  Divider,
-  Drawer,
-  IconButton,
-  List,
-  Menu,
-  MenuItem,
-  styled,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@mui/material';
+import { AppBar, AppBarProps, Avatar, Box, Divider, IconButton, List, Menu, MenuItem, styled, Toolbar, Tooltip, Typography } from '@mui/material';
 import { MouseEvent, useState } from 'react';
 import AddPhotoAlternateSharpIcon from '@mui/icons-material/AddPhotoAlternateSharp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import { DashboardHeaderProps } from './DashboardHeader.types';
 import { DashboardItem } from '../DashboardCard/DashboardCard.types';
 import { DrawerItem } from './DrawerItem';
+import { DrawerStyled } from './DashboardHeader.styled';
 import FeaturedPlayListSharpIcon from '@mui/icons-material/FeaturedPlayListSharp';
 import InsertPhotoSharpIcon from '@mui/icons-material/InsertPhotoSharp';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -220,15 +206,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
           </Box>
         </Toolbar>
       </MyAppBar>
-      <Drawer
-        sx={{
-          '& .MuiDrawer-paper': {
-            boxSizing: 'border-box',
-            width: drawerWidth,
-          },
-          flexShrink: 0,
-          width: drawerWidth,
-        }}
+      <DrawerStyled
         variant='persistent'
         anchor='left'
         open={open}
@@ -249,7 +227,7 @@ export function DashboardHeader(props: DashboardHeaderProps) {
             );
           })}
         </List>
-      </Drawer>
+      </DrawerStyled>
     </Box>
   );
 }

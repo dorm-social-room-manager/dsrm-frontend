@@ -1,10 +1,10 @@
 import AddPhotoAlternateSharpIcon from '@mui/icons-material/AddPhotoAlternateSharp';
-import { DashboardBody } from '../components/DashboardBody/DashnoardBody';
-import { DashboardHeader } from '../components/DashboardHeader/DashboardHeader';
-import { DashboardHeaderProps } from '../components/DashboardHeader/DashboardHeader.types';
-import { DashboardItem } from '../components/DashboardCard/DashboardCard.types';
+import { DashboardBody } from '../../components/DashboardBody/DashnoardBody';
+import { DashboardHeader } from '../../components/DashboardHeader/DashboardHeader';
+import { DashboardHeaderProps } from '../../components/DashboardHeader/DashboardHeader.types';
+import { DashboardItem } from '../../components/DashboardCard/DashboardCard.types';
 import FeaturedPlayListSharpIcon from '@mui/icons-material/FeaturedPlayListSharp';
-import { Footer } from '../templates/Footer/Footer';
+import { Footer } from '../../templates/Footer/Footer';
 import { Grid } from '@mui/material';
 import InsertPhotoSharpIcon from '@mui/icons-material/InsertPhotoSharp';
 import PersonIcon from '@mui/icons-material/Person';
