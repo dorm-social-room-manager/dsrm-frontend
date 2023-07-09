@@ -58,6 +58,7 @@ export function LoginForm() {
             username: values.email,
           };
           mutate(loginInfo);
+          setOpen(true);
         }}
       >
         {({ isValid, handleSubmit }) => {
