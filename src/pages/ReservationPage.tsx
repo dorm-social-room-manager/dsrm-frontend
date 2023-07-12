@@ -51,7 +51,7 @@ export function ReservationPage() {
   const { t } = useTranslation();
 
   const dashboardHeaderProps: DashboardHeaderProps = {
-    logo: t('reservationsPage.logo'),
+    logo: t('reservations.logo'),
     userAvatar: 'https://www.w3schools.com/howto/img_avatar.png',
     userName: 'John Doe',
   };

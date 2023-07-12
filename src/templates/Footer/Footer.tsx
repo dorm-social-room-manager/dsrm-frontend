@@ -47,7 +47,7 @@ export function Footer() {
             {t('footer.copyright')}
           </FooterInlineStyledTypography>
           <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold }}>
-            ${t('footer.authors')}
+            {t('footer.authors')}
           </FooterInlineStyledTypography>
           <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold, textDecoration: 'underline' }}>
             <Link
