@@ -42,23 +42,19 @@ export function Footer() {
         columnGap={4}
         marginTop={0}
       >
-        <div>
-          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightMedium }}>
-            {t('footer.copyright')}
-          </FooterInlineStyledTypography>
-          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold }}>
-            ${t('footer.authors')}
-          </FooterInlineStyledTypography>
-          <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold, textDecoration: 'underline' }}>
-            <Link
-              href='https://github.com/dorm-social-room-manager/dsrm-frontend/blob/master/LICENSE.MD'
-              target='_blank'
-              color='inherit'
-            >
-              {t('footer.policy')}
-            </Link>
-          </FooterInlineStyledTypography>
-        </div>
+        <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightMedium }}>
+          {t('footer.copyright')}
+        </FooterInlineStyledTypography>
+        <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold }}>{t('footer.authors')}</FooterInlineStyledTypography>
+        <FooterInlineStyledTypography sx={{ fontWeight: customTheme.typography.fontWeightBold, textDecoration: 'underline' }}>
+          <Link
+            href='https://github.com/dorm-social-room-manager/dsrm-frontend/blob/master/LICENSE.MD'
+            target='_blank'
+            color='inherit'
+          >
+            {t('footer.policy')}
+          </Link>
+        </FooterInlineStyledTypography>
         <IconsGroup icons={FOOTER_ICON_PROPS}></IconsGroup>
       </Grid>
     </footer>

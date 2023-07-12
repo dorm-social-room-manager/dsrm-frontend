@@ -12,6 +12,8 @@ import * as loginFormEN from '../locales/en/loginForm.json';
 import * as loginFormPL from '../locales/pl/loginForm.json';
 import * as registerFormEN from '../locales/en/registerForm.json';
 import * as registerFormPL from '../locales/pl/registerForm.json';
+import * as userAccountEN from '../locales/en/userAccount.json';
+import * as userAccountPL from '../locales/pl/userAccount.json';
 import * as userListEN from '../locales/en/userList.json';
 import * as userListPL from '../locales/pl/userList.json';
 
@@ -28,6 +30,7 @@ const resources = {
       header: headerEN,
       loginForm: loginFormEN,
       registerForm: registerFormEN,
+      userAccount: userAccountEN,
       userList: userListEN,
     },
   },
@@ -40,6 +43,7 @@ const resources = {
       header: headerPL,
       loginForm: loginFormPL,
       registerForm: registerFormPL,
+      userAccount: userAccountPL,
       userList: userListPL,
     },
   },
@@ -47,7 +51,7 @@ const resources = {
 
 void i18n.use(initReactI18next).init({
   defaultNS: 'components',
-  fallbackLng: ['en'],
+  lng: localStorage.getItem('lng') || 'en',
   react: {
     bindI18n: 'languageChanged',
   },

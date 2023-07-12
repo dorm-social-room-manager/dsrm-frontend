@@ -1,0 +1,10 @@
+{
+    "firstName": "Imię",
+    "lastName": "Nazwisko",
+    "roomNumber": "Numer pokoju",
+    "email": "E-mail",
+    "language": "Język",
+    "theme": "Motyw",
+    "userData": "Dane użytkownika",
+    "otherSettings": "Inne ustawienia"
+}

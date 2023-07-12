@@ -1,0 +1,10 @@
+{
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "roomNumber": "Room Number",
+    "email": "E-mail",
+    "language": "Language",
+    "theme": "Theme",   
+    "userData": "User data",
+    "otherSettings": "Other settings"   
+}
