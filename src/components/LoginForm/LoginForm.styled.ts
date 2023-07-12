@@ -7,7 +7,7 @@ export const LoginFormInputStyled = styled(Field)(() => {
 
 export const LoginFormButtonStyled = styled(Button)(() => {
   return {
-    padding: 1,
-    width: 1,
+    padding: '0.5rem',
+    width: '100%',
   };
 });
