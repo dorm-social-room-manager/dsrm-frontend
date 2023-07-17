@@ -1,7 +1,9 @@
 import { Box, Divider, Grid, Snackbar, TextField, useMediaQuery, useTheme } from '@mui/material';
 import { RegisterFormAlertStyled, RegisterFormInputStyled } from './RegisterForm.styled';
+import { CreateUserError } from '../../common/types/CreateUserError.types';
 import { CreateUserType } from '../../common/types/OperationTypes.types';
 import { Formik } from 'formik';
+import { isRecordWithAllFields } from '../../common/utils/typeguards/isRecordWithAllFields';
 import { LoadingButton } from '@mui/lab';
 import { PasswordInput } from '../PasswordInput/PasswordInput';
 import { SyntheticEvent } from 'react';
@@ -15,12 +17,22 @@ export function RegisterForm() {
   const navigate = useNavigate();
   const { mutate, isLoading, isSuccess, isError } = useCreateUserMutation();
 
-  const onFormSubmit = (values: CreateUserType) => {
+  const onFormSubmit = (values: CreateUserError) => {
+    if (!isRecordWithAllFields<CreateUserError>(values, ['email', 'password', 'name', 'surname', 'roomNumber'])) {
+      return;
+    }
+    const userData: CreateUserType = {
+      email: values.email,
+      name: values.name,
+      password: values.password,
+      roomNumber: parseInt(values.roomNumber, 10),
+      surname: values.surname,
+    };
     setOpen(true);
-    mutate(values);
+    mutate(userData);
   };
 
-  const handleClose = (event?: SyntheticEvent | Event, reason?: string) => {
+  const handleClose = (_event?: SyntheticEvent | Event, reason?: string) => {
     if (reason === 'clickaway') {
       return;
     }
@@ -33,8 +45,9 @@ export function RegisterForm() {
 
   const minLength = 1;
   const { t } = useTranslation();
-  const validate = (values: CreateUserType) => {
-    const errors: CreateUserType = {};
+  const validate = (values: CreateUserError) => {
+    const errors: CreateUserError = {};
+
     if (values.email === undefined || values.email.length < minLength) {
       errors.email = t('registerForm.emailEmpty');
     }
@@ -42,11 +55,15 @@ export function RegisterForm() {
       errors.password = t('registerForm.passwordEmpty');
     }
     if (values.surname === undefined || values.surname.length < minLength) {
-      errors.surname = t('registerForm.lastNameEmpty');
+      errors.surname = t('registerForm.surnameEmpty');
     }
     if (values.name === undefined || values.name.length < minLength) {
-      errors.name = t('registerForm.firstNameEmpty');
+      errors.name = t('registerForm.nameEmpty');
     }
+    if (values.roomNumber === undefined || values.roomNumber.length < minLength) {
+      errors.roomNumber = t('registerForm.roomNumberEmpty');
+    }
+
     return errors;
   };
 
@@ -56,13 +73,13 @@ export function RegisterForm() {
   const tabletGap = 8;
 
   return (
-    <Formik<CreateUserType>
+    <Formik<CreateUserError>
       enableReinitialize
       validateOnMount={true}
       validateOnChange={true}
       validateOnBlur={true}
       validate={validate}
-      initialValues={{ email: '', name: '', password: '', surname: '' }}
+      initialValues={{ email: '', name: '', password: '', roomNumber: '', surname: '' }}
       onSubmit={onFormSubmit}
     >
       {({ isValid, handleSubmit }) => {
